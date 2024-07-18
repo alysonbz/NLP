@@ -11,4 +11,3 @@ print(df1.columns)
 
 # Print first five rows of df1
 print(df1.head())
-teste
