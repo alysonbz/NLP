@@ -10,7 +10,6 @@ nltk.download('stopwords')
 
 import pandas as pd
 
-
 norm = Normaliser(
     tokenizer = 'readable',
     capitalize_inis = True,
