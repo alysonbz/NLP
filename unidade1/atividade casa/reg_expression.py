@@ -16,7 +16,6 @@ ocorrencias = contar_ocorrencias_python(texto)
 print("Número de ocorrências da palavra 'Python':", ocorrencias)
 
 #Questão02
-import re
 
 def validar_email(email):
     # Padrão de expressão regular para validar endereço de e-mail
@@ -35,7 +34,7 @@ else:
     print("O endereço de e-mail é inválido.")
 
 #Questão03
-import re
+
 
 def extrair_numeros_telefone(texto):
     # Padrão de expressão regular para encontrar números de telefone
@@ -56,7 +55,7 @@ for numero in numeros:
     print(numero)
 
 #Questão04
-import re
+
 
 def substituir_palavra(texto, palavra_antiga, palavra_nova):
     # Utiliza a função sub() do módulo re para substituir as ocorrências da palavra antiga pela nova
@@ -72,7 +71,7 @@ print("\nTexto modificado:")
 print(texto_modificado)
 
 #Questão05
-import re
+
 
 def extrair_urls(texto):
     # Padrão de expressão regular para encontrar URLs
@@ -93,7 +92,6 @@ for url in urls_encontradas:
     print(url)
 
 #Questão06
-import re
 
 def validar_senha(senha):
     # Padrão de expressão regular para validar a senha
@@ -114,8 +112,6 @@ print("A senha3 é segura:", validar_senha(senha3))
 
 #Questão07
 
-import re
-
 def extrair_palavras(texto):
     # Padrão de expressão regular para encontrar palavras
     padrao = r'\b\w+\b'
@@ -130,7 +126,6 @@ print("Palavras encontradas:")
 print(palavras_encontradas)
 
 #Questão08
-import re
 
 def validar_data(data):
     # Padrão de expressão regular para validar data no formato dd/mm/aaaa
@@ -150,7 +145,6 @@ print("A data2 é válida:", validar_data(data2))
 print("A data3 é válida:", validar_data(data3))
 
 #Questão09
-import re
 
 def extrair_nomes_proprios(texto):
     # Padrão de expressão regular para encontrar nomes próprios
