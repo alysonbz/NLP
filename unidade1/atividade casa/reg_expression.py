@@ -60,7 +60,7 @@ for numero in numeros_encontrados:
     print(numero)
 
 
-#questao3
+#questao4
 
 import re
 
@@ -78,7 +78,7 @@ texto_substituido = substituir_gato_por_cachorro(texto)
 print(texto_substituido)
 
 
-#questao4
+#questao5
 import re
 
 def extrair_urls(texto):
@@ -100,7 +100,7 @@ print("URLs encontradas:")
 for url in urls_encontradas:
     print(url)
 
-#questao5
+#questao6
 
 
 import re
@@ -144,7 +144,7 @@ else:
 
 
 
-#questao6
+#questao7
 
 import re
 
@@ -162,7 +162,7 @@ palavras = extrair_palavras(texto)
 print(palavras)
 
 
-#questao7
+#questao8
 
 import re
 
@@ -185,7 +185,7 @@ if validar_formato_data(data_usuario):
 else:
     print("A data inserida não está no formato correto 'DD/MM/AA'.")
 
-#questao8
+#questao9
 
 import re
 
