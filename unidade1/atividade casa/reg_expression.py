@@ -1,7 +1,7 @@
 #atividade data  04/04
 #questão 1
 import re
-
+#
 def contar_ocorrencias_python(texto):
     padrao = r'Python'  # Expressão regular para encontrar a palavra "Python"
     ocorrencias = re.findall(padrao, texto)
