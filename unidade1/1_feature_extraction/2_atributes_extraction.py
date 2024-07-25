@@ -1,4 +1,4 @@
-# Atividade
+## Atividade
 # Um função que retorne a quantidade de sentenças em um texto.
 import re
 
