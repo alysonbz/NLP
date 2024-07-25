@@ -1,20 +1,24 @@
 import spacy
 from src.utils import load_gettyburg
+
+# Carregar o texto de Gettysburg
 gettysburg = load_gettyburg()
 
-# Load model and create Doc object
-nlp = ___
+# Carregar o modelo do spaCy para inglês ('en_core_web_sm' é um modelo pequeno para inglês)
+nlp = spacy.load('en_core_web_sm')
 
-stopwords = ____
+# Obter as stopwords do modelo do spaCy
+stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
-doc = __(gettysburg)
+# Processar o texto usando o modelo carregado
+doc = nlp(gettysburg)
 
-# Generate lemmatized tokens
-lemmas = [___.___ for token in __]
+# Gerar lemas (lemmatized tokens)
+lemmas = [token.lemma_ for token in doc]
 
-# Remove stopwords and non-alphabetic tokens
-a_lemmas = [lemma for lemma in ___
-            if lemma.___ and lemma not in ___]
+# Remover stopwords e tokens não alfabéticos
+a_lemmas = [lemma for lemma in lemmas
+            if lemma.isalpha() and lemma not in stopwords]
 
-# Print string after text cleaning
-print(' '.join(___))
+# Imprimir a string após a limpeza do texto
+print(' '.join(a_lemmas))

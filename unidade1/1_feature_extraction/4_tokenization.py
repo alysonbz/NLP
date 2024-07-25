@@ -1,12 +1,15 @@
 import spacy
-from src.utils import load_gettyburg
+from src.utils import load_gettyburg  # Importe sua função para carregar os dados
 
-# Load the en_core_web_sm model
-nlp = .____(____)
+# Carregar o modelo en_core_web_sm do spaCy
+nlp = spacy.load('en_core_web_sm')
 
-# Create a Doc object
-doc = ____(____)
+# Carregar os dados usando sua função load_gettyburg (supondo que ela carrega um texto)
+text = load_gettyburg()
 
-# Generate the tokens
-tokens = [token.____ for token in ____]
+# Criar um objeto Doc
+doc = nlp(text)
+
+# Gerar os tokens
+tokens = [token.text for token in doc]
 print(tokens)

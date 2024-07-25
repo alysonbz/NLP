@@ -1,21 +1,21 @@
 import spacy
 from src.utils import load_text_tc
 
+# Carregar o texto usando a função load_text_tc() (supondo que ela carregue o texto desejado)
 tc = load_text_tc()
 
-# Load model and create Doc object
+# Carregar o modelo en_core_web_sm do spaCy
 nlp = spacy.load('en_core_web_sm')
 
-
 def find_persons(text):
-    # Create Doc object
-    doc = ___(___)
+    # Criar um objeto Doc
+    doc = nlp(text)
 
-    # Identify the persons
-    persons = [ent.____ for ent in doc.____ if ent.____ == 'PERSON']
+    # Identificar as pessoas (entidades do tipo 'PERSON')
+    persons = [ent.text for ent in doc.ents if ent.label_ == 'PERSON']
 
-    # Return persons
+    # Retornar as pessoas identificadas
     return persons
 
-
-print(____(____))
+# Chamar a função find_persons com o texto carregado (tc)
+print(find_persons(tc))

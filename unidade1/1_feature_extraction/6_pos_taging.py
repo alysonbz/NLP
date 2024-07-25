@@ -1,13 +1,17 @@
 import spacy
 from src.utils import load_gettyburg
+
+# Carregar o texto de Gettysburg
 gettysburg = load_gettyburg()
 
-# Load the en_core_web_sm model
-nlp = spacy.load(____)
+# Carregar o modelo en_core_web_sm do spaCy
+nlp = spacy.load('en_core_web_sm')
 
-# Create a Doc object
-doc = ___(___)
+# Criar um objeto Doc
+doc = nlp(gettysburg)
 
-# Generate tokens and pos tags
-pos = [(token.____, token.____) for token in doc]
+# Gerar tokens e tags POS
+pos = [(token.text, token.pos_) for token in doc]
+
+# Imprimir tokens e tags POS
 print(pos)

@@ -1,12 +1,12 @@
 import spacy
 
-# Load the required model
-nlp = ____.____(____)
+# Carregar o modelo necessário (por exemplo, 'en_core_web_sm' para inglês)
+nlp = spacy.load('en_core_web_sm')
 
-# Create a Doc instance
+# Criar uma instância Doc
 text = 'Sundar Pichai is the CEO of Google. Its headquarters is in Mountain View.'
-doc = ____
+doc = nlp(text)
 
-# Print all named entities and their labels
-for ent in ____:
-    print(____, ____)
+# Imprimir todas as entidades nomeadas e suas etiquetas
+for ent in doc.ents:
+    print(ent.text, ent.label_)
