@@ -1,5 +1,6 @@
 # Atividade
 # Um função que retorne a quantidade de sentenças em um texto.
+
 def contar_sentencas(texto):
     # Conta o número de ocorrências do caractere '.' no texto
     return texto.count('.')
@@ -29,6 +30,7 @@ def contar_numeros(texto):
 texto = "No ano de 2019 o CRFlamengo conquistou a triplice da cora conquistando 3 titulos em uma unica temporada!"
 resultado = contar_numeros(texto)
 print(f"A quantidade de caracteres numericos e: {resultado}")
+
 # Uma função que retorne a quantidade de palavras que estão  em caixa alta.
 def contar_palavras_caixa_alta(texto):
     palavras = texto.split()
