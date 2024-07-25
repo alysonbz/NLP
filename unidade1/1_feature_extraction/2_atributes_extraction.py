@@ -46,4 +46,4 @@ df['Number of numeric characters'] = df['Text'].apply(count_numeric_characters)
 df['Number of uppercase words'] = df['Text'].apply(count_uppercase_words)
 
 # Print the dataframe
-print(df)
+print(df)   
