@@ -9,14 +9,12 @@ def contar_ocorrencias_python(texto):
     return len(ocorrencias)
 
 # Exemplo de uso:
-texto = "Python é uma linguagem de programação poderosa. Python é amplamente usada em várias aplicações. e cada vez mais o Python esta sendo utilizado"
+texto = "Python é uma linguagem de programação poderosa. Python é amplamente usada em várias aplicações. E cada vez mais o Python está sendo utilizado."
 resultado = contar_ocorrencias_python(texto)
-print("Número de ocorrências de 'Python':", resultado)
+print(f"Número de ocorrências de 'Python': {resultado}")
+
 
 #questao2
-
-
-import re
 
 def validar_email_UFC(email):
     padrao = r'^[\w\.-]+@ufc\.br$'  # Expressão regular para validar um endereço de email da UFC
@@ -25,10 +23,10 @@ def validar_email_UFC(email):
     else:
         return False
 
-# Solicitar ao usuário que insira
+# Solicitar ao usuário que insira o email
 email_usuario = input("Por favor, insira o seu email: ")
 
-# Verificar o
+# Verificar e imprimir o resultado
 if validar_email_UFC(email_usuario):
     print("O email pertence à Universidade Federal do Ceará (UFC).")
 else:
@@ -36,9 +34,6 @@ else:
 
 
 #questao3
-
-
-import re
 
 def extrair_numeros_telefone(texto):
     # Define o padrão para números de telefone
@@ -60,9 +55,9 @@ for numero in numeros_encontrados:
     print(numero)
 
 
+
 #questao4
 
-import re
 
 def substituir_gato_por_cachorro(texto):
     # Define o padrão para encontrar a palavra "gato"
@@ -75,11 +70,11 @@ def substituir_gato_por_cachorro(texto):
 # Exemplo de uso:
 texto = "O gato está dormindo no telhado. O gato é um animal doméstico."
 texto_substituido = substituir_gato_por_cachorro(texto)
-print(texto_substituido)
+print(f"Texto após substituição:\n{texto_substituido}")
+
 
 
 #questao5
-import re
 
 def extrair_urls(texto):
     # Define o padrão para encontrar URLs
@@ -102,8 +97,6 @@ for url in urls_encontradas:
 
 #questao6
 
-
-import re
 
 def validar_senha(senha):
     """
@@ -143,10 +136,7 @@ else:
     print("A senha inserida não é segura. Por favor, certifique-se de que ela atenda aos critérios mencionados acima.")
 
 
-
 #questao7
-
-import re
 
 def extrair_palavras(texto):
     # Define o padrão para encontrar palavras
@@ -159,12 +149,12 @@ def extrair_palavras(texto):
 # Exemplo de uso:
 texto = "Esta é uma string de exemplo, com várias palavras diferentes."
 palavras = extrair_palavras(texto)
+print("Palavras encontradas:")
 print(palavras)
 
 
 #questao8
 
-import re
 
 def validar_formato_data(data):
     # Define o padrão para validar o formato da data "DD/MM/AA"
@@ -187,7 +177,6 @@ else:
 
 #questao9
 
-import re
 
 def extrair_nomes_proprios(texto):
     # Define o padrão para encontrar nomes próprios
@@ -206,7 +195,7 @@ print(nomes)
 
 #questao10
 
-import re
+
 
 def contar_vogais(texto):
     # Define o padrão para encontrar vogais
@@ -221,4 +210,4 @@ def contar_vogais(texto):
 # Exemplo de uso:
 texto = "Esta é uma string de exemplo com várias vogais."
 total_vogais = contar_vogais(texto)
-print("Total de vogais:", total_vogais)
+print(f"Total de vogais: {total_vogais}")
