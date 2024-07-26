@@ -1,6 +1,9 @@
 from src.utils import load_pfizer_tweet_dataset
 
 tweets = load_pfizer_tweet_dataset()
+
+print(tweets)
+
 import matplotlib.pyplot as plt
 
 ## WORD COUNT
@@ -9,10 +12,10 @@ import matplotlib.pyplot as plt
 # a) Function that returns number of words in a string
 def count_words(string):
     # Split the string into words
-    words = ____.____
+    words = string.split()
 
     # Return the number of words
-    return ____(____)
+    return len(words)
 
 
 # Create a new feature word_count
@@ -68,3 +71,6 @@ tweets['mention_count'] = tweets['text'].apply(count_mentions)
 tweets['mention_count'].hist()
 plt.title('Mention count distribution')
 plt.show()
+
+
+
