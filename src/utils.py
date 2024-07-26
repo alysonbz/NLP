@@ -75,7 +75,7 @@ def load_df1_one_hot():
 
 def load_pfizer_tweet_dataset():
 
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/vaccination_tweets.csv')
+    relative_path = os.path.join(current_dir, r'unidade1\dataset\vaccination_tweets.csv')
 
     df = pd.read_csv(relative_path)
 
