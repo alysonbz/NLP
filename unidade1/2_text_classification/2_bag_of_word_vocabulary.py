@@ -1,23 +1,22 @@
 import pandas as pd
 from src.utils import load_movie_review_dataset
+from sklearn.feature_extraction.text import CountVectorizer
 
-# Import CountVectorizer
-from sklearn.feature_extraction.text import ____
-
+# Carregar o conjunto de dados
 corpus = load_movie_review_dataset()
 corpus = corpus['tagline'].dropna()
 
-# Create CountVectorizer object
-vectorizer = ____
+# Criar objeto CountVectorizer
+vectorizer = CountVectorizer()
 
-# Generate matrix of word vectors
-bow_matrix = _____
+# Gerar a matriz de vetores de palavras
+bow_matrix = vectorizer.fit_transform(corpus)
 
-# Convert bow_matrix into a DataFrame
+# Converter bow_matrix em um DataFrame
 bow_df = pd.DataFrame(bow_matrix.toarray())
 
-# Map the column names to vocabulary
-bow_df.columns = _____
+# Mapear os nomes das colunas para o vocabulário
+bow_df.columns = vectorizer.get_feature_names_out()
 
-# Print bow_df
+# Imprimir bow_df
 print(bow_df)
