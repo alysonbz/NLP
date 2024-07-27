@@ -440,3 +440,9 @@ def load_text_tc():
 
     return "\nIt’s' been a busy day for Facebook  exec op-eds. Earlier this morning, Sheryl Sandberg broke the site’s silence around the Christchurch massacre, and now Mark Zuckerberg is calling on governments and other bodies to increase regulation around the sorts of data Facebook traffics in. He’s hoping to get out in front of heavy-handed regulation and get a seat at the table shaping it.\n"
 
+def load_movie_review_dataset():
+    return pd.read_csv('../dataset/movie_overviews.csv')
+
+def load_movie_review_clean_dataset():
+    return pd.read_csv('../dataset/movie_reviews_clean.csv')
+
