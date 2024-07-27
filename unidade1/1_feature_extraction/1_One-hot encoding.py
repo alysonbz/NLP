@@ -1,4 +1,7 @@
+import pandas as pd
+from src.utils import load_df1_one_hot
 
+df1 = load_df1_one_hot()
 
 # Print the features of df1
 print(df1.columns)
