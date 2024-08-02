@@ -1,99 +1,58 @@
 import pandas as pd
 import numpy as np
-import os
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression , LogisticRegression
 from sklearn.model_selection import train_test_split
 
-current_dir = os.getcwd()
 
 
 def load_volunteer_dataset():
-    
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/opportunities.csv')
-    
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/opportunities.csv')
 
 def load_wine_dataset():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/wine.csv')
-    
-    return pd.read_csv(relative_path)
+    wine = pd.read_csv('../dataset/wine.csv')
+    return wine
 
 def load_hiking_dataset():
-    
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/hiking.json')
-    
-    return pd.read_json(relative_path)
+    return pd.read_json('../dataset/hiking.json')
 
 def load_df1_unidade1():
+    return pd.read_csv('../dataset/df1_unidade1.csv')
 
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/df1_unidade1.csv')
-    
-    return pd.read_csv(relative_path)
 
 def load_df2_unidade1():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/df2_unidade1.csv')
-    
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/df2_unidade1.csv')
 
 def load_df1_unidade2():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/df1_unidade2.csv')
-    
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/df1_unidade2.csv')
 
 def load_df2_unidade2():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/df2_unidade2.csv')
-
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/df2_unidade2.csv')
 
 def load_churn_dataset():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/churn_train.csv')
-
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/churn_train.csv')
     le = LabelEncoder()
     df['churn'] = le.fit_transform(df['churn'])
     return df
 
 def load_iris_dataset():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/iris.csv')
-
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/iris.csv')
     return df
 
 def load_df1_one_hot():
-
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/df1_one_hot_encoding.csv')
-
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/df1_one_hot_encoding.csv')
     return df
 
 def load_pfizer_tweet_dataset():
-
-    relative_path = os.path.join(current_dir, r'unidade1\dataset\vaccination_tweets.csv')
-
-    df = pd.read_csv(relative_path)
-
+    df = pd.read_csv('../dataset/vaccination_tweets.csv')
     return df
 
-a = load_pfizer_tweet_dataset()
-
 def load_sales_clean_dataset():
-
-    relative_path = os.path.join(current_dir,'unidade1/dataset/sales_clean.csv')
-    
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/sales_clean.csv')
     return df
 
 def load_diabetes_clean_dataset():
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/diabetes_clean.csv')
-   
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/diabetes_clean.csv')
     return df
 
 def processing_sales_clean():
@@ -459,20 +418,16 @@ def load_points():
                     [-1.98274626, -0.54584475]])
 
 def load_grains_dataset():
-    relative_path = os.path.join(current_dir,'unidade1/dataset/grains.csv')
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/grains.csv')
 
 def load_fish_dataset():
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/fish.csv')
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/fish.csv')
 
 def load_movements_price_dataset():
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/company-stock-movements-2010-2015-incl.csv')
-    return pd.read_csv(relative_path)
+    return pd.read_csv('../dataset/company-stock-movements-2010-2015-incl.csv')
 
 def load_grains_splited_datadet():
-    relative_path = os.path.join(current_dir, 'unidade1/dataset/grains.csv')
-    df = pd.read_csv(relative_path)
+    df = pd.read_csv('../dataset/grains.csv')
     X =  df.drop(['variety','variety_number'],axis=1)
     y =  df['variety'].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=42, stratify=y)
@@ -490,4 +445,3 @@ def load_movie_review_dataset():
 
 def load_movie_review_clean_dataset():
     return pd.read_csv('../dataset/movie_reviews_clean.csv')
-
