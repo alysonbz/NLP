@@ -15,6 +15,8 @@ JOAO DAVI OLIVEIRA BARBOSA: https://www.kaggle.com/datasets/hrmello/brazilian-po
 
 LAURA DE LIMA MENDES: https://www.kaggle.com/datasets/fredericods/ptbr-sentiment-analysis-datasets?select=buscape.csv
 
+LARISSA VITÓRIA: https://www.kaggle.com/datasets/shivkumarganesh/plenty-of-fish-google-play-store-reviews
+
 MARIA BIANCA SOUSA COSTA: https://www.kaggle.com/datasets/moesiof/portuguese-narrative-essays
 
 MARIA VANESSA SOUSA MESQUITA : https://github.com/kamplus/FakeNewsSetGen/tree/master/Dataset
