@@ -60,7 +60,7 @@ lista_telefones = [
     "87654321",
     "987654321"
 ]
-#
+
 telefones = extrair_telefones(lista_telefones)
 print("4. Números de telefone encontrados:", telefones)
 print("\n")
