@@ -5,7 +5,7 @@ import re
 def return_mileage(length):
     # Search the text for matches
     try:
-        mile = ___
+        mile = re.search(r"\d+(\.\d+)?", length)
     except:
         mile = None
     # If a value is returned, use group(0) to return the found value
