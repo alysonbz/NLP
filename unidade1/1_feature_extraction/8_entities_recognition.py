@@ -1,12 +1,21 @@
 import spacy
+from src.utils import load_text_tc
 
-# Load the required model
-nlp = ____.____(____)
+tc = load_text_tc()
 
-# Create a Doc instance
-text = 'Sundar Pichai is the CEO of Google. Its headquarters is in Mountain View.'
-doc = ____
+# Load model and create Doc object
+nlp = spacy.load('en_core_web_sm')
 
-# Print all named entities and their labels
-for ent in ____:
-    print(____, ____)
+
+def find_persons(text):
+    # Create Doc object
+    doc = nlp(text)
+
+    # Identify the persons
+    persons = [ent.text for ent in doc.ents if ent.label_ == 'PERSON']
+
+    # Return persons
+    return persons
+
+
+print(find_persons(tc))
