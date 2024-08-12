@@ -48,7 +48,7 @@ A estrutura do código deve permitir que possam ser importadas as funções em o
 
 ### Questão 3
 
-[classification.py](classification.py)
+[classification.py](preprocessing.py)
 
 
 Neste exercicio você deve utilizar um único classifiador para aplicar no seu dataset, de acordo com a label escolhida.
