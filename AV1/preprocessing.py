@@ -4,7 +4,7 @@ from datasets import load_dataset
 from nltk.corpus import stopwords
 from nltk.stem import RSLPStemmer, WordNetLemmatizer
 import numpy as np
-
+#
 # Baixar pacotes adicionais do NLTK
 nltk.download('stopwords')
 nltk.download('rslp')
