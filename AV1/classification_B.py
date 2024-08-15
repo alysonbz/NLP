@@ -1,34 +1,11 @@
-import re
-import nltk
 import numpy as np
 from scipy.sparse import csr_matrix
 from datasets import load_dataset
-from nltk.corpus import stopwords
-from nltk.stem import RSLPStemmer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
-from vectorizer import count_vectorizer, tfidf_vectorizer
-#
-# Baixar pacotes adicionais do NLTK
-nltk.download('stopwords')
-nltk.download('rslp')
-
-# Função de pré-processamento
-def preprocess_text(text):
-    text = text.lower()
-    text = re.sub(r'[^\w\s]', '', text)  # Remove caracteres especiais
-    text = re.sub(r'@\w+', '', text)  # Remove menções
-    stop_words = set(stopwords.words('portuguese'))
-    words = text.split()
-    words = [word for word in words if word not in stop_words]
-    text = ' '.join(words)
-
-    # Aplicar stemming
-    stemmer = RSLPStemmer()
-    text = ' '.join([stemmer.stem(word) for word in text.split()])
-
-    return text
+from vectorizer import count_vectorizer, tfidf_vectorizer  # Importando as funções personalizadas
+from preprocessing import preprocess_text  # Importando o mesmo pré-processamento de classification_A
 
 # Carregar o dataset
 ds = load_dataset("johnidouglas/twitter-sentiment-pt-BR-md-2-l")
@@ -38,9 +15,10 @@ df_sample = df.sample(frac=0.2, random_state=42)  # Aumenta o tamanho da amostra
 texts = df_sample['tweet_text'].values
 labels = df_sample['sentiment'].values
 
+# Dividir o dataset em treino e teste
 X_train, X_test, y_train, y_test = train_test_split(texts, labels, test_size=0.2, random_state=42)
 
-# Pré-processamento
+# Aplicando o pré-processamento (o mesmo de classification_A)
 X_train_preprocessed = [preprocess_text(text) for text in X_train]
 X_test_preprocessed = [preprocess_text(text) for text in X_test]
 
@@ -60,6 +38,7 @@ tfidf_matrix_test_pp, _ = tfidf_vectorizer(X_test_preprocessed, vocab=vocab_tfid
 tfidf_matrix_train_pp = csr_matrix(tfidf_matrix_train_pp)
 tfidf_matrix_test_pp = csr_matrix(tfidf_matrix_test_pp)
 
+# Modelo de Regressão Logística
 clf = LogisticRegression(max_iter=1000)
 
 # CountVectorizer

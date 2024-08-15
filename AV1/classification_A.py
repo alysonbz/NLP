@@ -3,39 +3,15 @@ import nltk
 import numpy as np
 from scipy.sparse import csr_matrix
 from datasets import load_dataset
-from nltk.corpus import stopwords
-from nltk.stem import RSLPStemmer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 from vectorizer import count_vectorizer, tfidf_vectorizer  # Importa as funções personalizadas
-#
-# Baixar pacotes adicionais do NLTK
+from preprocessing import preprocess_text  # Função de pré-processamento reutilizada
+
+# Baixar pacotes adicionais do NLTK (caso necessário)
 nltk.download('stopwords')
 nltk.download('rslp')
-
-# Função de pré-processamento
-def preprocess_text(text: str) -> str:
-    """
-    Realiza o pré-processamento do texto, que inclui a conversão para minúsculas,
-    remoção de caracteres especiais, menções, stopwords e aplicação de stemming.
-
-    Args:
-        text (str): Texto a ser pré-processado.
-
-    Returns:
-        str: Texto pré-processado.
-    """
-    text = text.lower()
-    text = re.sub(r'[^\w\s]', '', text)  # Remove caracteres especiais, mantendo espaços
-    text = re.sub(r'@\w+', '', text)  # Remove menções
-    stop_words = set(stopwords.words('portuguese'))
-    words = text.split()
-    words = [word for word in words if word not in stop_words]
-    text = ' '.join(words)
-    stemmer = RSLPStemmer()
-    text = ' '.join([stemmer.stem(word) for word in text.split()])
-    return text
 
 # Carregar o dataset
 ds = load_dataset("johnidouglas/twitter-sentiment-pt-BR-md-2-l")
@@ -58,7 +34,7 @@ tfidf_matrix_test, _ = tfidf_vectorizer(X_test, vocab=vocab)
 tfidf_matrix_train = csr_matrix(tfidf_matrix_train)
 tfidf_matrix_test = csr_matrix(tfidf_matrix_test)
 
-# Com pré-processamento
+# Com pré-processamento usando a função do arquivo preprocessing
 X_train_preprocessed = [preprocess_text(text) for text in X_train]
 X_test_preprocessed = [preprocess_text(text) for text in X_test]
 
