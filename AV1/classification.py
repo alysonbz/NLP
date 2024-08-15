@@ -3,17 +3,36 @@ from preprocessing import preprocess_text, remove_stopwords, stem_text, lemmatiz
 from vectorizer import count_vectorizer, tfidf_vectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, classification_report
 from sklearn.utils import shuffle
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+# Função para verificar a distribuição das classes no conjunto completo
+def check_class_distribution(df):
+    class_distribution = df['type'].value_counts()
+    print("Distribuição das classes no conjunto completo:")
+    print(class_distribution)
+
+# Função para realizar análise de sentimento
+def analyze_sentiment(text):
+    analyzer = SentimentIntensityAnalyzer()
+    sentiment_scores = analyzer.polarity_scores(text)
+    return sentiment_scores['compound']
+
+# Função para amostrar os dados
+def sample_data(df, sample_size=None):
+    if sample_size:
+        return df.sample(n=sample_size, random_state=42)
+    return df
 
 # Função para carregar e pré-processar os dados
-def load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=False, sample_size=1000):
-    print(f"Carregando os dados de {filepath} com amostra de tamanho {sample_size}...")
+def load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=False, sample_size=None):
     df = pd.read_csv(filepath, sep=';', on_bad_lines='skip')
 
-    if sample_size:
-        df = df.sample(n=sample_size, random_state=42)
+    # Aplicando a amostragem
+    df = sample_data(df, sample_size)
+
+    print("Colunas disponíveis:", df.columns.tolist())
 
     df_true = df[['message_true']].copy()
     df_true = df_true.dropna()
@@ -22,120 +41,86 @@ def load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=Fals
     df = pd.concat([df[['message', 'type']], df_true[['message', 'type']]], ignore_index=True)
 
     df['message'] = df['message'].fillna('')
-    print("Pré-processando mensagens...")
     df['message_norm'] = df['message'].apply(preprocess_text)
     df['message_norm'] = df['message_norm'].apply(remove_stopwords)
 
     if use_stemming:
-        print("Aplicando stemming...")
         df['message_norm'] = df['message_norm'].apply(stem_text)
     elif use_lemmatization:
-        print("Aplicando lemmatization...")
         df['message_norm'] = df['message_norm'].apply(lemmatize_text)
+
+    df['sentiment'] = df['message'].apply(analyze_sentiment)
 
     return df
 
-
 # Função para dividir e garantir a presença de todas as classes
 def train_test_split_with_class_distribution(df):
-    print("Dividindo os dados em conjuntos de treinamento e teste...")
     df = shuffle(df, random_state=42)
     X_train, X_test, y_train, y_test = train_test_split(df['message_norm'], df['type'], test_size=0.2,
                                                         stratify=df['type'], random_state=42)
     return X_train, X_test, y_train, y_test
 
-
-# Função para treinar e avaliar um modelo
+# Função para treinar e avaliar o modelo
 def train_and_evaluate(X_train, X_test, y_train, y_test):
-    print("Treinando e avaliando o modelo...")
     clf = MultinomialNB()
     clf.fit(X_train, y_train)
     predictions = clf.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
-    return accuracy
+    precision = precision_score(y_test, predictions, average='weighted')
+    recall = recall_score(y_test, predictions, average='weighted')
+    return accuracy, precision, recall
 
+# Função para comparar as técnicas de pré-processamento e vetorização
+def compare_preprocessing_techniques(filepath, sample_size=None):
+    results = {}
 
-# Parte a) Comparar TF-IDF com e sem pré-processamento
-def compare_with_without_preprocessing(filepath):
-    print("Comparando TF-IDF com e sem pré-processamento...")
-    df_raw = load_and_preprocess_data(filepath, use_stemming=False, use_lemmatization=False)
-    df_preprocessed = load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=False)
+    preprocessing_options = [
+        {"use_stemming": True, "use_lemmatization": False, "method": "Stemming + CountVectorizer"},
+        {"use_stemming": True, "use_lemmatization": False, "method": "Stemming + TF-IDF"},
+        {"use_stemming": False, "use_lemmatization": True, "method": "Lemmatization + CountVectorizer"},
+        {"use_stemming": False, "use_lemmatization": True, "method": "Lemmatization + TF-IDF"}
+    ]
 
-    X_train_raw, X_test_raw, y_train_raw, y_test_raw = train_test_split_with_class_distribution(df_raw)
-    X_train_pre, X_test_pre, y_train_pre, y_test_pre = train_test_split_with_class_distribution(df_preprocessed)
+    for option in preprocessing_options:
+        df_preprocessed = load_and_preprocess_data(filepath,
+                                                   use_stemming=option["use_stemming"],
+                                                   use_lemmatization=option["use_lemmatization"],
+                                                   sample_size=sample_size)
+        X_train, X_test, y_train, y_test = train_test_split_with_class_distribution(df_preprocessed)
 
-    # Vetorização TF-IDF sem pré-processamento
-    print("Vetorização TF-IDF sem pré-processamento...")
-    X_train_tfidf_raw, vectorizer_raw = tfidf_vectorizer(X_train_raw)
-    X_test_tfidf_raw = vectorizer_raw.transform(X_test_raw)
-    accuracy_raw = train_and_evaluate(X_train_tfidf_raw, X_test_tfidf_raw, y_train_raw, y_test_raw)
+        if "CountVectorizer" in option["method"]:
+            X_train_vectorized, vectorizer = count_vectorizer(X_train)
+            X_test_vectorized = vectorizer.transform(X_test)
+        elif "TF-IDF" in option["method"]:
+            X_train_vectorized, vectorizer = tfidf_vectorizer(X_train)
+            X_test_vectorized = vectorizer.transform(X_test)
 
-    # Vetorização TF-IDF com pré-processamento
-    print("Vetorização TF-IDF com pré-processamento...")
-    X_train_tfidf_pre, vectorizer_pre = tfidf_vectorizer(X_train_pre)
-    X_test_tfidf_pre = vectorizer_pre.transform(X_test_pre)
-    accuracy_pre = train_and_evaluate(X_train_tfidf_pre, X_test_tfidf_pre, y_train_pre, y_test_pre)
+        accuracy, precision, recall = train_and_evaluate(X_train_vectorized, X_test_vectorized, y_train, y_test)
+        results[option["method"]] = {
+            "accuracy": accuracy,
+            "precision": precision,
+            "recall": recall
+        }
 
-    return {"TF-IDF sem pré-processamento": accuracy_raw, "TF-IDF com pré-processamento": accuracy_pre}
-
-
-# Parte b) Comparar CountVectorizer vs TF-IDF com pré-processamento
-def compare_vectorizers(filepath):
-    print("Comparando CountVectorizer vs TF-IDF com pré-processamento...")
-    df = load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=False)
-    X_train, X_test, y_train, y_test = train_test_split_with_class_distribution(df)
-
-    # CountVectorizer
-    print("Vetorização CountVectorizer...")
-    X_train_count, vectorizer_count = count_vectorizer(X_train)
-    X_test_count = vectorizer_count.transform(X_test)
-    accuracy_count = train_and_evaluate(X_train_count, X_test_count, y_train, y_test)
-
-    # TF-IDF
-    print("Vetorização TF-IDF...")
-    X_train_tfidf, vectorizer_tfidf = tfidf_vectorizer(X_train)
-    X_test_tfidf = vectorizer_tfidf.transform(X_test)
-    accuracy_tfidf = train_and_evaluate(X_train_tfidf, X_test_tfidf, y_train, y_test)
-
-    return {"CountVectorizer": accuracy_count, "TF-IDF": accuracy_tfidf}
-
-
-# Parte c) Comparar stemming vs lemmatization com a melhor vetorização do item b)
-def compare_stemming_lemmatization(filepath):
-    print("Comparando Stemming vs Lemmatization com a melhor vetorização...")
-    df_stemming = load_and_preprocess_data(filepath, use_stemming=True, use_lemmatization=False)
-    df_lemmatization = load_and_preprocess_data(filepath, use_stemming=False, use_lemmatization=True)
-
-    X_train_stem, X_test_stem, y_train_stem, y_test_stem = train_test_split_with_class_distribution(df_stemming)
-    X_train_lem, X_test_lem, y_train_lem, y_test_lem = train_test_split_with_class_distribution(df_lemmatization)
-
-    # Usando TF-IDF (assumindo que foi o melhor vetor)
-    print("Usando TF-IDF para comparar Stemming e Lemmatization...")
-    X_train_tfidf_stem, vectorizer_stem = tfidf_vectorizer(X_train_stem)
-    X_test_tfidf_stem = vectorizer_stem.transform(X_test_stem)
-    accuracy_stem = train_and_evaluate(X_train_tfidf_stem, X_test_tfidf_stem, y_train_stem, y_test_stem)
-
-    X_train_tfidf_lem, vectorizer_lem = tfidf_vectorizer(X_train_lem)
-    X_test_tfidf_lem = vectorizer_lem.transform(X_test_lem)
-    accuracy_lem = train_and_evaluate(X_train_tfidf_lem, X_test_tfidf_lem, y_train_lem, y_test_lem)
-
-    return {"Stemming": accuracy_stem, "Lemmatization": accuracy_lem}
-
+    return results
 
 # Caminho do arquivo
 filepath = "C:\\Users\\mateu\\Downloads\\complete_dataset\\complete_dataset.csv"
 
-# Executando as comparações com uma amostra de 1000 dados
-sample_size = 200  # Ajuste o tamanho da amostra conforme necessário
+# Defina o tamanho da amostra para acelerar a execução
+sample_size = 200  # Ajuste conforme necessário
 
-# Parte a)
-results_a = compare_with_without_preprocessing(filepath)
-print("Resultados - TF-IDF com e sem pré-processamento:", results_a)
+# Executando a comparação
+results = compare_preprocessing_techniques(filepath, sample_size=sample_size)
 
-# Parte b)
-results_b = compare_vectorizers(filepath)
-print("Resultados - CountVectorizer vs TF-IDF:", results_b)
+# Exibindo os resultados
+for method, metrics in results.items():
+    print(f"Method: {method}")
+    print(f"  Accuracy: {metrics['accuracy']:.2f}")
+    print(f"  Precision: {metrics['precision']:.2f}")
+    print(f"  Recall: {metrics['recall']:.2f}")
 
-# Parte c)
-results_c = compare_stemming_lemmatization(filepath)
-print("Resultados - Stemming vs Lemmatization:", results_c)
+# Análise de sentimento no dataset completo
+df_full = load_and_preprocess_data(filepath, sample_size=sample_size)
+df_full['sentiment'] = df_full['message'].apply(analyze_sentiment)
+print(df_full[['message', 'sentiment', 'type']].head())
