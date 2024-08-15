@@ -42,7 +42,7 @@ def tfidf_vectorizer(corpus):
     num_docs = len(corpus)
 
     # Passo 2: Calcular o TF (Term Frequency)
-    tf_matrix = np.zeros_like(count_matrix, dtype=float)  # Garanta que a matriz seja de float
+    tf_matrix = np.zeros_like(count_matrix, dtype=float)
     for i in range(count_matrix.shape[0]):
         total_terms_in_doc = np.sum(count_matrix[i])
         if total_terms_in_doc > 0:
@@ -50,18 +50,16 @@ def tfidf_vectorizer(corpus):
 
     # Passo 3: Calcular o IDF (Inverse Document Frequency)
     df = np.sum(count_matrix > 0, axis=0)
-    idf = np.log((num_docs + 1) / (df + 1)) + 1  # Suavização de IDF similar ao scikit-learn
+    idf = np.log((num_docs + 1) / (df + 1)) + 1
 
     # Passo 4: Calcular o TF-IDF
     tfidf_matrix = tf_matrix * idf
 
-    # Passo 5: Normalizar os vetores TF-IDF usando L2 normalization
-    norms = np.linalg.norm(tfidf_matrix, axis=1, keepdims=True)
-    tfidf_matrix = tfidf_matrix / norms
-
     return vocabulary, tfidf_matrix
 
 # Exemplo de uso:
-# corpus = ["este é um documento", "este documento é o segundo documento", "e este é o terceiro documento"]
-# vocab, count_matrix = count_vectorizer(corpus)
-# vocab, tfidf_matrix = tfidf_vectorizer(corpus)
+corpus = ["este é um documento", "este documento é o segundo documento", "e este é o terceiro documento"]
+vocab, count_matrix = count_vectorizer(corpus)
+vocab, tfidf_matrix = tfidf_vectorizer(corpus)
+print(vocab)
+print(count_vectorizer(corpus))
