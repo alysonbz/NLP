@@ -7,7 +7,7 @@ from nltk.stem import WordNetLemmatizer, PorterStemmer
 import pandas as pd
 import nltk
 
-# Certifique-se de que os recursos do NLTK estão baixados
+
 nltk.download('punkt')
 nltk.download('wordnet')
 
@@ -15,7 +15,7 @@ nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
 stemmer = PorterStemmer()
 
-# Funções de lematização e stemming
+# lematização e stemming
 def lemmatize_text(text):
     tokens = word_tokenize(text)
     return ' '.join([lemmatizer.lemmatize(token) for token in tokens])
@@ -35,14 +35,14 @@ def manual_tf_idf(text_data, vocab=None):
     X_tfidf = vectorizer.fit_transform(text_data)
     return X_tfidf.toarray(), vectorizer.vocabulary_
 
-# Carregar os datasets
+
 redacao_treino = pd.read_csv(r'C:/Users/bianc/Downloads/Ciencia_de_dados/NLP/AV1/train_preprocessed.csv')
 
-# Preparar os dados
+
 X = redacao_treino['aplicar']  # textos
 y = redacao_treino['thematic_coherence']  # rótulos (alvo)
 
-# Aplicar lematização e stemming
+# lematização e stemming
 X_lemma = X.apply(lemmatize_text)
 X_stem = X.apply(stem_text)
 
@@ -91,7 +91,7 @@ y_pred_stem_tfidf = rf_model.predict(X_test_tfidf_stem)
 print("Stemming + TF-IDF + Random Forest:")
 print(classification_report(y_test, y_pred_stem_tfidf))
 
-# Função para exibir as palavras mais frequentes
+# palavras mais frequentes
 def print_most_frequent_words(vocab, top_n=10):
     sorted_vocab = sorted(vocab.items(), key=lambda x: x[1], reverse=True)
     for word, index in sorted_vocab[:top_n]:
