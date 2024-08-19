@@ -32,7 +32,7 @@ THAYS FERREIRA UCHOA ALBUQUERQUE: https://huggingface.co/datasets/AiresPucrs/sen
 
 ### Questão 1
 
-[preprocessing.py](preprocessing.py)
+[preprocessing.py](preprocessing.ipynb)
 
 Nesta primeira questão você deve implementar funções de manipulação do dataset realizar os pré-processmentos necessários, como stemming, lemmatização, remoção de carateris maiusculos, verificar stopwords, verificação de menções
 , de acordo as características do seu dataset. Em resume prepare o mesmo para aplicação de extração de atributos. A estrutura do código deve permitir que possam ser importadas as funções em outras questões.
