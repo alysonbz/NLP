@@ -1,69 +1,66 @@
 from src.utils import load_pfizer_tweet_dataset
-
-tweets = load_pfizer_tweet_dataset()
 import matplotlib.pyplot as plt
+
+# Carrega o dataset de tweets
+tweets = load_pfizer_tweet_dataset()
 
 ## WORD COUNT
 
-
-# a) Function that returns number of words in a string
+# a) Função que retorna o número de palavras em uma string
 def count_words(string):
-    # Split the string into words
-    words = ____.____
+    # Divide a string em palavras
+    words = string.split()
 
-    # Return the number of words
-    return ____(____)
+    # Retorna o número de palavras
+    return len(words)
 
+# Cria uma nova coluna 'word_count' no DataFrame
+tweets['word_count'] = tweets['text'].apply(count_words)
 
-# Create a new feature word_count
-tweets['word_count'] = tweets[____].apply(____)
-
-# Print the average word count of the talks
-print("Word count mean: ", tweets[____].____)
+# Imprime a média de palavras dos tweets
+print("Word count mean: ", tweets['word_count'].mean())
 
 ## CHAR COUNT
 
-# Create a feature char_count from "text" feature. Use len function to count
-tweets['char_count'] = tweets[---].apply(--)
+# Cria uma coluna 'char_count' contando o número de caracteres usando a função len
+tweets['char_count'] = tweets['text'].apply(len)
 
-# Print the average character count
-print("char count mean: ",tweets[----].---)
-
+# Imprime a média de caracteres dos tweets
+print("Char count mean: ", tweets['char_count'].mean())
 
 ## HASHTAGS COUNT
 
-# Function that returns numner of hashtags in a string
+# Função que retorna o número de hashtags em uma string
 def count_hashtags(string):
-    # Split the string into words
+    # Divide a string em palavras
     words = string.split()
 
-    # Create a list of words that are hashtags
-    hashtags = [word for word in words if ____.____(____)]
+    # Cria uma lista de palavras que são hashtags
+    hashtags = [word for word in words if word.startswith('#')]
 
-    # Return number of hashtags
-    return (len(hashtags))
+    # Retorna o número de hashtags
+    return len(hashtags)
 
-
-# Create a feature hashtag_count and display distribution
+# Cria uma coluna 'hashtag_count' e exibe a distribuição
 tweets['hashtag_count'] = tweets['text'].apply(count_hashtags)
 tweets['hashtag_count'].hist()
 plt.title('Hashtag count distribution')
 plt.show()
 
+## MENTIONS COUNT
 
-# Function that returns number of mentions in a string
+# Função que retorna o número de menções em uma string
 def count_mentions(string):
-    # Split the string into words
+    # Divide a string em palavras
     words = string.split()
 
-    # Create a list of words that are mentions
-    mentions = [word for word in words if ____.____(____)]
+    # Cria uma lista de palavras que são menções
+    mentions = [word for word in words if word.startswith('@')]
 
-    # Return number of mentions
-    return (len(mentions))
+    # Retorna o número de menções
+    return len(mentions)
 
-
-# Create a feature mention_count and display distribution
+# Cria uma coluna 'mention_count' e exibe a distribuição
 tweets['mention_count'] = tweets['text'].apply(count_mentions)
 tweets['mention_count'].hist()
 plt.title('Mention count distribution')
