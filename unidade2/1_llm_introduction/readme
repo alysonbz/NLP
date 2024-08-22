@@ -1,0 +1,16 @@
+se surgir esse erro:
+
+TypeError: Descriptors cannot not be created directly
+
+tentar:
+
+pip install protobuf==3.20.0
+
+pip uninstall keras -y
+pip uninstall keras-nightly -y
+pip uninstall keras-Preprocessing -y
+pip uninstall keras-vis -y
+pip uninstall tensorflow -y
+
+pip install tensorflow==2.3.0
+pip install keras==2.4
