@@ -21,7 +21,7 @@ MARIA BIANCA SOUSA COSTA: https://www.kaggle.com/datasets/moesiof/portuguese-nar
 
 MARIA VANESSA SOUSA MESQUITA : https://github.com/kamplus/FakeNewsSetGen/tree/master/Dataset
 
-MATEUS SILVA MATOS: https://github.com/andersoncordeiro/Fakepedia-Corpus/tree/main/dataset
+MATEUS SILVA MATOS: https://www.kaggle.com/datasets/brunoluvizotto/brazilian-headlines-sentiments
 
 PEDRO COELHO SAMPAIO FILHO: https://huggingface.co/datasets/nilc-nlp/assin
 
