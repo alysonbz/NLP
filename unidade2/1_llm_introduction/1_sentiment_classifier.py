@@ -1,12 +1,28 @@
-# Import the function for loading Hugging Face pipelines
-#
+# 1_sentiment_classifier.py
 
-prompt = "The food was good, but service at the restaurant was a bit slow"
+from transformers import pipeline
 
-# Load the pipeline for sentiment classification
-classifier =
+# Carrega o pipeline de classificação de sentimento usando um modelo pré-treinado BERT
+classifier = pipeline('sentiment-analysis', model='nlptown/bert-base-multilingual-uncased-sentiment')
 
-# Pass the customer review to the model for prediction
-prediction =
+# Função para classificar o sentimento de uma lista de textos
+def classify_sentiments(texts):
+    results = classifier(texts)
+    for text, result in zip(texts, results):
+        label = result['label']
+        score = result['score']
+        print(f"Texto: {text}\nSentimento: {label}, Confiança: {score:.2f}\n")
 
-print(prediction)
+if __name__ == "__main__":
+    # Exemplo de textos para classificar
+    sample_texts = [
+        "Eu adorei esse filme!",
+        "O serviço foi péssimo.",
+        "A comida estava ok, nada de especial.",
+        "Estou muito feliz com o atendimento.",
+        "Não gostei da experiência."
+    ]
+
+    # Classifica os sentimentos dos textos
+    classify_sentiments(sample_texts)
+
