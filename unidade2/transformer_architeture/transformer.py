@@ -1,6 +1,6 @@
 import torch.nn as nn
-from transformer_encoder import TransformerEncoder
-from transformer_decoder import TransformerDecoder
+from unidade2.transformer_architeture.transformer_encoder import TransformerEncoder
+from unidade2.transformer_architeture.transformer_decoder import TransformerDecoder
 
 class Transformer(nn.Module):
     def __init__(self, d_model, n_heads, num_encoder_layers, num_decoder_layers, dim_feedforward=2048, dropout=0.1):

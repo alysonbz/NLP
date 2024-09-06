@@ -1,5 +1,5 @@
 import torch.nn as nn
-from attention_mecanism import MultiHeadAttention
+from unidade2.transformer_architeture.attention_mecanism import MultiHeadAttention
 
 class EncoderLayer(nn.Module):
     def __init__(self, d_model, n_heads, dim_feedforward=2048, dropout=0.1):

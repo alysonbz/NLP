@@ -1,5 +1,5 @@
 import torch.nn as nn
-from decoder_layer import DecoderLayer
+from unidade2.transformer_architeture.decoder_layer import DecoderLayer
 
 
 class TransformerDecoder(nn.Module):

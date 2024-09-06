@@ -1,5 +1,5 @@
 import torch.nn as nn
-from encoder_layer import EncoderLayer
+from unidade2.transformer_architeture.encoder_layer import EncoderLayer
 
 class TransformerEncoder(nn.Module):
     def __init__(self, d_model, n_heads, num_layers, dim_feedforward=2048, dropout=0.1):
