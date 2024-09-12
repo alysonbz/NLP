@@ -1,7 +1,7 @@
 import torch
-from attention_mecanism import MultiHeadAttention
+from unidade2.transformer_architeture.attention_mecanism import MultiHeadAttention
 import torch.nn as nn
-from feedFowardSubLayer import FeedForwardSublayer
+from unidade2.transformer_architeture.feedFowardSubLayer import FeedForwardSublayer
 
 class EncoderLayer(nn.Module):
     def __init__(self, d_model, num_heads, d_ff, dropout):

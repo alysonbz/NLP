@@ -4,29 +4,28 @@ import math
 
 
 class PositionalEncoder(nn.Module):
-    def __init__(self, d_model, max_seq_length=512):
+    def __init__(self, d_model, max_seq_length, dropout=0.1):
         super(PositionalEncoder, self).__init__()
-        self.d_model = d_model
-        self.max_seq_length = max_seq_length
+        self.dropout = nn.Dropout(p=dropout)
 
-        # Criação da matriz de posições
+        # Certifique-se de que max_seq_length e d_model são inteiros
+        max_seq_length = int(max_seq_length)
+        d_model = int(d_model)
+
+        # Inicializa o tensor de codificação posicional
         pe = torch.zeros(max_seq_length, d_model)
-        position = torch.arange(0, max_seq_length, dtype=torch.float).unsqueeze(1)
 
-        # Cálculo do termo de divisão
+        # Inicializa a tabela de posições (usando as fórmulas do paper original dos Transformers)
+        position = torch.arange(0, max_seq_length, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
 
-        # Aplicação de seno e cosseno nas posições
-        pe[:, 0::2] = torch.sin(position * div_term)
-        pe[:, 1::2] = torch.cos(position * div_term)
+        pe[:, 0::2] = torch.sin(position * div_term)  # Aplicando seno nas posições pares
+        pe[:, 1::2] = torch.cos(position * div_term)  # Aplicando cosseno nas posições ímpares
 
-        # Expansão das dimensões para facilitar a adição ao embedding
-        pe = pe.unsqueeze(0)
-
-        # Registrar pe como buffer (não será atualizado durante o treinamento)
+        pe = pe.unsqueeze(0)  # Adiciona dimensão para o batch
         self.register_buffer('pe', pe)
 
     def forward(self, x):
-        # Adicionar o encoding posicional ao embedding
-        x = x + self.pe[:, :x.size(1)]
-        return x
+        # Adiciona a codificação posicional aos embeddings
+        x = x + self.pe[:, :x.size(1), :]
+        return self.dropout(x)

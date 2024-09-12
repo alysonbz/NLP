@@ -4,20 +4,36 @@ from unidade2.transformer_architeture.attention_mecanism import MultiHeadAttenti
 
 
 class DecoderLayer(nn.Module):
-    def __init__(self,d_model, num_heads,d_ff,dropout):
+    def __init__(self, d_model, num_heads, d_ff, dropout):
         super(DecoderLayer, self).__init__()
-        self.self_attn = MultiHeadAttention(d_model,num_heads)
-        self.cross_attn = MultiHeadAttention(d_model, d_ff)
-        self.norm1 = nn.LayerNorm(d_model)
-        self.norm2 = nn.LayerNorm(d_model)
-        self.norm3 = nn.LayerNorm(d_model)
-        self.dropout = nn.Dropout(dropout)
 
-    def forward(self,x,casual_mask,encoder_output,cross_mask):
-        self_attn_output = self.self_attn(x,x,x, casual_mask)
-        x = self.norm1(x + self.dropout(self_attn_output))
-        cross_attn_output = self.cross_attn(x, encoder_output, encoder_output, cross_mask)
-        x = self.norm2(x + self.dropout(cross_attn_output))
-        ff_output = self.feed_forward(x)
-        x = self.norm3(x +self.dropout(ff_output))
-        return x
+        # Multi-head Attention
+        self.mha = MultiHeadAttention(d_model, num_heads)
+
+        # Feed Forward Network
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.ReLU(),
+            nn.Linear(d_ff, d_model)
+        )
+
+        # Camadas de normalização
+        self.layernorm1 = nn.LayerNorm(d_model)
+        self.layernorm2 = nn.LayerNorm(d_model)
+
+        # Dropout
+        self.dropout1 = nn.Dropout(dropout)
+        self.dropout2 = nn.Dropout(dropout)
+
+    def forward(self, x, mask):
+        # Mecanismo de atenção multi-cabeça
+        attn_output = self.mha(x, x, x, mask)  # (batch_size, input_seq_len, d_model)
+        attn_output = self.dropout1(attn_output)
+        out1 = self.layernorm1(x + attn_output)  # Normalização residual
+
+        # Feed Forward Network
+        ffn_output = self.ffn(out1)  # (batch_size, input_seq_len, d_model)
+        ffn_output = self.dropout2(ffn_output)
+        out2 = self.layernorm2(out1 + ffn_output)  # Normalização residual
+
+        return out2
