@@ -21,7 +21,7 @@ class MultiHeadAttention(nn.Module):
         return x.permute(0, 2, 1, 3).contiguous().view(batch_size * self.num_heads, -1, self.head_dim)
 
     def compute_attention(self, query, key, mask=None):
-        scores = torch.matmul(query, key.permute(1, 0, 2)) / math.sqrt(self.head_dim)
+        scores = torch.matmul(query, key.permute(1, 2, 0)) / math.sqrt(self.head_dim)
         if mask is not None:
             scores = scores.masked_fill(mask == 0, float("-1e9"))
         attention_weights = F.softmax(scores, dim=-1)

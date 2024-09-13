@@ -6,7 +6,7 @@ class DecoderLayer(nn.Module):
     def __init__(self,d_model, num_heads, d_ff, dropout):
         super(DecoderLayer,self).__init__()
         self.self_attn = MultiHeadAttention(d_model, num_heads)
-        self.cros_attn = MultiHeadAttention(d_model, num_heads)
+        self.cross_attn = MultiHeadAttention(d_model, num_heads)
         self.feed_forward = FeedForwardSubLayer(d_model, d_ff)
         self.norm1 = nn.LayerNorm(d_model)
         self.norm2 = nn.LayerNorm(d_model)
