@@ -6,16 +6,14 @@ tc = load_text_tc()
 # Load model and create Doc object
 nlp = spacy.load('en_core_web_sm')
 
-
 def find_persons(text):
     # Create Doc object
-    doc = ___(___)
+    doc = nlp(text)
 
     # Identify the persons
-    persons = [ent.____ for ent in doc.____ if ent.____ == 'PERSON']
+    persons = [ent.text for ent in doc.ents if ent.label_ == 'PERSON']
 
     # Return persons
     return persons
 
-
-print(____(____))
+print(find_persons(tc))
