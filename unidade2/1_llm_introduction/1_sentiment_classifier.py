@@ -1,12 +1,12 @@
-# Import the function for loading Hugging Face pipelines
+from transformers import pipeline
 
-
+# Texto de exemplo
 prompt = "A comida foi adequada. O serviço do garçom foi lento."
 
-# Load the pipeline for sentiment classification
-classifier =
+# Carregar o pipeline para classificação de sentimento
+classifier = pipeline('sentiment-analysis')
 
-# Pass the customer review to the model for prediction
-prediction =
+# Passar a revisão do cliente para o modelo para previsão
+prediction = classifier(prompt)
 
 print(prediction)
