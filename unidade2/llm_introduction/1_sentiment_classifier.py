@@ -1,12 +1,14 @@
 from transformers import pipeline
 
-# Texto de exemplo
-prompt = "A comida foi adequada. O serviço do garçom foi lento."
+# Inicializar o pipeline de classificação de sentimento usando o modelo BERT pré-treinado
+sentiment_classifier = pipeline("sentiment-analysis", model="nlptown/bert-base-multilingual-uncased-sentiment")
 
-# Carregar o pipeline para classificação de sentimento
-classifier = pipeline('sentiment-analysis')
+# Texto a ser classificado
+text = "Eu estou muito feliz com o resultado desse projeto!"
 
-# Passar a revisão do cliente para o modelo para previsão
-prediction = classifier(prompt)
+# Classificar o sentimento do texto
+result = sentiment_classifier(text)
 
-print(prediction)
+# Exibir o resultado da classificação
+print(f"Texto: {text}")
+print(f"Classificação: {result[0]['label']}, Score: {result[0]['score']:.4f}")
