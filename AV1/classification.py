@@ -13,7 +13,6 @@ print('\nVerificar o balanceamento das classes:')
 class_distribution = coment_pre_process['score'].value_counts()
 print(class_distribution)
 
-# Extrair labels
 labels = coment_pre_process['score']
 
 # a) Utilizando a vetorização por TF-IDF, compare os resultados de acerto do classificador
@@ -99,3 +98,5 @@ print(confusion_matrix(y_test, y_pred_stemmed))
 print("TF-IDF com lemmatização (melhor alpha: {:.2f}):".format(grid_search_lemmatized.best_params_['alpha']))
 print(classification_report(y_test, y_pred_lemmatized, zero_division=1))
 print(confusion_matrix(y_test, y_pred_lemmatized))
+
+# fazer o push dessa ativ

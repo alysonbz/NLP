@@ -55,7 +55,7 @@ def tf_idf(corpus):
     return tf_idf_vectors, word_dict
 
 
-# teste de funcionamento OK
+# teste de funcionamento
 print("\nTeste de funções da segunda questão:\n")
 corpus = [
     ['this', 'is', 'a', 'test'],

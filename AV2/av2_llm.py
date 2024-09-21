@@ -18,7 +18,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 import torch
 import ast
 
-# Carregando os dados
+# dados
 coment_sem_tratamento = pd.read_csv("/content/drive/MyDrive/content_sem_trat.csv")
 print("Dataset bruto:\n")
 print(coment_sem_tratamento.head())
@@ -33,13 +33,13 @@ print(coment_pre_process['score'].value_counts())
 # Verifica se há GPU disponível e define o dispositivo
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Definindo o modelo e o tokenizer
+# modelo e o tokenizer
 model_name = "distilbert-base-uncased"
 tokenizer = DistilBertTokenizer.from_pretrained(model_name)
 model = DistilBertForSequenceClassification.from_pretrained(model_name, num_labels=2)
 model.to(device)
 
-# Função para aplicar LLM no dataset
+# aplicar LLM no dataset
 def classify_with_llm(texts, batch_size=16):
     preds = []
     for i in range(0, len(texts), batch_size):

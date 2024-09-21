@@ -210,7 +210,7 @@ plot_most_common_words(stemmed_words, '10 palavras mais frequentes - Stemmed')
 # Contagem dos valores na coluna "score"
 score_counts = df['score'].value_counts().sort_index()
 
-# Criando o gráfico de barras
+## Criando o gráfico de barras
 plt.figure(figsize=(8, 6))
 score_counts.plot(kind='bar', color='pink')
 plt.title('Distribuição das Avaliações (Score)')
