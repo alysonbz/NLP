@@ -13,6 +13,7 @@ print('\nVerificar o balanceamento das classes:')
 class_distribution = coment_pre_process['score'].value_counts()
 print(class_distribution)
 
+# Extraindo as labels
 labels = coment_pre_process['score']
 
 # a) Utilizando a vetorização por TF-IDF, compare os resultados de acerto do classificador

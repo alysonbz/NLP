@@ -4,6 +4,8 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
 import matplotlib.pyplot as plt
 from imblearn.under_sampling import RandomUnderSampler
+from collections import Counter
+from wordcloud import WordCloud
 
 # Carregar o dataset
 df = pd.read_csv("C:/Users/laris/Downloads/dados nlp/pof_google_play_reviews.csv")
@@ -157,15 +159,6 @@ colunas_content = ['id','content', 'content_stemmed', 'content_lemmatized', 'sco
 df[colunas_content].to_csv('content_lemmatized_stemmed.csv', index=False)
 
 
-
-
-
-
-
-import pandas as pd
-import matplotlib.pyplot as plt
-from collections import Counter
-from wordcloud import WordCloud
 
 def plot_most_common_words(words, title):
   word_counts = Counter(words)

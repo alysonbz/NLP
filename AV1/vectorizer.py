@@ -56,7 +56,7 @@ def tf_idf(corpus):
 
 
 # teste de funcionamento
-print("\nTeste de funções da segunda questão:\n")
+print("\nTeste de funções(da segunda questão):\n")
 corpus = [
     ['this', 'is', 'a', 'test'],
     ['this', 'test', 'is', 'only', 'a', 'test'],
