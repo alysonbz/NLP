@@ -1,24 +1,43 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import math
 
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model, num_heads):
+        super(MultiHeadAttention, self).__init__()
+        self.num_heads = num_heads
+        self.d_model = d_model
+        self.head_dim = d_model // num_heads
 
-class PositionalEncoder(nn.Module):
-    def __init__(self, dimensao_modelo, comprimento_maximo=5000):
-        super(PositionalEncoder, self).__init__() # a classe herda de nn.Module
 
-        indice_posicao = torch.arange(0, comprimento_maximo).unsqueeze(1)
-        termo_divisor_frequencia = torch.exp(
-            torch.arange(0, dimensao_modelo, 2) * -(math.log(10000.0) / dimensao_modelo))
+        self.query_linear = nn.Linear(d_model, d_model)
+        self.key_linear = nn.Linear(d_model, d_model)
+        self.value_linear = nn.Linear(d_model, d_model)
+        self.output_linear = nn.Linear(d_model, d_model)
 
-        matriz_codificacao_posicional = torch.zeros(comprimento_maximo, dimensao_modelo)
-        matriz_codificacao_posicional[:, 0::2] = torch.sin(indice_posicao * termo_divisor_frequencia)
-        matriz_codificacao_posicional[:, 1::2] = torch.cos(indice_posicao * termo_divisor_frequencia)
+    def split_heads(self, x, batch_size):
+        x = x.view(batch_size, -1, self.num_heads, self.head_dim)
+        return x.permute(0, 2, 1, 3).contiguous().view(batch_size * self.num_heads, -1, self.head_dim)
 
-        matriz_codificacao_posicional = matriz_codificacao_posicional.unsqueeze(0)
-        self.register_buffer('matriz_codificacao_posicional', matriz_codificacao_posicional)
+    def compute_attention(self, query, key, mask=None):
+        scores = torch.matmul(query, key.permute(1, 2, 0)) / math.sqrt(self.head_dim)
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, float("-1e9"))
+        attention_weights = F.softmax(scores, dim=-1)
+        return attention_weights
 
-    def forward(self, tensor_entrada):
-        tensor_entrada = tensor_entrada + self.matriz_codificacao_posicional[:, :tensor_entrada.size(1)].to(
-            tensor_entrada.device)
-        return tensor_entrada
+    def forward(self, query, key, value, mask=None):
+        batch_size = query.size(0)
+
+        query = self.split_heads(self.query_linear(query), batch_size)
+        key = self.split_heads(self.key_linear(key), batch_size)
+        value = self.split_heads(self.value_linear(value), batch_size)
+
+        attention_weights = self.compute_attention(query, key, mask)
+
+        output = torch.matmul(attention_weights, value)
+        output = output.view(batch_size, self.num_heads, -1, self.head_dim)
+        output = output.permute(0, 2, 1, 3).contiguous().view(batch_size, -1, self.d_model)
+
+        return self.output_linear(output)

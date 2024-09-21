@@ -1,21 +1,18 @@
-from NLP.unidade2.4_encoder_layer import EncoderLayer
 import torch.nn as nn
-
+from unidade2.transformer_architeture.positional_encoding import PositionalEncoder
+from unidade2.transformer_architeture.encoder_layer import EncoderLayer
 
 class TransformerEncoder(nn.Module):
-    def __init__(self, dimensao_modelo, numero_cabecas, tamanho_feed_forward, numero_camadas, taxa_dropout=0.1):
+    def __init__(self, vocab_size, d_model, num_layers, n_heads, d_ff, max_seq_len, dropout):
         super(TransformerEncoder, self).__init__()
+        self.embedding = nn.Embedding(vocab_size,d_model)
+        self.positional_encoding = PositionalEncoder(d_model, max_seq_len)
+        self.layers = nn.ModuleList([EncoderLayer(d_model,n_heads,d_ff,dropout)
+            for _ in range(num_layers)])
 
-        self.camadas_encoder = nn.ModuleList(
-            [EncoderLayer(dimensao_modelo, numero_cabecas, tamanho_feed_forward, taxa_dropout)
-             for _ in range(numero_camadas)]
-        )
-
-        self.normalizacao_final = nn.LayerNorm(dimensao_modelo)
-
-    def forward(self, tensor_entrada, mascara=None):
-        for camada_encoder in self.camadas_encoder:
-            tensor_entrada, pesos_atencao = camada_encoder(tensor_entrada, mascara)
-
-        saida_final = self.normalizacao_final(tensor_entrada)
-        return saida_final
+    def forward(self, x, mask):
+        x = self.embedding(x)
+        x = self.positional_encoding(x)
+        for layer in self.layers:
+            x = layer(x, mask)
+        return x

@@ -1,29 +1,19 @@
-from NLP.unidade2.attention_mecanism import MultiHeadAttention
 import torch.nn as nn
-
+from unidade2.transformer_architeture.attention_mecanism import MultiHeadAttention
+from unidade2.transformer_architeture.feedFowardSubLayer import FeedForwardSubLayer
 
 class EncoderLayer(nn.Module):
-    def __init__(self, dimensao_modelo, numero_cabecas, tamanho_feed_forward, taxa_dropout=0.1):
-        super(EncoderLayer, self).__init__()
+    def __init__(self,d_model, num_heads, d_ff, dropout):
+        super(EncoderLayer,self).__init__()
+        self.self_attn = MultiHeadAttention(d_model, num_heads)
+        self.feed_forward = FeedForwardSubLayer(d_model,d_ff)
+        self.norm1 = nn.LayerNorm(d_model)
+        self.norm2 = nn.LayerNorm(d_model)
+        self.dropout = nn.Dropout(dropout)
 
-        self.atencao_multi_cabeca = MultiHeadAttention(dimensao_modelo, numero_cabecas)
-
-        self.camada_feed_forward = nn.Sequential(
-            nn.Linear(dimensao_modelo, tamanho_feed_forward),
-            nn.ReLU(),
-            nn.Linear(tamanho_feed_forward, dimensao_modelo)
-        )
-
-        self.normalizacao_atencao = nn.LayerNorm(dimensao_modelo)
-        self.normalizacao_feed_forward = nn.LayerNorm(dimensao_modelo)
-
-        self.dropout = nn.Dropout(taxa_dropout)
-
-    def forward(self, tensor_entrada, mascara=None):
-        saida_atencao, pesos_atencao = self.atencao_multi_cabeca(tensor_entrada, mascara)
-        tensor_entrada = self.normalizacao_atencao(tensor_entrada + self.dropout(saida_atencao))
-
-        saida_feed_forward = self.camada_feed_forward(tensor_entrada)
-        saida_final = self.normalizacao_feed_forward(tensor_entrada + self.dropout(saida_feed_forward))
-
-        return saida_final, pesos_atencao
+    def forward(self,x,mask):
+        attn_output = self.self_attn(x,x,x, mask)
+        x = self.norm1(x + self.dropout(attn_output))
+        ff_output = self.feed_forward(x)
+        x = self.norm2(x + self.dropout(ff_output))
+        return  x
