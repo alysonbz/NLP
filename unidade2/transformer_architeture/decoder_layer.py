@@ -1,49 +1,39 @@
-import numpy as np
+import torch.nn as nn
+
+from unidade2.transformer_architeture.attention_mecanism import MultiHeadAttention
 
 
-class DecoderLayer:
-    def __init__(self, d_model, num_heads, d_ff, dropout_rate=0.1):
-        """
-        Inicializa a camada DecoderLayer.
+class DecoderLayer(nn.Module):
+    def __init__(self, d_model, num_heads, d_ff, dropout):
+        super(DecoderLayer, self).__init__()
 
-        :param d_model: Dimensão do modelo (tamanho dos vetores de embedding).
-        :param num_heads: Número de cabeças na atenção multi-cabeça.
-        :param d_ff: Dimensão da camada feedforward.
-        :param dropout_rate: Taxa de dropout para regularização.
-        """
-        # Inicializando camadas de atenção e feedforward
-        self.self_attention = MultiHeadAttention(d_model, num_heads)
-        self.cross_attention = MultiHeadAttention(d_model, num_heads)
-        self.feed_forward = FeedForwardSubLayer(d_model, d_ff)
+        # Multi-head Attention
+        self.mha = MultiHeadAttention(d_model, num_heads)
 
-        # Inicializando camadas de normalização
-        self.norm1 = LayerNormalization(d_model)
-        self.norm2 = LayerNormalization(d_model)
+        # Feed Forward Network
+        self.ffn = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.ReLU(),
+            nn.Linear(d_ff, d_model)
+        )
 
-        # Inicializando dropout
-        self.dropout = Dropout(dropout_rate)
+        # Camadas de normalização
+        self.layernorm1 = nn.LayerNorm(d_model)
+        self.layernorm2 = nn.LayerNorm(d_model)
 
-    def forward(self, x, enc_output, mask=None):
-        """
-        Realiza a propagação para frente através da camada DecoderLayer.
+        # Dropout
+        self.dropout1 = nn.Dropout(dropout)
+        self.dropout2 = nn.Dropout(dropout)
 
-        :param x: Entrada do decodificador (matriz numpy com formato (batch_size, seq_len, d_model)).
-        :param enc_output: Saída do codificador (matriz numpy com formato (batch_size, seq_len, d_model)).
-        :param mask: Máscara de atenção opcional.
-        :return: Saída da camada DecoderLayer.
-        """
-        # Atenção auto-regressiva
-        attn_output = self.self_attention(x, x, x, mask)
-        attn_output = self.dropout(attn_output)
-        x = self.norm1(x + attn_output)
+    def forward(self, x, mask):
+        # Mecanismo de atenção multi-cabeça
+        attn_output = self.mha(x, x, x, mask)  # (batch_size, input_seq_len, d_model)
+        attn_output = self.dropout1(attn_output)
+        out1 = self.layernorm1(x + attn_output)  # Normalização residual
 
-        # Atenção cruzada
-        cross_attn_output = self.cross_attention(x, enc_output, enc_output, mask)
-        cross_attn_output = self.dropout(cross_attn_output)
-        x = self.norm2(x + cross_attn_output)
+        # Feed Forward Network
+        ffn_output = self.ffn(out1)  # (batch_size, input_seq_len, d_model)
+        ffn_output = self.dropout2(ffn_output)
+        out2 = self.layernorm2(out1 + ffn_output)  # Normalização residual
 
-        # Passagem pela camada feedforward
-        ff_output = self.feed_forward.forward(x)
-        x = self.dropout(ff_output)
-
-        return x
+        return out2

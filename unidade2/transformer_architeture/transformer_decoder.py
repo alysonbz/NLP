@@ -1,38 +1,29 @@
-import numpy as np
+import torch.nn as nn
+import torch.nn.functional as F
+from unidade2.transformer_architeture.positional_encoding import PositionalEncoder
+from unidade2.transformer_architeture.decoder_layer import DecoderLayer
 
 
-class TransformerDecoder:
-    def __init__(self, num_layers, d_model, num_heads, d_ff, vocab_size, dropout_rate=0.1):
-        """
-        Inicializa a classe TransformerDecoder.
+class TransformerDecoder(nn.Module):
+    def __init__(self, vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_sequence_length):
+        super(TransformerDecoder, self).__init__()
 
-        :param num_layers: Número de camadas de decodificador.
-        :param d_model: Dimensão do modelo (tamanho dos vetores de embedding).
-        :param num_heads: Número de cabeças na atenção multi-cabeça.
-        :param d_ff: Dimensão da camada feedforward.
-        :param vocab_size: Tamanho do vocabulário para a camada de saída.
-        :param dropout_rate: Taxa de dropout para regularização.
-        """
-        # Inicializa a lista de camadas de decodificador
-        self.layers = [DecoderLayer(d_model, num_heads, d_ff, dropout_rate) for _ in range(num_layers)]
+        self.embedding = nn.Embedding(vocab_size, d_model)
+        self.positional_encoding = PositionalEncoder(d_model, max_sequence_length)
 
-        # Inicializa a camada final de projeção (Linear)
-        self.final_layer = np.random.randn(d_model, vocab_size) * 0.01
+        # Verifica o valor antes de passá-lo para DecoderLayer
+        self.layers = nn.ModuleList([DecoderLayer(d_model, num_heads, d_ff, dropout) for _ in range(num_layers)])
 
-    def forward(self, x, enc_output, mask=None):
-        """
-        Realiza a propagação para frente através da camada TransformerDecoder.
+        self.fc = nn.Linear(d_model, vocab_size)
 
-        :param x: Entrada do decodificador (matriz numpy com formato (batch_size, seq_len, d_model)).
-        :param enc_output: Saída do codificador (matriz numpy com formato (batch_size, seq_len, d_model)).
-        :param mask: Máscara de atenção opcional.
-        :return: Saída final do decodificador (matriz numpy com formato (batch_size, seq_len, vocab_size)).
-        """
-        # Propaga a entrada através das camadas do decodificador
+    def forward(self, x, self_mask, encoder_output=None, cross_attention_mask=None):
+        x = self.embedding(x)
+        x = self.positional_encoding(x)
+
+        # Loop pelas camadas do decodificador
         for layer in self.layers:
-            x = layer.forward(x, enc_output, mask)
+            # Passe o encoder_output e cross_attention_mask se forem necessários nas camadas do decoder
+            x = layer(x, self_mask)  # Ajuste conforme necessário para o uso desses parâmetros
 
-        # Aplica a camada final de projeção para gerar a saída final
-        logits = np.dot(x, self.final_layer)
-
-        return logits
+        x = self.fc(x)
+        return F.log_softmax(x, dim=-1)

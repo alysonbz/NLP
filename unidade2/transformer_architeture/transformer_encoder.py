@@ -1,31 +1,22 @@
 import torch
 import torch.nn as nn
-from encoder_layer import EncoderLayer  # Certifique-se que esse caminho esteja correto
-
+from unidade2.transformer_architeture.encoder_layer import EncoderLayer
+from unidade2.transformer_architeture.positional_encoding import PositionalEncoder
 
 class TransformerEncoder(nn.Module):
-    def __init__(self, d_model, n_heads, num_layers, dim_feedforward, dropout=0.1):
+    def __init__(self, vocab_size, d_model, num_layers, num_heads, d_ff, dropout, max_sequence_length):
         super(TransformerEncoder, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, d_model)
 
-        # Lista de camadas EncoderLayer
-        self.layers = nn.ModuleList([
-            EncoderLayer(d_model, n_heads, dim_feedforward, dropout)
-            for _ in range(num_layers)
-        ])
+        self.positional_encoding = PositionalEncoder(d_model, max_sequence_length)
+        self.layers = nn.ModuleList(
+            [EncoderLayer(d_model, num_heads, d_ff, dropout)
+             for _ in range(num_layers)]
+        )
 
-        # Normalização final
-        self.norm = nn.LayerNorm(d_model)
-
-    def forward(self, src, src_mask=None):
-        """
-        Args:
-            src: Tensor de entrada de forma (batch_size, seq_len, d_model).
-            src_mask: Máscara opcional para a atenção.
-        """
+    def forward(self, x, mask):
+        x = self.embedding(x)
+        x = self.positional_encoding(x)
         for layer in self.layers:
-            src = layer(src, src_mask)
-
-        # Aplicar a normalização final após todas as camadas
-        output = self.norm(src)
-
-        return output
+            x = layer(x, mask)
+        return x
