@@ -81,6 +81,7 @@ def preprocess_text(text):
     text = minusculas(text)
     text = remove_stopwords(text)
     text = remove_pontuacao(text)
+    text = remove_padrao_colchete_text(text)
     #text = corrigir_palavras_enelvo(text)
 
     return text
