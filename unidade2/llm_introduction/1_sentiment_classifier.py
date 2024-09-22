@@ -7,6 +7,6 @@ prompt = "A comida foi adequada. O serviço do garçom foi lento."
 classifier = pipeline('text-classification')
 
 # Pass the customer review to the model for prediction
-prediction = llm(prompt)
+prediction = classifier(prompt)
 
 print(prediction[0]['label'])

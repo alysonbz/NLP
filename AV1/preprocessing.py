@@ -94,7 +94,6 @@ def preprocess_text(text):
     text = remove_stopwords(text)
     text = replace_coloquialismos(text)
     text = remove_punctuation(text)
-
     return text
 
 

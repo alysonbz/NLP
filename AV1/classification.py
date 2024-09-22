@@ -95,7 +95,7 @@ X_stemmed_tfidf = manual_tf_idf(X_stemmed)
 X_train_lemmatized, X_test_lemmatized, _, _ = train_test_split(X_lemmatized_tfidf, y, test_size=0.2, random_state=42)
 X_train_stemmed, X_test_stemmed, _, _ = train_test_split(X_stemmed_tfidf, y, test_size=0.2, random_state=42)
 
-# Treinando com o texto lemmatizado
+# Treinando com o textopip lemmatizado
 clf_lemmatized_lr = LogisticRegression(max_iter=1000)
 clf_lemmatized_lr.fit(X_train_lemmatized, y_train)
 y_pred_lemmatized_lr = clf_lemmatized_lr.predict(X_test_lemmatized)
