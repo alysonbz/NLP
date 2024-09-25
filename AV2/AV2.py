@@ -6,7 +6,7 @@ from transformers import BertTokenizer, BertForSequenceClassification, Trainer, 
 import torch
 from imblearn.over_sampling import RandomOverSampler
 
-# Limpar o arquivo CSV
+# Limpando o arquivo CSV
 def limpar_csv(caminho_entrada, caminho_saida):
     with open(caminho_entrada, 'r', newline='', encoding='utf-8') as infile, \
          open(caminho_saida, 'w', newline='', encoding='utf-8') as outfile:
@@ -16,12 +16,11 @@ def limpar_csv(caminho_entrada, caminho_saida):
         for row in reader:
             writer.writerow(row)
 
-# Limpar o arquivo CSV
 caminho_csv = r'C:\Users\laura\PycharmProjects\NLP\AV2\fv'
 caminho_csv_limpo = r'C:\Users\laura\PycharmProjects\NLP\AV2\cleaned_fv.csv'
 limpar_csv(caminho_csv, caminho_csv_limpo)
 
-# Carregar os dados do CSV limpo
+# Carregando os dados do CSV limpo
 try:
     dados = pd.read_csv(caminho_csv_limpo, on_bad_lines='warn')
     dados = dados.dropna(subset=['review_text', 'polarity'])
@@ -29,10 +28,10 @@ try:
     texts = dados['review_text'].tolist()
     labels = dados['polarity'].tolist()
 
-    # Verificar as classes únicas
+    # classes únicas
     print(f'Classes presentes: {set(labels)}')
 
-    # Aplicar oversampling para balancear as classes se houver mais de uma classe
+    # oversampling para balancear as classes
     if len(set(labels)) <= 1:
         print("Apenas uma classe presente. Pulando o oversampling.")
         texts_resampled, labels_resampled = texts, labels
@@ -41,10 +40,10 @@ try:
         texts_resampled, labels_resampled = oversampler.fit_resample(pd.DataFrame(texts), labels)
         texts_resampled = texts_resampled[0].tolist()
 
-    # Dividir os dados
+    # Divisão dos dados
     X_train, X_test, y_train, y_test = train_test_split(texts_resampled, labels_resampled, test_size=0.2, random_state=42)
 
-    # Carregar o modelo e o tokenizador
+    # modelo e o tokenizador
     tokenizer = BertTokenizer.from_pretrained('neuralmind/bert-base-portuguese-cased')
     model = BertForSequenceClassification.from_pretrained('neuralmind/bert-base-portuguese-cased', num_labels=2)
 
@@ -52,7 +51,7 @@ try:
     train_encodings = tokenizer(X_train, truncation=True, padding=True, max_length=512)
     test_encodings = tokenizer(X_test, truncation=True, padding=True, max_length=512)
 
-    # Criar dataset para o Trainer
+    # Criando dataset para o Trainer
     class TextDataset(torch.utils.data.Dataset):
         def _init_(self, encodings, labels):
             self.encodings = encodings
@@ -69,7 +68,7 @@ try:
     train_dataset = TextDataset(train_encodings, y_train)
     test_dataset = TextDataset(test_encodings, y_test)
 
-    # Definir os argumentos do treinamento
+    # argumentos do treinamento
     training_args = TrainingArguments(
         output_dir='./results',
         num_train_epochs=10,
@@ -82,7 +81,6 @@ try:
         evaluation_strategy='epoch'
     )
 
-    # Criar o Trainer
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -90,14 +88,14 @@ try:
         eval_dataset=test_dataset
     )
 
-    # Treinar o modelo
+    # Treinando o modelo
     trainer.train()
 
-    # Avaliar o modelo
+    # Avaliando o modelo
     predictions = trainer.predict(test_dataset)
     predicted_labels = predictions.predictions.argmax(-1)
 
-    # Avaliar a acurácia
+    # Acurácia
     accuracy_llm = accuracy_score(y_test, predicted_labels)
     print(f"Acurácia do LLM: {accuracy_llm:.4f}")
 
