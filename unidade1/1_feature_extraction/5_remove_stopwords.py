@@ -3,18 +3,19 @@ from src.utils import load_gettyburg
 gettysburg = load_gettyburg()
 
 # Load model and create Doc object
-nlp = ___
 
-stopwords = ____
+nlp = spacy.load('en_core_web_sm')
 
-doc = __(gettysburg)
+stopwords = nlp.Defaults.stop_words
+
+doc = nlp(gettysburg)
 
 # Generate lemmatized tokens
-lemmas = [___.___ for token in __]
+lemmas = [token.lemma for token in doc]
 
 # Remove stopwords and non-alphabetic tokens
-a_lemmas = [lemma for lemma in ___
-            if lemma.___ and lemma not in ___]
+a_lemmas = [lemma for lemma in lemmas
+            if lemma.isalpha() and lemma not in stopwords]
 
 # Print string after text cleaning
-print(' '.join(___))
+print(' '.join(a_lemmas))
