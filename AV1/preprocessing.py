@@ -9,7 +9,6 @@ from spacy.lang.pt.stop_words import STOP_WORDS
 import nltk
 
 # Configurações iniciais
-additional_stopwords = {"não"}
 sw = list(set(stopwords.words('portuguese') + list(STOP_WORDS)))
 nlp = spacy.load("pt_core_news_sm")
 
