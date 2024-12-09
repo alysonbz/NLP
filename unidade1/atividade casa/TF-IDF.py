@@ -1,38 +1,45 @@
 import numpy as np
-import pandas as pd
 from collections import Counter
-from math import log
 
-def calculate_tf_idf(corpus):
-    tokenized_sentences = [sentence.lower().split() for sentence in corpus]
-    unique_words = list(set(word for sentence in tokenized_sentences for word in sentence))  # Corrigido para lista
+import pandas as pd
 
-    tf_matrix = pd.DataFrame(0, index=unique_words, columns=range(len(corpus)), dtype=float)
-    idf_values = {}
 
-    for i, sentence in enumerate(tokenized_sentences):
-        word_counts = Counter(sentence)
-        total_words = sum(word_counts.values())
-        for word in word_counts:
-            tf_matrix.loc[word, i] = word_counts[word] / total_words
+def calculate_tf_idf_table(corpus):
 
-    total_sentences = len(corpus)
-    for word in unique_words:
-        containing_sentences = sum(1 for sentence in tokenized_sentences if word in sentence)
-        idf_values[word] = log(total_sentences / (1 + containing_sentences))
+    # Tokenizer
+    tokenized_corpus = [doc.split() for doc in corpus]
+    tokenized_corpus = [[word.lower() for word in doc] for doc in tokenized_corpus]
+    unique_terms = sorted(set(term for doc in tokenized_corpus for term in doc))
+    term_index = {term: idx for idx, term in enumerate(unique_terms)}
 
-    tf_idf_matrix = tf_matrix.copy()
-    for word in idf_values:
-        tf_idf_matrix.loc[word] *= idf_values[word]
+    # Term Frequency (TF)
+    tf_matrix = np.zeros((len(corpus), len(unique_terms)))
+    for doc_idx, doc in enumerate(tokenized_corpus):
+        term_counts = Counter(doc)
+        for term, count in term_counts.items():
+            tf_matrix[doc_idx, term_index[term]] = count / len(doc)
 
-    return tf_idf_matrix
+    # Inverse Document Frequency (IDF)
+    doc_count = len(corpus)
+    idf_vector = np.zeros(len(unique_terms))
+    for term, idx in term_index.items():
+        doc_freq = sum(1 for doc in tokenized_corpus if term in doc)
+        idf_vector[idx] = np.log((doc_count + 1) / (doc_freq + 1)) + 1  # Adiciona 1 para suavizar
 
-# Corpus
-corpus = [
-    "inflation increased unemployment",
-    "company increased sales",
-    "fear increased pulse"
-]
+    # TF-IDF
+    tf_idf_matrix = tf_matrix * idf_vector
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.expand_frame_repr', False)
+    tf_idf_df = pd.DataFrame(tf_idf_matrix, columns=unique_terms, index=corpus)
+    return tf_idf_df
 
-tf_idf_matrix = calculate_tf_idf(corpus)
-print(tf_idf_matrix)
+
+if __name__ == "__main__":
+    corpus = [
+        "Atirei o pau no gato, mas o gato não morreu",
+        "O rato mordeu o gato e o gato se doeu"
+    ]
+    tf_idf_table = calculate_tf_idf_table(corpus)
+    print("Matriz TF-IDF (Formato Tabela):")
+    print(tf_idf_table)

@@ -1,55 +1,63 @@
 from src.utils import load_movie_review_clean_dataset
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-import seaborn as sns
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.pipeline import Pipeline
+import re
+import string
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+corpus = load_movie_review_clean_dataset()
+
+def preprocess_text(text):
+    text = text.lower()
+    text = re.sub(f"[{re.escape(string.punctuation)}]", " ", text)
+    text = re.sub(r"\d+", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 
-corpus= load_movie_review_clean_dataset()
+def evaluate_model(X, y, vectorizer, classifier):
 
-X = corpus['review']
-y = corpus['sentiment']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
-
-
-def train_and_evaluate(vectorizer):
-    model = Pipeline([
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    pipeline = Pipeline([
         ('vectorizer', vectorizer),
-        ('classifier', MultinomialNB())
+        ('classifier', classifier)
     ])
-
-    model.fit(X_train, y_train)
-
-    y_pred = model.predict(X_test)
-
-    acc = accuracy_score(y_test, y_pred)
-    report = classification_report(y_test, y_pred, target_names=['Negative', 'Positive'])
+    pipeline.fit(X_train, y_train)
+    y_pred = pipeline.predict(X_test)
+    # Avalia o modelo
+    report = classification_report(y_test, y_pred, output_dict=True)
     conf_matrix = confusion_matrix(y_test, y_pred)
 
-    return acc, report, conf_matrix
+    return report, conf_matrix
 
-# Avaliar com CountVectorizer
-count_vectorizer = CountVectorizer(stop_words='english', max_features=5000)
-count_acc, count_report, count_conf_matrix = train_and_evaluate(count_vectorizer)
 
-# Avaliar com TF-IDF
-tfidf_vectorizer = TfidfVectorizer(stop_words='english', max_features=5000)
-tfidf_acc, tfidf_report, tfidf_conf_matrix = train_and_evaluate(tfidf_vectorizer)
+def plot_confusion_matrix(conf_matrix, labels, title="Matriz de Confusão"):
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=labels, yticklabels=labels)
+    plt.title(title)
+    plt.xlabel("Predito")
+    plt.ylabel("Real")
+    plt.show()
 
-print("\n--- CountVectorizer ---")
-print(f"Accuracy: {count_acc}")
-print(count_report)
-sns.heatmap(count_conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
-plt.title("CountVectorizer Confusion Matrix")
-plt.show()
 
-print("\n--- TF-IDF ---")
-print(f"Accuracy: {tfidf_acc}")
-print(tfidf_report)
-sns.heatmap(tfidf_conf_matrix, annot=True, fmt='d', cmap='Greens', xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
-plt.title("TF-IDF Confusion Matrix")
-plt.show()
+if __name__ == "__main__":
+    corpus["clean_review"] = corpus["review"].apply(preprocess_text)
+    vectorizers = {
+        "TF-IDF": TfidfVectorizer(),
+        "CountVectorizer": CountVectorizer()
+    }
+    classifier = MultinomialNB()
+
+    # Avaliação
+    for name, vectorizer in vectorizers.items():
+        print(f"\n{name} Vectorization:")
+        report, conf_matrix = evaluate_model(corpus["clean_review"], corpus["sentiment"], vectorizer, classifier)
+        print("Classification Report:")
+        print(pd.DataFrame(report).transpose())
+
+        plot_confusion_matrix(conf_matrix, labels=["Negativo", "Positivo"], title=f"Matriz de Confusão - {name}")
