@@ -34,6 +34,10 @@ print(fill5)
 
 #6.
 text6 = "erick123"
+if re.fullmatch(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$', text6):
+    print("Senha válida e segura!")
+else:
+    print("Senha inválida ou não segura.")
 
 #7.
 text7 = "Gosto de filmes de aventura"
@@ -42,6 +46,10 @@ print(fill7)
 
 #8.
 text8 = "2024/11/04"
+if re.fullmatch(r'^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$', text8):
+    print("Data válida!")
+else:
+    print("Data inválida!")
 
 #9.
 text9 = "O nome dele é Carlos"
