@@ -5,6 +5,7 @@ from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 from xgboost import XGBClassifier
 import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer
 
 # Preparing processed and raw dataset
 df_original = pd.read_csv('../AV1/dataset/twitter_sentiment.csv')
@@ -23,7 +24,7 @@ extractor_original = FeatureExtractor(corpus_original)
 extractor_processed = FeatureExtractor(corpus_processed)
 
 results = {}
-# Evaluate CountVectorizer
+# Avaliando CountVectorizer
 for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
     features_cv, _ = extractor.count_vectorizer()
     X_train, X_test, y_train, y_test = train_test_split(features_cv, labels, test_size=0.2, random_state=42)
@@ -33,7 +34,7 @@ for dataset_type, extractor in [("original", extractor_original), ("processed", 
     accuracy = accuracy_score(y_test, pred)
     results[f"CountVectorizer ({dataset_type})"] = accuracy
 
-# Evaluate TF-IDF
+# Avaliando TF-IDF
 for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
     features_tfidf, _ = extractor.tfidf_vectorizer()
     X_train, X_test, y_train, y_test = train_test_split(features_tfidf, labels, test_size=0.2, random_state=42)
@@ -42,7 +43,7 @@ for dataset_type, extractor in [("original", extractor_original), ("processed", 
     accuracy = accuracy_score(y_test, pred)
     results[f"TF-IDF ({dataset_type})"] = accuracy
 
-# Aplicação de Word2Vec
+# Avaliação de Word2Vec
 for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
     w2v_model = extractor.word2vec()
     def text_to_vector(text):
@@ -65,12 +66,52 @@ for dataset_type, extractor in [("original", extractor_original), ("processed", 
     accuracy = accuracy_score(y_test, pred)
     results[f"Word2Vec ({dataset_type})"] = accuracy
 
-# Print results
+# Avaliando Statistical Analysis
+for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
+    stats = extractor.statistical_analysis()
+    features_stats = np.array([[stats["mean_length"], stats["max_length"], stats["min_length"],
+                                 stats["total_tokens"], stats["var_tokens"]]] * len(labels))  # Replicando os stats para cada amostra
+
+    X_train, X_test, y_train, y_test = train_test_split(features_stats, labels, test_size=0.2, random_state=42)
+
+    clf = XGBClassifier(random_state=42, n_estimators=200, max_depth=6)
+    clf.fit(X_train, y_train)
+
+    pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, pred)
+    results[f"Statistical Analysis ({dataset_type})"] = accuracy
+
+# Avaliando Cooccurrence Matrix
+for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
+    cooccurrence_matrix = extractor.cooccurrence_matrix()
+
+    # Convertendo a matriz de coocorrência para características por amostra
+    vectorizer = CountVectorizer()
+    X_counts = vectorizer.fit_transform(extractor.corpus)
+    vocab = vectorizer.get_feature_names_out()
+
+    features_cooccurrence = []
+    for text in extractor.corpus:
+        words = text.split()
+        vector = cooccurrence_matrix.loc[words, words].sum().sum() if all(word in vocab for word in words) else 0
+        features_cooccurrence.append(vector)
+
+    features_cooccurrence = np.array(features_cooccurrence).reshape(-1, 1)
+
+    X_train, X_test, y_train, y_test = train_test_split(features_cooccurrence, labels, test_size=0.2, random_state=42)
+
+    clf = XGBClassifier(random_state=42, n_estimators=200, max_depth=6)
+    clf.fit(X_train, y_train)
+
+    pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, pred)
+    results[f"Cooccurrence Matrix ({dataset_type})"] = accuracy
+
 print("Results:")
 for key, value in results.items():
     print(f"{key}: {value}")
 
-#Item C
+# Resolução Item C
 best_extraction_method = "Word2Vec"
 corpus_stemming = df_processed['stemmed_text']
 corpus_lemmatization = df_processed['lemmatized_text']
