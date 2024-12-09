@@ -25,7 +25,7 @@ stemmer = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
 
 # Lista de stopwords
-stop_words = set(stopwords.words('english'))
+stop_words = set(stopwords.words('portuguese'))
 
 def preprocess_text(text: str) -> str:
     # Remover URLs
@@ -65,6 +65,7 @@ def process_dataset(dataset: pd.DataFrame) -> pd.DataFrame:
 #Aplicanodo as funções
 processed_news = process_dataset(combined_news)
 
+print(processed_news)
 # Salvar o dataset processado
-processed_news.to_csv('processed_dataset.csv',index=False)
+processed_news.to_csv('processed_news_dataset.csv',index=False)
 

@@ -1,11 +1,11 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import PCA
 from collections import Counter
-import numpy as np
 from gensim.models import Word2Vec
+import numpy as np
 
-dataset = pd.read_csv('C:/Users/Viana/PycharmProjects/savio/NLP/AV1/processed_dataset.csv')
+dataset = pd.read_csv('C:/Users/Viana/PycharmProjects/savio/NLP/AV1/processed_news_dataset.csv')
 
 class FeatureExtraction:
     def __init__(self, dataset: pd.DataFrame, text_column: str = "clean_title"):
@@ -39,12 +39,11 @@ class FeatureExtraction:
 
         return pd.DataFrame(X.toarray(), columns=feature_names)
 
-    def cooccurrence_matrix(self, window_size=2):
+    def cooccurrence_matrix(self, window_size=2, n_components=50):
         # Obter todas as palavras
         words = [text.split() for text in self.dataset[self.text_column]]
-        word_list = [word for sentence in words for word in sentence]
 
-        # Construir a matriz de coocorrência
+        # Criar vocabulário e matriz
         cooccurrence = Counter()
         for sentence in words:
             for i, word in enumerate(sentence):
@@ -54,21 +53,37 @@ class FeatureExtraction:
                     if i != j:
                         cooccurrence[(word, sentence[j])] += 1
 
-        # Converter para DataFrame
-        vocab = list(set(word_list))
-        co_matrix = pd.DataFrame(0, index=vocab, columns=vocab)
+        vocab = list(set([word for sentence in words for word in sentence]))
+        vocab_size = len(vocab)
+        word_to_index = {word: i for i, word in enumerate(vocab)}
 
-        for (word1, word2), count in cooccurrence.items():
-            co_matrix.loc[word1, word2] = count
+        # Matriz de coocorrência
+        co_matrix = np.zeros((len(words), vocab_size))  # Tamanho alinhado com o número de textos
+        for i, sentence in enumerate(words):
+            for word in sentence:
+                if word in word_to_index:
+                    co_matrix[i, word_to_index[word]] += 1
+
+        # Aplicar PCA
+        if co_matrix.shape[1] > n_components:
+            pca = PCA(n_components=n_components)
+            co_matrix = pca.fit_transform(co_matrix)
 
         return co_matrix
 
     def word2vec(self, vector_size=100, window=5, min_count=1, workers=4):
         sentences = [text.split() for text in self.dataset[self.text_column]]
         model = Word2Vec(sentences, vector_size=vector_size, window=window, min_count=min_count, workers=workers)
+        word_vectors = model.wv
+        vectors = []
+        for sentence in sentences:
+            sentence_vectors = [word_vectors[word] for word in sentence if word in word_vectors]
+            if sentence_vectors:
+                vectors.append(np.mean(sentence_vectors, axis=0))
+            else:
+                vectors.append(np.zeros(vector_size))
 
-        word_vectors = {word: model.wv[word] for word in model.wv.index_to_key}
-        return word_vectors
+        return np.array(vectors)
 
 
 # Instanciar a classe
@@ -86,13 +101,14 @@ print("Count Vectorizer:\n", count_matrix.head())
 tfidf_matrix = extractor.tfidf_vectorizer()
 print("TF-IDF:\n", tfidf_matrix.head())
 
-# Matriz de Coocorrência
-cooccurrence_matrix = extractor.cooccurrence_matrix()
-print("Matriz de Coocorrência:\n", cooccurrence_matrix.head())
+# Gerar matriz de coocorrência reduzida
+cooccurrence_reduced = extractor.cooccurrence_matrix(window_size=2, n_components=50)
+print("Matriz de Coocorrência Reduzida:")
+print(cooccurrence_reduced)
 
 # Word2Vec
 word_vectors = extractor.word2vec()
-print("Word2Vec (vetores de palavras):")
-for word, vector in list(word_vectors.items())[:5]:
-     print(f"{word}: {vector[:5]}")  # Mostrando os 5 primeiros valores de cada vetor
+print("Exemplo de vetores Word2Vec (primeiros 5 textos):")
+for i, vector in enumerate(word_vectors[:5]):
+    print(f"Texto {i+1}: {vector[:5]}")
 
