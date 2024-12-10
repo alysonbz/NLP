@@ -13,6 +13,11 @@ nltk.download('punkt')
 sw = list(set(stopwords.words('portuguese') + list(STOP_WORDS)))
 nlp = spacy.load("pt_core_news_sm")
 
+stopwords_pt = [
+    "a", "as", "o", "os", "um", "uma", "uns", "umas", "de", "do", "da", "dos", "das", "em", "no", "na", "nos", "nas",
+    "por", "com", "para", "e", "é", "ser", "ter", "se", "que", "ou", "como", "foi", "há", "onde", "qual", "porque",
+    "está", "estão", "este", "esta", "estes", "estas", "aquele", "aquela", "aqueles", "aquelas", "meu", "min", "meus",
+    "minhas", "seu", "sua", "seus", "uns", ]
 
 # Função para limpar o texto
 def clean_text(text):
@@ -28,7 +33,8 @@ def clean_text(text):
 
 # Função para remover stopwords
 def remove_stop_words(tokens, stopwords=sw):
-    return [word for word in tokens if word not in stopwords]
+    """voce pode escolher qual lista de stop words usar"""
+    return [word for word in tokens if word not in stopwords_pt]
 
 
 # Função para aplicar stemming
@@ -47,6 +53,8 @@ def apply_lemmatization(tokens):
 def preprocess_dataset(df, text_col, sentiment_col):
     # Limpar textos
     df["clean_text"] = df[text_col].apply(clean_text)
+    df["tokenized_text"] = df["clean_text"].apply(lambda text: text.split())
+
 
     # Remover stopwords
     df["filtered_text"] = df["tokenized_text"].apply(remove_stop_words)
@@ -75,6 +83,6 @@ if __name__ == "__main__":
     processed_df = preprocess_dataset(df, text_col="text", sentiment_col="is_hate_speech")
 
     # Salvar dataset processado
-    processed_df.to_csv("portuguese_hate_processed.csv", index=False)
+    processed_df.to_csv("portuguese_hate_processed_stopwords_manual.csv", index=False)
 
     print(processed_df.head())
