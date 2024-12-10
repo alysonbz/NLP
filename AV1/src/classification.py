@@ -26,6 +26,21 @@ extractor_original = FeatureExtractor(corpus_original)
 extractor_processed = FeatureExtractor(corpus_processed)
 
 results = {}
+
+# Evaluate Statistical Analysis
+for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
+    stats = extractor.statistical_analysis()
+    print(f"\nStatistical Analysis for {dataset_type} corpus:")
+    for key, value in stats.items():
+        print(f"{key}: {value}")
+
+# Evaluate Cooccurrence Matrix
+for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
+    cooccurrence_matrix = extractor.cooccurrence_matrix(window_size=2)
+    print(f"\nCooccurrence Matrix for {dataset_type} corpus:")
+    print(cooccurrence_matrix)
+
+
 # Evaluate CountVectorizer
 for dataset_type, extractor in [("original", extractor_original), ("processed", extractor_processed)]:
     features_cv, _ = extractor.count_vectorizer()
