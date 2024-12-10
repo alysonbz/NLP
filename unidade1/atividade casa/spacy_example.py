@@ -45,7 +45,7 @@ def pos_tagging(text):
         print(token.text, token.pos_)
 
 
-# 6. Tokenização e extração de frases
+# 6. Tokenização e extração de frases b
 def sentence_extraction(text):
     doc = nlp(text)
     print("\n6. Tokenização e Extração de Frases:")

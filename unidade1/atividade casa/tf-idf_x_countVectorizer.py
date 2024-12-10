@@ -46,7 +46,7 @@ def plot_confusion_matrix(conf_matrix, labels, title="Matriz de Confusão"):
     plt.show()
 
 
-# Função principal
+# Função principal s
 def run_evaluation(corpus, classifiers, vectorizers):
     corpus["clean_review"] = corpus["review"].apply(preprocess_text)  # Pré-processamento
     results = {}

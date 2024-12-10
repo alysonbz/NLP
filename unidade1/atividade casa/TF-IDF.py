@@ -33,7 +33,7 @@ def calculate_tf_idf(tf_matrix, idf_vector):
     return tf_matrix * idf_vector
 
 def calculate_tf_idf_table(corpus):
-    # Tokeniza o corpus
+    # Tokeniza o corpus v
     tokenized_corpus = preprocess_corpus(corpus)
     unique_terms = sorted(set(term for doc in tokenized_corpus for term in doc))
 

@@ -28,7 +28,7 @@ texto_final = ' '.join(tokens_sem_stopwords)
 print("Texto final sem stopwords:", texto_final)
 # d) Faça uma tabela mostrando 3 colunas para todos os tokens: token , stemming e lematização
 
-# Stemming usando o RSLPStemmer do NLTK (Português)
+# Stemming usando o RSLPStemmer do NLTK (Português) c
 stemmer = RSLPStemmer()
 tokens_stemming = [stemmer.stem(token) for token in tokens_sem_stopwords]
 

@@ -82,7 +82,7 @@ print(f'9. Extração de Nomes Próprios: {extrair_nomes_proprios(t)}')
 
 
 
-# 10 cont_vogais
+# 10 cont_vogais a
 
 vogais = 'a, y, i, o, b, c, v'
 def contagem_vogais(texto):
