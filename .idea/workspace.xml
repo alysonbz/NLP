@@ -6,8 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="a0bcc0cf-c2cd-4353-a029-19e0d4da974f" name="Changes" comment="Atividade de Sala.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/1_One_hot_encoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/1_One_hot_encoding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/2_atributes_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/2_atributes_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AV1/atribute_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/atribute_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AV1/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AV1/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/3_atribute_extraction_pt2.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/3_atribute_extraction_pt2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/4_tokenization.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/4_tokenization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/5_remove_stopwords.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/5_remove_stopwords.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/6_pos_taging.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/6_pos_taging.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/7_count_nouns.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/7_count_nouns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/8_entities_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/8_entities_recognition.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/9_find_persons.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/9_find_persons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/2_bag_of_word_vocabulary.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/2_bag_of_word_vocabulary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/3_text_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/3_text_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/4_cooc_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/4_cooc_matrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/5_cooc_matrix_for_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/5_cooc_matrix_for_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/atividade casa/TF-IDF.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/atividade casa/TF-IDF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade1/atividade casa/tf-idf_x_countVectorizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/atividade casa/tf-idf_x_countVectorizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +44,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Documentos/faculdade/6º Sem/NLP&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Documentos/faculdade/6º Sem/NLP&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.2_atributes_extraction">
-    <configuration name="1_One_hot_encoding" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Documentos\faculdade\6º Sem\NLP\AV1\Dataset" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.classification">
+    <configuration name="1_bag_of_word" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -41,11 +62,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/1_feature_extraction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/1_feature_extraction/1_One_hot_encoding.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -54,7 +75,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="2_atributes_extraction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="2_bag_of_word_vocabulary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -62,11 +83,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/1_feature_extraction" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/1_feature_extraction/2_atributes_extraction.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/2_bag_of_word_vocabulary.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -75,7 +96,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="reg_expression" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="atribute_extraction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,11 +104,53 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/atividade casa" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AV1" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/atividade casa/reg_expression.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AV1/atribute_extraction.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="classification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AV1" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AV1/classification.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AV1" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AV1/preprocessing.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,9 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.2_atributes_extraction" />
-        <item itemvalue="Python.1_One_hot_encoding" />
-        <item itemvalue="Python.reg_expression" />
+        <item itemvalue="Python.classification" />
+        <item itemvalue="Python.preprocessing" />
+        <item itemvalue="Python.atribute_extraction" />
+        <item itemvalue="Python.2_bag_of_word_vocabulary" />
+        <item itemvalue="Python.1_bag_of_word" />
       </list>
     </recent_temporary>
   </component>
@@ -134,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730832591293</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Atividade de Sala.">
+      <created>1732554696791</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732554696791</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
