@@ -9,5 +9,5 @@ pip install protobuf==3.20.0
 
 para instalar llm.yml
 
-conda env create -f llm.yaml
+conda env create -f llm.yml
 conda activate llm
