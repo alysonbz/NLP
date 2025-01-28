@@ -1,13 +1,26 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-
+# Certifique-se de baixar as stopwords do NLTK, caso ainda não tenha feito
 from gensim.models import Word2Vec
 
 # Exemplo de matriz TF-IDF
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.corpus import stopwords
+
+# Certifique-se de baixar as stopwords do NLTK, caso ainda não tenha feito
+import nltk
+nltk.download('stopwords')
 df = pd.read_csv('article_nlp_datasets.csv')
+stop_words = stopwords.words('portuguese')
+print(stop_words)
+print(df['premise_processed'].head())
+print(df['hypothesis_processed'].head())
+
+df['premise_processed'] = df['premise_processed'].fillna('')
+df['hypothesis_processed'] = df['hypothesis_processed'].fillna('')
 
 
 class AttributeExtractor:
@@ -35,9 +48,12 @@ class AttributeExtractor:
         """
         #combined_texts = [" ".join(tokens) for tokens in self.tokenized_premises + self.tokenized_hypotheses]
         #print(combined_texts[:5])
-        combined_texts = [" p".join(tokens) for tokens in df['premise_processed'] + df['hypothesis_processed']]
-        print("Combined texts (first 5):", combined_texts[:5])
-        vectorizer = CountVectorizer()
+        combined_texts = df['premise_processed'].astype(str) + " " + df['hypothesis_processed'].astype(str)
+        print("Combined texts (first 5):", combined_texts[:2])
+
+        # Configurando o CountVectorizer com stopwords em português
+        vectorizer = CountVectorizer(stop_words=stop_words, token_pattern=r'\b[a-zA-Z]{3,}\b', min_df=2)
+
         count_matrix = vectorizer.fit_transform(combined_texts)
         return count_matrix, vectorizer.get_feature_names_out()
 
@@ -96,11 +112,33 @@ if __name__ == "__main__":
 
     # Individual Statistical Analysis
     stats_df = extractor.individual_statistical_analysis()
+
+    plt.figure(figsize=(10, 6))
+    plt.hist(stats_df['premise_word_count'], bins=30, alpha=0.7, label='Premise')
+    plt.hist(stats_df['hypothesis_word_count'], bins=30, alpha=0.7, label='Hypothesis')
+    plt.xlabel('Número de Palavras')
+    plt.ylabel('Frequência')
+    plt.title('Distribuição do Número de Palavras')
+    plt.legend()
+    plt.show()
     print("Statistical Analysis:")
     print(stats_df.head())
 
     # CountVectorizer Features
     count_matrix, count_features = extractor.count_vectorizer_features()
+
+    word_counts = count_matrix.sum(axis=0).A1  # Soma total das palavras na matriz
+    word_freq_df = pd.DataFrame({'word': count_features, 'count': word_counts})
+    top_words = word_freq_df.sort_values(by='count', ascending=False).head(20)
+
+    # Gráfico de barras
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x='count', y='word', data=top_words, palette='viridis')
+    plt.xlabel('Frequência')
+    plt.ylabel('Palavras')
+    plt.title('Palavras Mais Frequentes (CountVectorizer)')
+    plt.show()
+
     print("Count Vectorizer Features:")
     print(count_matrix.toarray())
     print(count_features)
@@ -126,4 +164,7 @@ if __name__ == "__main__":
     sns.heatmap(tfidf_dense_matrix[:10, :10], annot=True, fmt=".2f")
     plt.title("Exemplo de matriz TF-IDF")
     plt.show()
+
+    # Histograma para número de palavras
+
 

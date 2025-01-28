@@ -112,10 +112,9 @@ def preprocessar_texto(texto: str,
 
     return tokens
 
-
 # Visualizar exemplos de premise/hypothesis
-#print(f'Exemplo de linha da coluna premise \n {df['premise'].iloc[0]}')
-#print(f'Exemplo de linha da coluna hypothesis \n {df['hypothesis'].iloc[0]}')
+print(f'Exemplo de linha da coluna premise \n {df['premise'].iloc[0]}')
+print(f'Exemplo de linha da coluna hypothesis \n {df['hypothesis'].iloc[0]}')
 
 # Aplica a função de pré-processamento na coluna 'premise'
 df['premise_processed'] = df['premise'].apply(
@@ -128,6 +127,6 @@ df['hypothesis_processed'] = df['hypothesis'].apply(
 )
 
 
-#print(f'Exemplo de linha da coluna premise_processed \n {df['premise_processed'].iloc[1]}')
-#print(f'Exemplo de linha da coluna hypothesis_processed \n {df['hypothesis_processed'].iloc[1]}')
+print(f'Exemplo de linha da coluna premise_processed \n {df['premise_processed'].iloc[1]}')
+print(f'Exemplo de linha da coluna hypothesis_processed \n {df['hypothesis_processed'].iloc[1]}')
 
