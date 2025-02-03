@@ -15,16 +15,16 @@ positions = np.arange(X.shape[0])  # Índices das posições
 # Inicializando PE
 PE = np.zeros_like(X, dtype=float)
 
-# TODO: Calcular os valores da matriz PE utilizando a fórmula
+# Cálculo da matriz PE
 for pos in range(len(positions)):
     for i in range(d_model):
         if i % 2 == 0:  # Índices pares
-            PE[pos, i] = ...  # Complete aqui
+            PE[pos, i] = np.sin(pos / (10000 ** (i / d_model)))
         else:  # Índices ímpares
-            PE[pos, i] = ...  # Complete aqui
+            PE[pos, i] = np.cos(pos / (10000 ** ((i - 1) / d_model)))
 
-# TODO: Soma de X com PE
-X_prime = ...
+# Soma de X com PE
+X_prime = X + PE
 
 print("Matriz Resultante (X + PE):")
 print(X_prime)
