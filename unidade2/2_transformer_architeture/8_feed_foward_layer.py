@@ -8,7 +8,7 @@ def relu(z):
     :return: z transformado pela ReLU.
     """
     # COMPLETE AQUI: Retorne o máximo entre 0 e z
-    return None
+    return np.maximum(0, z)
 
 
 def feed_forward(x, W1, b1, W2, b2):
@@ -22,13 +22,13 @@ def feed_forward(x, W1, b1, W2, b2):
     :return: Saída da Feed-Forward Network (batch_size, seq_len, d_model)
     """
     # Passo 1: Aplicar a primeira transformação linear W1 * x + b1
-    z = None  # COMPLETE AQUI
+    z = np.dot(x, W1) + b1 # COMPLETE AQUI
 
     # Passo 2: Aplicar a ativação ReLU
-    h = None  # COMPLETE AQUI
+    h = relu(z) # COMPLETE AQUI
 
     # Passo 3: Aplicar a segunda transformação linear W2 * h + b2
-    output = None  # COMPLETE AQUI
+    output = np.dot(h, W2) + b2 # COMPLETE AQUI
 
     return output
 

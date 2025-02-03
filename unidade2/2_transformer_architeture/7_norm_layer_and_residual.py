@@ -9,13 +9,13 @@ def layer_norm(x, eps=1e-6):
     :return: x normalizado.
     """
     # Passo 1: Calcular a média ao longo da última dimensão
-    mu = None  # COMPLETE: Calcule a média de x usando np.mean com keepdims=True
+    mu = np.mean(x, axis=1, keepdims=True)  # COMPLETE: Calcule a média de x usando np.mean com keepdims=True
 
     # Passo 2: Calcular a variância ao longo da última dimensão
-    sigma = None  # COMPLETE: Calcule a variância de x usando np.var com keepdims=True
+    sigma = np.var(x, axis=1, keepdims=True)  # COMPLETE: Calcule a variância de x usando np.var com keepdims=True
 
     # Passo 3: Normalizar x
-    normalized_x = None  # COMPLETE: Subtraia mu de x, divida pelo (sqrt(sigma) + eps)
+    normalized_x = (x - mu)/(np.sqrt(sigma) + eps)  # COMPLETE: Subtraia mu de x, divida pelo (sqrt(sigma) + eps)
 
     return normalized_x
 
@@ -28,7 +28,7 @@ def residual_connection(x, sublayer_output):
     :return: Saída final após a conexão residual e normalização.
     """
     # Passo 1: Somar a entrada com a saída do sub-bloco
-    res = None  # COMPLETE: Calcule x + sublayer_output
+    res = (x + sublayer_output) # COMPLETE: Calcule x + sublayer_output
 
     # Passo 2: Aplicar Layer Normalization na soma
     norm_res = layer_norm(res)
