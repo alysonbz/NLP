@@ -19,12 +19,12 @@ PE = np.zeros_like(X, dtype=float)
 for pos in range(len(positions)):
     for i in range(d_model):
         if i % 2 == 0:  # Índices pares
-            PE[pos, i] = ...  # Complete aqui
+            PE[pos, i] = np.sin(pos/(10000**(2*i/d_model)))
         else:  # Índices ímpares
-            PE[pos, i] = ...  # Complete aqui
+            PE[pos, i] = np.cos(pos/(10000**(2*i/d_model)))
 
 # TODO: Soma de X com PE
-X_prime = ...
+X_prime = (X + PE)
 
 print("Matriz Resultante (X + PE):")
 print(X_prime)
