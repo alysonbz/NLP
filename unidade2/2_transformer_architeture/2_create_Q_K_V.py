@@ -14,15 +14,15 @@ d_model = X.shape[1]  # Número de colunas de X
 # Geração das Matrizes de Pesos W_Q, W_K, W_V
 # **Aqui, complete o código para gerar as matrizes de pesos usando distribuição normal ou outra técnica de inicialização**
 
-W_Q = None  # Inicializar a matriz de pesos W_Q com uma distribuição apropriada
-W_K = None  # Inicializar a matriz de pesos W_K com uma distribuição apropriada
-W_V = None  # Inicializar a matriz de pesos W_V com uma distribuição apropriada
+W_Q = np.random.randn(d_model, d_model)  # Inicializar a matriz de pesos W_Q com uma distribuição apropriada
+W_K = np.random.randn(d_model, d_model) # Inicializar a matriz de pesos W_K com uma distribuição apropriada
+W_V =np.random.randn(d_model, d_model) # Inicializar a matriz de pesos W_V com uma distribuição apropriada
 
 # Calcule as matrizes Q, K e V
 # **Complete o código para calcular Q, K e V multiplicando X pelas matrizes de pesos**
-Q = None  # Substitua 'None' pela operação de multiplicação de X e W_Q
-K = None  # Substitua 'None' pela operação de multiplicação de X e W_K
-V = None  # Substitua 'None' pela operação de multiplicação de X e W_V
+Q = np.dot(X,W_Q)# Substitua 'None' pela operação de multiplicação de X e W_Q
+K = np.dot(X, W_K) # Substitua 'None' pela operação de multiplicação de X e W_K
+V = np.dot(X, W_V)# Substitua 'None' pela operação de multiplicação de X e W_V
 
 # Exibição dos resultados
 print("Matriz Q (Query):")

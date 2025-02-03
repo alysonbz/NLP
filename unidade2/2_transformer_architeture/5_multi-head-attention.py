@@ -1,5 +1,8 @@
 import numpy as np
 
+
+
+
 class MultiHeadAttention:
     def __init__(self, d_model, num_heads):
         """
@@ -35,10 +38,11 @@ class MultiHeadAttention:
         :return: A saída da atenção e os pesos de atenção.
         """
         # **Complete o cálculo da atenção**
-        matmul_qk = None  # Produto escalar entre Q e K^T
-        scaled_attention_logits = None  # Escalonar os logits pelo tamanho de d_k
-        attention_weights = None  # Aplicar softmax nos logits escalonados
-        output = None  # Multiplicar os pesos de atenção pela matriz V
+        matmul_qk = np.matmul(Q, np.transpose(K, (0, 2, 1)))  # Produto escalar entre Q e K^T
+        d_k = Q.shape[-1]
+        scaled_attention_logits = (matmul_qk/np.sqrt(d_k))  # Escalonar os logits pelo tamanho de d_k
+        attention_weights = self.softmax(scaled_attention_logits)  # Aplicar softmax nos logits escalonados
+        output = np.dot(attention_weights, V)  # Multiplicar os pesos de atenção pela matriz V
 
         return output, attention_weights
 
@@ -50,8 +54,8 @@ class MultiHeadAttention:
         """
         # **Complete a divisão da matriz em múltiplas cabeças**
         batch_size, seq_len, d_model = X.shape
-        X = None  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
-        return None  # Reorganizar os eixos para (batch_size, num_heads, seq_len, d_k)
+        X = X.reshape(batch_size, seq_len, num_heads, self.d_k)  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
+        return np.transpose(X, axes=(0, 2, 1, 3)) # Reorganizar os eixos para (batch_size, num_heads, seq_len, d_k)
 
     def forward(self, Q, K, V):
         """
@@ -62,14 +66,14 @@ class MultiHeadAttention:
         :return: Saída do bloco de Multi-Head Attention.
         """
         # Passo 1: Aplicar as camadas lineares para projetar Q, K, V
-        Q_proj = None  # Projeção de Q
-        K_proj = None  # Projeção de K
-        V_proj = None  # Projeção de V
+        Q_proj = np.dot(Q, self.W_q) + self.b_q # Projeção de Q
+        K_proj = np.dot(K, self.W_k) + self.b_k  # Projeção de K
+        V_proj = np.dot(V, self.W_v) + self.b_v  # Projeção de V
 
         # Passo 2: Dividir em múltiplas cabeças
-        Q_heads = None  # Dividir Q_proj em cabeças
-        K_heads = None  # Dividir K_proj em cabeças
-        V_heads = None  # Dividir V_proj em cabeças
+        Q_heads = self.split_heads(Q_proj)  # Dividir Q_proj em cabeças
+        K_heads = self.split_heads(K_proj)  # Dividir K_proj em cabeças
+        V_heads = self.split_heads(V_proj)  # Dividir V_proj em cabeças
 
         # Passo 3: Aplicar atenção em cada cabeça
         head_outputs = []
@@ -81,12 +85,22 @@ class MultiHeadAttention:
             head_outputs.append(output)
 
         # Passo 4: Concatenar as saídas de todas as cabeças
-        concatenated = None  # Concatenar as saídas das cabeças
+        concatenated = np.concatenate(head_outputs, axis=-1)  # Concatenar as saídas das cabeças
 
         # Passo 5: Aplicar a camada linear final
-        output = None  # Projeção final após concatenar as cabeças
+        output = np.dot(concatenated, self.W_o) + self.b_o  # Projeção final após concatenar as cabeças
 
         return output
+
+    def softmax(self, x):
+        # Passo 1: Subtrair o valor máximo de x para estabilidade numérica
+        e_x = x - np.max(x)
+
+        # Passo 2: Calcular o exponencial de cada elemento de x
+        expoente = np.exp(e_x)
+
+        # Passo 3: Normalizar os valores exponenciais, dividindo cada valor pelo somatório dos exponenciais
+        return expoente / np.sum(expoente, axis=1, keepdims=True)
 
 
 # Exemplo de uso

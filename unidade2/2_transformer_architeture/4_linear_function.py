@@ -13,11 +13,10 @@ def split_heads(X, num_heads):
     batch_size, seq_len, d_model = X.shape
     d_k = d_model // num_heads  # Dimensão de cada cabeça
     # Redimensione X para incluir o número de cabeças e a nova dimensão d_k
-    # **Complete aqui**
+    X = X.reshape(batch_size, seq_len, num_heads, d_k)
 
     # Reordene os eixos para (batch_size, num_heads, seq_len, d_k)
-    # **Complete aqui**
-    return None  # Retorne a matriz transposta dividida corretamente.
+    return np.transpose(X, axes=(0, 2, 1, 3))
 
 
 # Parâmetros
@@ -44,15 +43,15 @@ b_V = np.random.rand(d_model)
 
 # Passo 1: Aplicar as projeções lineares para Q, K, V
 # **Complete o cálculo abaixo para Q_proj, K_proj, V_proj**
-Q_proj = None  # (batch_size, seq_len, d_model)
-K_proj = None  # (batch_size, seq_len, d_model)
-V_proj = None  # (batch_size, seq_len, d_model)
+Q_proj = np.dot(Q, W_Q) + b_Q  # (batch_size, seq_len, d_model)
+K_proj = np.dot(K, W_K) + b_K  # (batch_size, seq_len, d_model)
+V_proj = np.dot(V, W_V) + b_V  # (batch_size, seq_len, d_model)
 
 # Passo 2: Dividir as matrizes projetadas em múltiplas cabeças
 # **Use a função split_heads para dividir Q_proj, K_proj e V_proj**
-Q_heads = None  # (batch_size, num_heads, seq_len, d_k)
-K_heads = None  # (batch_size, num_heads, seq_len, d_k)
-V_heads = None  # (batch_size, num_heads, seq_len, d_k)
+Q_heads = split_heads(Q_proj, num_heads)  # (batch_size, num_heads, seq_len, d_k)
+K_heads = split_heads(K_proj, num_heads)  # (batch_size, num_heads, seq_len, d_k)
+V_heads = split_heads(V_proj, num_heads)  # (batch_size, num_heads, seq_len, d_k)
 
 # Exibir dimensões e valores
 print("Q_proj (após projeção linear):", Q_proj.shape if Q_proj is not None else "Incomplete")

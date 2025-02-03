@@ -4,25 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0bcc0cf-c2cd-4353-a029-19e0d4da974f" name="Changes" comment="Atividade de Sala.">
+    <list default="true" id="a0bcc0cf-c2cd-4353-a029-19e0d4da974f" name="Changes" comment="Atualização">
+      <change beforePath="$PROJECT_DIR$/.idea/NLP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NLP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AV1/atribute_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/atribute_extraction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AV1/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AV1/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/AV1/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/3_atribute_extraction_pt2.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/3_atribute_extraction_pt2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/4_tokenization.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/4_tokenization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/5_remove_stopwords.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/5_remove_stopwords.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/6_pos_taging.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/6_pos_taging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/7_count_nouns.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/7_count_nouns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/8_entities_recognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/8_entities_recognition.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/1_feature_extraction/9_find_persons.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/1_feature_extraction/9_find_persons.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/2_bag_of_word_vocabulary.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/2_bag_of_word_vocabulary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/3_text_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/3_text_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/4_cooc_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/4_cooc_matrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/5_cooc_matrix_for_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/5_cooc_matrix_for_classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/atividade casa/TF-IDF.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/atividade casa/TF-IDF.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade1/atividade casa/tf-idf_x_countVectorizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade1/atividade casa/tf-idf_x_countVectorizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/2_text_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/2_text_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/3_text_sumarizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/3_text_sumarizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/4_question_answering.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/4_question_answering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/5_text_translator.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/5_text_translator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +32,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2noF2gpoD7nBZk0FHeyDF3zmLWU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,6 +44,9 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;emily&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Documentos/faculdade/6º Sem/NLP&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
@@ -56,6 +59,7 @@
   <component name="RunManager" selected="Python.classification">
     <configuration name="1_bag_of_word" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -77,6 +81,7 @@
     </configuration>
     <configuration name="2_bag_of_word_vocabulary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -98,6 +103,7 @@
     </configuration>
     <configuration name="atribute_extraction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -119,6 +125,7 @@
     </configuration>
     <configuration name="classification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -140,6 +147,7 @@
     </configuration>
     <configuration name="preprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -168,6 +176,13 @@
         <item itemvalue="Python.1_bag_of_word" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -206,7 +221,22 @@
       <option name="project" value="LOCAL" />
       <updated>1732554696791</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Atualização da AV1 e das atividades.">
+      <created>1733792634414</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733792634415</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Atualização">
+      <option name="closed" value="true" />
+      <created>1738605681414</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738605681414</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,6 +253,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Atividade de Casa." />
     <MESSAGE value="Atividade de Sala." />
-    <option name="LAST_COMMIT_MESSAGE" value="Atividade de Sala." />
+    <MESSAGE value="Atualização da AV1 e das atividades." />
+    <MESSAGE value="Atualização" />
+    <option name="LAST_COMMIT_MESSAGE" value="Atualização" />
   </component>
 </project>
