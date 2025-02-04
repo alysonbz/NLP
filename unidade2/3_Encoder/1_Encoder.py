@@ -21,7 +21,7 @@ class TransformerEncoder(nn.Module):
         super(TransformerEncoder, self).__init__()
 
         # Criar camada de embedding para representar tokens como vetores (INCOMPLETO)
-        self.embedding = nn.Embedding( # COMPLETE AQUI )
+        self.embedding = nn.Embedding(vocab_size, d_model, padding_idx=0)
 
         # Criar um bloco único de Encoder usando PyTorch (INCOMPLETO)
         encoder_layer = nn.TransformerEncoderLayer(
@@ -33,11 +33,12 @@ class TransformerEncoder(nn.Module):
         )
 
         # Empilhar múltiplos blocos de Encoder (INCOMPLETO)
-        self.encoder = nn.TransformerEncoder( # COMPLETE AQUI )
+        self.encoder = nn.TransformerEncoder(nn.TransformerEncoderLayer(d_model=d_model, nhead=num_heads, dim_feedforward=d_ff,
+                                                                        dropout=dropout),  num_layers=num_layers)
 
     def forward(self, x):
         x = self.embedding(x)  # Aplicar a camada de embedding (INCOMPLETO)
-        return self.encoder( None)# COMPLETE AQUI   # Passar pelo encoder
+        return self.encoder(x)# COMPLETE AQUI   # Passar pelo encoder
 
 # ---------------------- TESTE FINAL ----------------------
 if __name__ == "__main__":
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     vocab["<UNK>"] = len(vocab) + 1  # Token para palavras desconhecidas
 
     # Converter o texto original para índices numéricos (INCOMPLETO)
-    input_indices = torch.tensor( # COMPLETE AQUI ).unsqueeze(0)  # (1, seq_len)
+    input_indices = torch.tensor(text_to_indices(text, vocab)).unsqueeze(0)  # (1, seq_len)
 
     # Parâmetros do modelo
     d_model = 8    # Dimensão do embedding
@@ -61,10 +62,10 @@ if __name__ == "__main__":
     vocab_size = len(vocab)
 
     # Criando o Encoder (INCOMPLETO)
-    encoder = TransformerEncoder( # COMPLETE AQUI )
+    encoder = TransformerEncoder(d_model, num_heads, d_ff, num_layers, vocab_size)
 
     # Passando os tokens pelo encoder (INCOMPLETO)
-    output = encoder( # COMPLETE AQUI )
+    output = encoder(input_indices)
 
     # Impressão dos resultados
     print("\nTexto de Entrada:", text)

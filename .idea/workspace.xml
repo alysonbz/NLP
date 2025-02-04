@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0bcc0cf-c2cd-4353-a029-19e0d4da974f" name="Changes" comment="Atualização">
-      <change beforePath="$PROJECT_DIR$/.idea/NLP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NLP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/2_text_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/2_text_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/3_text_sumarizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/3_text_sumarizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/4_question_answering.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/4_question_answering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/1_llm_introduction/5_text_translator.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/1_llm_introduction/5_text_translator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/3_Encoder/1_Encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/3_Encoder/1_Encoder.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +16,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Emilymendc"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/alysonbz/NLP.git",
+    "accountId": "8a49c64d-c203-4dbe-a64e-9424822351e9"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -40,24 +39,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;emily&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Documentos/faculdade/6º Sem/NLP&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.1_Encoder.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "emily",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Documentos/faculdade/6º Sem/NLP",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Documentos\faculdade\6º Sem\NLP\AV1\Dataset" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.classification">
-    <configuration name="1_bag_of_word" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.1_Encoder">
+    <configuration name="1_Encoder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NLP" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -66,11 +66,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unidade2/3_Encoder" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade1/2_featrure_extraction_frequency_based/1_bag_of_word.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unidade2/3_Encoder/1_Encoder.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -169,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.1_Encoder" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.preprocessing" />
         <item itemvalue="Python.atribute_extraction" />
         <item itemvalue="Python.2_bag_of_word_vocabulary" />
-        <item itemvalue="Python.1_bag_of_word" />
       </list>
     </recent_temporary>
   </component>
