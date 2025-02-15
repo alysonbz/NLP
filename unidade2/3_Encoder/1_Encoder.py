@@ -20,10 +20,10 @@ class TransformerEncoder(nn.Module):
     def __init__(self, d_model, num_heads, d_ff, num_layers, vocab_size, dropout=0.1):
         super(TransformerEncoder, self).__init__()
 
-        # Criar camada de embedding para representar tokens como vetores (INCOMPLETO)
-        self.embedding = nn.Embedding( # COMPLETE AQUI )
+        # Criar camada de embedding para representar tokens como vetores
+        self.embedding = nn.Embedding(vocab_size, d_model)
 
-        # Criar um bloco único de Encoder usando PyTorch (INCOMPLETO)
+        # Criar um bloco único de Encoder usando PyTorch
         encoder_layer = nn.TransformerEncoderLayer(
             d_model=d_model,
             nhead=num_heads,
@@ -32,12 +32,12 @@ class TransformerEncoder(nn.Module):
             batch_first=True
         )
 
-        # Empilhar múltiplos blocos de Encoder (INCOMPLETO)
-        self.encoder = nn.TransformerEncoder( # COMPLETE AQUI )
+        # Empilhar múltiplos blocos de Encoder
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
 
     def forward(self, x):
-        x = self.embedding(x)  # Aplicar a camada de embedding (INCOMPLETO)
-        return self.encoder( None)# COMPLETE AQUI   # Passar pelo encoder
+        x = self.embedding(x)  # Aplicar a camada de embedding
+        return self.encoder(x)  # Passar pelo encoder
 
 # ---------------------- TESTE FINAL ----------------------
 if __name__ == "__main__":
@@ -48,10 +48,10 @@ if __name__ == "__main__":
 
     # Adicionando tokens especiais
     vocab["<PAD>"] = 0
-    vocab["<UNK>"] = len(vocab) + 1  # Token para palavras desconhecidas
+    vocab["<UNK>"] = len(vocab)  # Token para palavras desconhecidas
 
-    # Converter o texto original para índices numéricos (INCOMPLETO)
-    input_indices = torch.tensor( # COMPLETE AQUI ).unsqueeze(0)  # (1, seq_len)
+    # Converter o texto original para índices numéricos
+    input_indices = torch.tensor(text_to_indices(text, vocab)).unsqueeze(0)  # (1, seq_len)
 
     # Parâmetros do modelo
     d_model = 8    # Dimensão do embedding
@@ -60,11 +60,11 @@ if __name__ == "__main__":
     num_layers = 2 # Número de camadas do Encoder
     vocab_size = len(vocab)
 
-    # Criando o Encoder (INCOMPLETO)
-    encoder = TransformerEncoder( # COMPLETE AQUI )
+    # Criando o Encoder
+    encoder = TransformerEncoder(d_model, num_heads, d_ff, num_layers, vocab_size)
 
-    # Passando os tokens pelo encoder (INCOMPLETO)
-    output = encoder( # COMPLETE AQUI )
+    # Passando os tokens pelo encoder
+    output = encoder(input_indices)
 
     # Impressão dos resultados
     print("\nTexto de Entrada:", text)
