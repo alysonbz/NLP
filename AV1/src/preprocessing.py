@@ -77,7 +77,7 @@ def preprocess_dataset(df, text_col, sentiment_col):
 
 if __name__ == "__main__":
     # Carregar dataset
-    df = pd.read_csv("portuguese_hate_.csv")
+    df = pd.read_csv("../../AV2/subs/portuguese_hate_.csv")
 
     # Processar dados
     processed_df = preprocess_dataset(df, text_col="text", sentiment_col="is_hate_speech")

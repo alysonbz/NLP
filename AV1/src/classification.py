@@ -11,7 +11,7 @@ from AV1.src.utils.grid import param_grid
 from AV1.src.utils.defs import text_to_avg_vector
 
 # Preparing processed and raw dataset
-df_original = pd.read_csv('portuguese_hate_.csv')
+df_original = pd.read_csv('../../AV2/subs/portuguese_hate_.csv')
 df_processed = pd.read_csv('portuguese_hate_processed_stopwords_manual.csv')
 df_processed = df_processed.dropna().reset_index(drop=True)
 df_original = df_original.dropna().reset_index(drop=True)
