@@ -17,6 +17,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\AV2\dataset\train.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\AV2\dataset\twitter_sentiment.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\unidade1\dataset\df1_one_hot_encoding.csv">
           <value>
             <Attribute>

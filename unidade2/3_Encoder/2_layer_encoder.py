@@ -20,7 +20,8 @@ class TransformerEncoder(nn.Module):
         )
 
         # Empilhar múltiplos blocos de Encoder (INCOMPLETO)
-        self.encoder = nn.TransformerEncoder( # COMPLETE AQUI )
+        self.encoder = nn.TransformerEncoder(nn.TransformerEncoderLayer(d_model=d_model, nhead=num_heads, dim_feedforward=d_ff,dropout=dropout), num_layers=num_layers
+                                             )
 
     def forward(self, x):
         x = self.embedding(x)
@@ -32,7 +33,7 @@ def medir_tempo_execucao(num_layers, input_tokens, d_model, num_heads, d_ff, voc
     Mede o tempo de execução do Encoder Transformer para diferentes quantidades de camadas.
     """
     # Criar o modelo TransformerEncoder com num_layers (INCOMPLETO)
-    encoder = TransformerEncoder( # COMPLETE AQUI )
+    encoder = TransformerEncoder(d_model, num_heads, d_ff, num_layers, vocab_size)
 
     # Medir tempo inicial
     inicio = time.time()
