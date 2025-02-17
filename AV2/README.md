@@ -28,14 +28,14 @@ SHELDA DE SOUZA RAMOS: https://huggingface.co/datasets/johnidouglas/twitter-sent
 
 ### Questão 1
 
-[encoder.py](encoder.py)
+[encoder.py](questao_1/encoder.py)
 
 Nesta questão você deve aplicar o encoder no seu dataset. Utilize os dados textuais e
 realize o proceso de encoder, faça a implementação manual.
 
 ### Questão 2
 
-[preprocessing.py](preprocessing.py)
+[preprocessing.py](questao_2/preprocessing.py)
 
 nessa questão você deve implementar a preparação do dos dados para serem utilizados em treinamento de LLM
 via pytorch. Neste etapa você deve ser capaz de ter os dados de treino e teste no formato adequado que serão utilizados nos modelos nos modelos posteriormente.
@@ -43,7 +43,7 @@ Lembre-se que todos os modelos devem treinar e testar com os mesmos conjuntos pa
 
 ### Questão 3
 
-[hugging_face_models.py](hugging_face_models.py)
+[hugging_face_models.py](questao_3/hugging_face_models.py)
 
 Utilizando os modelos pre-treinados que estão na huggingFace, sem realizar nenhum fine tuning,
 faça a prediçao no conjunto de teste obtido na questão 2. Gere o classification report
@@ -51,7 +51,7 @@ e a matriz confusão.
 
 ### Questão 4
 
-[fine_tuning.py](fine_tuning.py)
+[fine_tuning.py](questao_4/fine_tuning.py)
 
 Nesta questão você deve gerar um modelo via fine tuning, escolha o modelo apropridado como base
 e especifique para sua aplicação. Treine com o conjunto de treino resposta da questão 2.
@@ -59,14 +59,14 @@ e especifique para sua aplicação. Treine com o conjunto de treino resposta da 
 
 ### Questão 5
 
-[train_classifier_encoder.py](train_classifier_encoder.py)
+[train_classifier_encoder.py](questao_5/train_classifier_encoder.py)
 
 Nesta questão você deve criar a sua arquitetura de encoder para classificar
 as informações textuais. Treine com o conjunto de treino utilizado na questão 2.
 
 ### Questão 6
 
-[prediction.py](prediction.py)
+[prediction.py](questao_5/prediction.py)
 
 Nesta questão você deve realizar as predições dos modelos treinados nas questões 5 e 4. Faça um clasification report
 e matriz confusão para cada modelo. 

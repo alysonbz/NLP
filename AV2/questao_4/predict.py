@@ -2,11 +2,11 @@ from transformers import Trainer, AutoModelForSequenceClassification, AutoTokeni
 import numpy as np
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
-from AV2.preprocessing import torch_dataset
+from AV2.questao_2.preprocessing import torch_dataset
 import pandas as pd
 
-model_path = "gold_standard/neuralmind_bert-large-portuguese-cased_model_fine_tuning_data_balanced"
-tokenizer_path = "gold_standard/neuralmind_bert-large-portuguese-cased_tokenizer_fine_tuning_data_balanced"
+model_path = "../models/fine_turning/gold_standard/neuralmind_bert-large-portuguese-cased_model_fine_tuning_data_balanced"
+tokenizer_path = "../models/fine_turning/gold_standard/neuralmind_bert-large-portuguese-cased_tokenizer_fine_tuning_data_balanced"
 
 # Carregar modelo treinado e tokenizer
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
