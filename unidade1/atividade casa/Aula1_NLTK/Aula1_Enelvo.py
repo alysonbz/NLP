@@ -1,8 +1,8 @@
 # Usado para normalizar o texto, ou seja, corrigir, gírias, erros ortográficos, ...
 
 # pip install enelvo
-
 from enelvo.normaliser import Normaliser
+
 
 norm = Normaliser(tokenizer='readable')
 msg = 'Até hj vc n me respondeu. Oq aconteceu?'
