@@ -8,6 +8,7 @@ Flair
  > Fácil de usar para tarefas práticas de etiquetagem, reconhecimento de entidades, análise de sentimentos, marcação de classes gramaticais, apoio especial para textos biomédicos, desambiguação e classificação de sentidos
  > Estrutura baseada diretamente no TorchPy, tornando mais fácil o treinamento
 """
+
 from flair.data import Sentence
 from flair.models import SequenceTagger
 
