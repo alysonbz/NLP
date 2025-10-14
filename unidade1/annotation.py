@@ -24,4 +24,4 @@ print("\n - Part Of Speech Tagging")
 for token in doc:
     print(token.text, token.pos_)
 
-print("FIMMM")
+print("\n\nFIMMM")
