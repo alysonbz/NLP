@@ -7,52 +7,52 @@ from sklearn.model_selection import train_test_split
 
 
 def load_volunteer_dataset():
-    return pd.read_csv('../dataset/opportunities.csv')
+    return pd.read_csv('../unidade1/dataset/opportunities.csv')
 
 def load_wine_dataset():
-    wine = pd.read_csv('../dataset/wine.csv')
+    wine = pd.read_csv('../unidade1/dataset/wine.csv')
     return wine
 
 def load_hiking_dataset():
-    return pd.read_json('../dataset/hiking.json')
+    return pd.read_json('unidade1/dataset/hiking.json')
 
 def load_df1_unidade1():
-    return pd.read_csv('../dataset/df1_unidade1.csv')
+    return pd.read_csv('unidade1/dataset/df1_unidade1.csv')
 
 
 def load_df2_unidade1():
-    return pd.read_csv('../dataset/df2_unidade1.csv')
+    return pd.read_csv('unidade1/dataset/df2_unidade1.csv')
 
 def load_df1_unidade2():
-    return pd.read_csv('../dataset/df1_unidade2.csv')
+    return pd.read_csv('unidade1/dataset/df1_unidade2.csv')
 
 def load_df2_unidade2():
-    return pd.read_csv('../dataset/df2_unidade2.csv')
+    return pd.read_csv('unidade1/dataset/df2_unidade2.csv')
 
 def load_churn_dataset():
-    df = pd.read_csv('../dataset/churn_train.csv')
+    df = pd.read_csv('unidade1/dataset/churn_train.csv')
     le = LabelEncoder()
     df['churn'] = le.fit_transform(df['churn'])
     return df
 
 def load_iris_dataset():
-    df = pd.read_csv('../dataset/iris.csv')
+    df = pd.read_csv('unidade1/dataset/iris.csv')
     return df
 
 def load_df1_one_hot():
-    df = pd.read_csv('../dataset/df1_one_hot_encoding.csv')
+    df = pd.read_csv('unidade1/dataset/df1_one_hot_encoding.csv')
     return df
 
 def load_pfizer_tweet_dataset():
-    df = pd.read_csv('../dataset/vaccination_tweets.csv')
+    df = pd.read_csv('unidade1/dataset/vaccination_tweets.csv')
     return df
 
 def load_sales_clean_dataset():
-    df = pd.read_csv('../dataset/sales_clean.csv')
+    df = pd.read_csv('unidade1/dataset/sales_clean.csv')
     return df
 
 def load_diabetes_clean_dataset():
-    df = pd.read_csv('../dataset/diabetes_clean.csv')
+    df = pd.read_csv('unidade1/dataset/diabetes_clean.csv')
     return df
 
 def processing_sales_clean():
@@ -418,16 +418,16 @@ def load_points():
                     [-1.98274626, -0.54584475]])
 
 def load_grains_dataset():
-    return pd.read_csv('../dataset/grains.csv')
+    return pd.read_csv('unidade1/dataset/grains.csv')
 
 def load_fish_dataset():
-    return pd.read_csv('../dataset/fish.csv')
+    return pd.read_csv('unidade1/dataset/fish.csv')
 
 def load_movements_price_dataset():
-    return pd.read_csv('../dataset/company-stock-movements-2010-2015-incl.csv')
+    return pd.read_csv('unidade1/dataset/company-stock-movements-2010-2015-incl.csv')
 
 def load_grains_splited_datadet():
-    df = pd.read_csv('../dataset/grains.csv')
+    df = pd.read_csv('unidade1/dataset/grains.csv')
     X =  df.drop(['variety','variety_number'],axis=1)
     y =  df['variety'].values
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.05, random_state=42, stratify=y)
@@ -441,8 +441,8 @@ def load_text_tc():
     return "\nIt’s' been a busy day for Facebook  exec op-eds. Earlier this morning, Sheryl Sandberg broke the site’s silence around the Christchurch massacre, and now Mark Zuckerberg is calling on governments and other bodies to increase regulation around the sorts of data Facebook traffics in. He’s hoping to get out in front of heavy-handed regulation and get a seat at the table shaping it.\n"
 
 def load_movie_review_dataset():
-    return pd.read_csv('../dataset/movie_overviews.csv')
+    return pd.read_csv('unidade1/dataset/movie_overviews.csv')
 
 def load_movie_review_clean_dataset():
-    return pd.read_csv('../dataset/movie_reviews_clean.csv')
+    return pd.read_csv('unidade1/dataset/movie_reviews_clean.csv')
 
