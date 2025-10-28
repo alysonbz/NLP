@@ -40,7 +40,7 @@ def load_iris_dataset():
     return df
 
 def load_df1_one_hot():
-    df = pd.read_csv('../dataset/df1_one_hot_encoding.csv')
+    df = pd.read_csv('unidade1/dataset/df1_one_hot_encoding.csv')
     return df
 
 def load_pfizer_tweet_dataset():
@@ -444,5 +444,5 @@ def load_movie_review_dataset():
     return pd.read_csv('../dataset/movie_overviews.csv')
 
 def load_movie_review_clean_dataset():
-    return pd.read_csv('../dataset/movie_reviews_clean.csv')
+    return pd.read_csv('unidade1/dataset/movie_reviews_clean.csv')
 
