@@ -1,0 +1,50 @@
+RELATÓRIO FINAL — ETAPA 5
+
+Número total de registros: 1000
+
+CPF válidos: 465 (46.5%)
+
+CNPJ válidos: 475 (47.5%)
+
+
+Campos com mais inconsistências:
+
+coluna  incompletos  ruidos  total_inconsistencias
+ valor            0     963                    963
+  data            0     681                    681
+ email            0     498                    498
+
+
+Exemplos antes/depois da limpeza:
+
+
+CPF:
+           cpf cpf_normalizado
+  43039117b122  430.391.171-22
+951.484.656-70  951.484.656-70
+989.413.435-18  989.413.435-18
+
+
+CNPJ:
+              cnpj   cnpj_normalizado
+86.379.402/6542-35 86.379.402/6542-35
+    54278498084187 54.278.498/0841-87
+36.629.946/8044-38 36.629.946/8044-38
+
+
+Telefone:
+         telefone telefone_normalizado
+     3191824-4935      (31) 91824-4935
+  (98) 95777-3872      (98) 95777-3872
++55(92)90330-9232      (92) 90330-9232
+
+
+Metodologia de Correção:
+1. Identificação de padrões usando expressões regulares específicas para cada tipo de dado.
+2. Remoção de caracteres não numéricos em CPFs, CNPJs e telefones.
+3. Normalização para formatos padronizados:
+   - CPF → XXX.XXX.XXX-YY
+   - CNPJ → XX.XXX.XXX/0001-YY
+   - Telefone → (XX) 9XXXX-XXXX
+4. Validação dos dígitos verificadores de CPF e CNPJ.
+5. Classificação dos registros em válidos, incompletos e ruidosos.
