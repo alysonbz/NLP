@@ -3,6 +3,7 @@ from src.utils import load_pfizer_tweet_dataset
 tweets = load_pfizer_tweet_dataset()
 import matplotlib.pyplot as plt
 
+
 ## WORD COUNT
 
 
@@ -55,9 +56,9 @@ plt.show()
 def count_mentions(string):
     # Split the string into words
     words = string.split()
-
     # Create a list of words that are mentions
-    mentions = [word for word in words if ____.____(____)]
+    
+    mentions = [word for word in words if word.startswith("@")]
 
     # Return number of mentions
     return (len(mentions))
