@@ -1,12 +1,14 @@
 import spacy
 from src.utils import load_gettyburg
 
+gettysburg = load_gettyburg()
+
 # Load the en_core_web_sm model
-nlp = .____(____)
+nlp = spacy.load("en_core_web_sm")
 
 # Create a Doc object
-doc = ____(____)
+doc = nlp(gettysburg)
 
 # Generate the tokens
-tokens = [token.____ for token in ____]
+tokens = [token.text for token in doc]
 print(tokens)

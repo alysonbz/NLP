@@ -44,7 +44,7 @@ def load_df1_one_hot():
     return df
 
 def load_pfizer_tweet_dataset():
-    df = pd.read_csv('../dataset/vaccination_tweets.csv')
+    df = pd.read_csv('unidade1/dataset/vaccination_tweets.csv')
     return df
 
 def load_sales_clean_dataset():
