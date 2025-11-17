@@ -5,43 +5,42 @@ import matplotlib.pyplot as plt
 
 ## WORD COUNT
 
-
 # a) Function that returns number of words in a string
 def count_words(string):
     # Split the string into words
-    words = ____.____
+    words = string.split()
 
     # Return the number of words
-    return ____(____)
+    return len(words)
 
 
 # Create a new feature word_count
-tweets['word_count'] = tweets[____].apply(____)
+tweets['word_count'] = tweets['text'].apply(count_words)
 
 # Print the average word count of the talks
-print("Word count mean: ", tweets[____].____)
+print("Word count mean: ", tweets['word_count'].mean())
 
 ## CHAR COUNT
 
 # Create a feature char_count from "text" feature. Use len function to count
-tweets['char_count'] = tweets[---].apply(--)
+tweets['char_count'] = tweets['text'].apply(len)
 
 # Print the average character count
-print("char count mean: ",tweets[----].---)
+print("char count mean: ", tweets['char_count'].mean())
 
 
 ## HASHTAGS COUNT
 
-# Function that returns numner of hashtags in a string
+# Function that returns number of hashtags in a string
 def count_hashtags(string):
     # Split the string into words
     words = string.split()
 
     # Create a list of words that are hashtags
-    hashtags = [word for word in words if ____.____(____)]
+    hashtags = [word for word in words if word.startswith('#')]
 
     # Return number of hashtags
-    return (len(hashtags))
+    return len(hashtags)
 
 
 # Create a feature hashtag_count and display distribution
@@ -57,10 +56,10 @@ def count_mentions(string):
     words = string.split()
 
     # Create a list of words that are mentions
-    mentions = [word for word in words if ____.____(____)]
+    mentions = [word for word in words if word.startswith('@')]
 
     # Return number of mentions
-    return (len(mentions))
+    return len(mentions)
 
 
 # Create a feature mention_count and display distribution
