@@ -1,7 +1,7 @@
 import spacy
-from src.utils import load_text_tc
 
-tc = load_text_tc()
+tc = "\nIt’s' been a busy day for Facebook  exec op-eds. Earlier this morning, Sheryl Sandberg broke the site’s silence around the Christchurch massacre, and now Mark Zuckerberg is calling on governments and other bodies to increase regulation around the sorts of data Facebook traffics in. He’s hoping to get out in front of heavy-handed regulation and get a seat at the table shaping it.\n"
+
 
 # Load model and create Doc object
 nlp = spacy.load('en_core_web_sm')
@@ -9,13 +9,13 @@ nlp = spacy.load('en_core_web_sm')
 
 def find_persons(text):
     # Create Doc object
-    doc = ___(___)
+    doc = nlp(text)
 
     # Identify the persons
-    persons = [ent.____ for ent in doc.____ if ent.____ == 'PERSON']
+    persons = [ent.text for ent in doc.ents if ent.label_ == 'PERSON']
 
     # Return persons
     return persons
 
 
-print(____(____))
+print(find_persons(tc))
