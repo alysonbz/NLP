@@ -63,7 +63,6 @@ if __name__ == "__main__":
     print("\nMatriz TF-IDF (manual):")
     print(tfidf)
 
-    # Criar dataframe
     df = pd.DataFrame(tfidf, columns=vocab)
 
     print("Tabela TF-IDF:")
