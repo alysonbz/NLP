@@ -1,4 +1,5 @@
 import math
+import pandas as pd
 
 textos = [
     "this is not normal",
@@ -8,32 +9,35 @@ textos = [
     "he lives in brazil",
 ]
 
+
 def TF_IDF(corpus):
     N = len(corpus)
-    vocab = set(x for x in " ".join(corpus).split(" "))
 
-    # print(vocab)
-    TF = [[0 for i in range(len(vocab))] for j in range(N)]
-    # print(TF)
-    for i in range(N): # linhas
-        for j in range(len(vocab)): # cols
-            doc = corpus[i]
-            word = list(vocab)[j]
-            count = 0
-            for w in doc.split(" "):
-                if w == word:
-                    count +=1
-            TF[i][j] = count/N
+    # vocabulário 
+    vocab = sorted(set(" ".join(corpus).split()))
 
-    # print(TF)
- 
+    TF = []
+    for doc in corpus:
+        words = doc.split()
+        doc_len = len(words)
+        row = []
+        for term in vocab:
+            row.append(words.count(term) / doc_len)
+        TF.append(row)
+
+    # computar IDF
     def count_n_docs_with_term(term):
-        total = 0
-        for x in corpus:
-            if term in x.split(" "):
-                total += 1
-        return total
-    
-    idfs = {x: math.log(N/count_n_docs_with_term(x)) for x in vocab}
+        return sum(term in doc.split() for doc in corpus)
 
-TF_IDF(textos)
+    idfs = [math.log(N / (count_n_docs_with_term(term)+ 1))  for term in vocab]
+
+    # matriz
+    tfidf = []
+    for row in TF:
+        tfidf.append([tf * idf for tf, idf in zip(row, idfs)])
+
+    return pd.DataFrame(tfidf, columns=vocab)
+
+
+
+print(TF_IDF(textos))
