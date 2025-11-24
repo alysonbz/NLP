@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd 
 import re
 
 def preprocess(text):
@@ -7,9 +8,6 @@ def preprocess(text):
     return text.strip()
 
 def load_corpus():
-    """
-    Retorna um corpus sintético de 5 linhas.
-    """
     corpus = [
         "Eu adoro aprender NLP",
         "Machine Learning é incrível",
@@ -64,3 +62,9 @@ if __name__ == "__main__":
     print(vocab)
     print("\nMatriz TF-IDF (manual):")
     print(tfidf)
+
+    # Criar dataframe
+    df = pd.DataFrame(tfidf, columns=vocab)
+
+    print("Tabela TF-IDF:")
+    print(df)
