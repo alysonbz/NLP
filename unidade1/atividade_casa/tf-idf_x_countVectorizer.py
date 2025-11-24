@@ -56,3 +56,12 @@ if __name__ == "__main__":
     # Comparação dos vetorizadores
     evaluate("TF-IDF", TfidfVectorizer(), X_train, X_test, y_train, y_test)
     evaluate("CountVectorizer", CountVectorizer(), X_train, X_test, y_train, y_test)
+
+
+"""
+COMPARAÇÃO:
+Os resultados mostram que o modelo Naive Bayes tem desempenho muito inferior quando utiliza TF-IDF,
+pois embora identifique quase todos os textos da classe negativa, apresenta recall extremamente baixo para a classe positiva.
+Já com o CountVectorizer, que trabalha com contagens brutas — algo muito mais adequado ao funcionamento do Naive Bayes — 
+o modelo consegue reconhecer bem ambas as classes, alcançando resultados muito mais equilibrados.
+"""
