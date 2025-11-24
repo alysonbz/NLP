@@ -1,0 +1,23 @@
+Naive Bayes with TF-IDF accuracy: 0.715
+Classification Report for TF-IDF Vectorizer:
+              precision    recall  f1-score   support
+
+           0       0.63      0.92      0.75        92
+           1       0.89      0.54      0.67       108
+
+    accuracy                           0.71       200
+   macro avg       0.76      0.73      0.71       200
+weighted avg       0.77      0.71      0.71       200
+
+==========================================================
+
+Naive Bayes with Count Vectorizer accuracy: 0.77
+Classification Report for Count Vectorizer:
+              precision    recall  f1-score   support
+
+           0       0.72      0.83      0.77        92
+           1       0.83      0.72      0.77       108
+
+    accuracy                           0.77       200
+   macro avg       0.77      0.77      0.77       200
+weighted avg       0.78      0.77      0.77       200
