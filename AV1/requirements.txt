@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+spacy
+kagglehub
+nltk
+pyspellchecker
+gensim
+huggingface_hub
+safetensors
