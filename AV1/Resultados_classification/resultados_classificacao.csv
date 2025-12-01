@@ -1,0 +1,9 @@
+Método,Pré-processamento,Acurácia
+count,Nenhum,0.7477954144620811
+count,Lematização,0.7522045855379189
+tfidf,Nenhum,0.7513227513227513
+tfidf,Lematização,0.7372134038800705
+word2vec,Nenhum,0.6798941798941799
+word2vec,Lematização,0.6798941798941799
+tfidf,Stemming,0.7583774250440917
+tfidf,Lematização,0.7372134038800705
