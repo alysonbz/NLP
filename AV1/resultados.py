@@ -11,6 +11,8 @@ df = carregar_dataset("AV1/b2w.csv")
 # Remove registros sem rótulo
 df = df.dropna(subset=["polarity"])
 
+df = df.sample(7000, random_state=42) 
+
 coluna_texto = "review_text"
 coluna_label = "polarity"
 
@@ -37,7 +39,7 @@ print(melhores_b)
 
 melhor_tecnica = (
     melhores_b.sort_values(by="Acuracia", ascending=False)
-    .iloc[0]["Tecnica"]
+    .iloc[0]["Técnica"]
 )
 
 print("\nMelhor técnica encontrada no item B:", melhor_tecnica)

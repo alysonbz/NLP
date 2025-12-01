@@ -95,7 +95,7 @@ class ExtratorAtributos:
         novos_str = [" ".join(t) for t in textos]
         return self.tfidf_vectorizer.transform(novos_str).toarray()
 
-  # --------------------------
+    # --------------------------
     #       WORD2VEC TREINO
     # --------------------------
 
@@ -111,24 +111,10 @@ class ExtratorAtributos:
         return self.w2v_model
 
     # --------------------------
-    #  WORD2VEC PRÉ-TREINADO
-    # --------------------------
-
-    def carregar_w2v_pre_treinado(self, caminho_modelo):
-
-        print("Carregando modelo Word2Vec pré-treinado...")
-        self.w2v_model = KeyedVectors.load_word2vec_format(caminho_modelo, binary=True)
-        print("Modelo carregado com sucesso!")
-        return self.w2v_model
-
-    # --------------------------
     #       DOC VECTOR
     # --------------------------
 
     def _doc_vector(self, tokens):
-        """
-        Calcula vetor médio do documento.
-        """
         vetores = [self.w2v_model[w] for w in tokens if w in self.w2v_model]
 
         if not vetores:
@@ -138,7 +124,7 @@ class ExtratorAtributos:
 
     def word2vec_transform(self, novos_textos=None):
         if self.w2v_model is None:
-            raise ValueError("Treine W2V ou carregue modelo pré-treinado.")
+            raise ValueError("Treine o modelo Word2Vec com word2vec_fit().")
 
         if novos_textos is None:
             tokens_lista = self.textos_tokens

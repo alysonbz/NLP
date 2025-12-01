@@ -59,11 +59,8 @@ def gerar_atributos(tipo, extrator_train, extrator_test, pretrained_w2v=None):
 
     if tipo == "w2v":
         
-        if pretrained_w2v is None:
-            extrator_train.word2vec_fit()
-        else:
-            extrator_train.w2v_model = pretrained_w2v
-
+        extrator_train.word2vec_fit()  # treina sempre
+        
         extrator_test.w2v_model = extrator_train.w2v_model
 
         Xtr = extrator_train.word2vec_transform()
