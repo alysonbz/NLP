@@ -28,8 +28,7 @@ VICTOR MATHEUS ARAUJO OLIVEIRA: https://huggingface.co/datasets/nilc-nlp/assin
 
 [preprocessing.py](preprocessing.py)
 
-Nesta primeira questão você deve implementar funções de manipulação do dataset realizar os pré-processmentos necessários, como stemming, lemmatização, remoção de carateris maiusculos, verificar stopwords, verificação de menções
-, de acordo as características do seu dataset. Em resume prepare o mesmo para aplicação de extração de atributos. A estrutura do código deve permitir que possam ser importadas as funções em outras questões.
+Nesta primeira questão você deve implementar funções de manipulação do dataset realizar os pré-processmentos necessários, como stemming, lemmatização, remoção de carateris maiusculos, verificar stopwords, verificação de menções, de acordo as características do seu dataset. Em resume prepare o mesmo para aplicação de extração de atributos. A estrutura do código deve permitir que possam ser importadas as funções em outras questões.
 
 
 ### Questão 2
