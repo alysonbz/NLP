@@ -1,6 +1,0 @@
-tipo_atributo,preprocessamento,acuracia
-count,lemma,0.9083333333333333
-tfidf,lemma,0.9083333333333333
-cooc,lemma,0.8333333333333334
-word2vec,lemma,0.8916666666666667
-stats,lemma,0.8166666666666667
