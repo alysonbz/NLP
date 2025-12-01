@@ -12,7 +12,6 @@ from enelvo.normaliser import Normaliser
 from nltk.corpus import stopwords
 from nltk.stem import RSLPStemmer
 
-# --- Carregamento único de recursos pesados ---
 nlp = spacy.load("pt_core_news_sm", disable=["parser", "ner"]) 
 normaliser = Normaliser(sanitize=True)
 stopwords_pt = set(stopwords.words("portuguese"))
@@ -26,7 +25,7 @@ regex_numeros = re.compile(r"\d+")
 
 
 def carregar_dataset(caminho_arquivo, sep=","):
-    """Carrega dataset no formato CSV."""
+    """Carrega dataset"""
     return pd.read_csv(caminho_arquivo, encoding="utf-8", sep=sep)
 
 
@@ -49,11 +48,10 @@ def remover_numeros(texto):
 
 def limpar_texto(texto):
     """Pipeline básico de limpeza antes da tokenização."""
-    texto = texto.lower()
+    texto = normalizar_texto(texto)
     texto = remover_links(texto)
     texto = remover_mencoes(texto)
     texto = remover_numeros(texto)
-    texto = normalizar_texto(texto)
     return texto.strip()
 
 
