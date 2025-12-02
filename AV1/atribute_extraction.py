@@ -8,7 +8,7 @@ A estrutura do código deve permitir que possam ser importadas as funções em o
 import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from gensim.models import Word2Vec, KeyedVectors
+from gensim.models import Word2Vec
 
 
 class ExtratorAtributos:
