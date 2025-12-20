@@ -2,12 +2,12 @@ import numpy as np
 
 # Função para calcular o Scaled Dot-Product Attention
 def scaled_dot_product_attention(Q, K, V):
-    # Passo 1: Calcular o produto escalar de Q e K^T
-    # **Complete o cálculo aqui**
+    # Passo 1: Produto escalar QK^T
+    matmul_qk = np.dot(Q, K.T)
 
     # Passo 2: Escalonar os resultados dividindo por sqrt(d_k)
-    d_k = Q.shape[-1]  # Número de colunas de Q ou K
-    scaled_attention_logits = None  # **Complete esta parte**
+    d_k = Q.shape[-1]
+    scaled_attention_logits = matmul_qk / np.sqrt(d_k)
 
     # Passo 3: Aplicar softmax para obter as probabilidades
     attention_weights = softmax(scaled_attention_logits)  # **Função softmax incompleta**
@@ -17,18 +17,17 @@ def scaled_dot_product_attention(Q, K, V):
 
     return output, attention_weights
 
-# Função Softmax (incompleta)
+
+# Função Softmax
 def softmax(x):
-    # Passo 1: Subtrair o valor máximo de x para estabilidade numérica
-    # **Complete este passo**
+    # Passo 1: Subtrair o valor máximo de x (estabilidade numérica)
+    x = x - np.max(x, axis=-1, keepdims=True)
 
-    # Passo 2: Calcular o exponencial de cada elemento de x
-    # **Complete este passo**
+    # Passo 2: Exponencial
+    exp_x = np.exp(x)
 
-    # Passo 3: Normalizar os valores exponenciais, dividindo cada valor pelo somatório dos exponenciais
-    # **Complete este passo**
-
-    return None  # Retorne a versão normalizada de x
+    # Passo 3: Normalização
+    return exp_x / np.sum(exp_x, axis=-1, keepdims=True)
 
 
 # Exemplo de Matrizes Q, K e V
