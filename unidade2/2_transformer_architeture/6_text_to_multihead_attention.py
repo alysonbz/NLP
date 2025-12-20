@@ -9,16 +9,13 @@ class PositionalEncoding:
     def get_positional_encoding(self, seq_len):
         """
         Calcula a codificação posicional.
-        :param seq_len: Comprimento da sequência.
-        :return: Matriz de codificação posicional.
         """
         PE = np.zeros((seq_len, self.d_model))
         for pos in range(seq_len):
             for i in range(0, self.d_model, 2):
-                # **Complete o cálculo do seno e cosseno**
-                PE[pos, i] = None  # Seno para posições pares
+                PE[pos, i] = np.sin(pos / (10000 ** (i / self.d_model)))
                 if i + 1 < self.d_model:
-                    PE[pos, i + 1] = None  # Cosseno para posições ímpares
+                    PE[pos, i + 1] = np.cos(pos / (10000 ** (i / self.d_model)))
         return PE
 
 
@@ -41,47 +38,31 @@ class MultiHeadAttention:
         self.b_o = np.random.rand(d_model)
 
     def scaled_dot_product_attention(self, Q, K, V):
-        """
-        Calcula a atenção escalonada por produto escalar.
-        :param Q: Matriz de consultas.
-        :param K: Matriz de chaves.
-        :param V: Matriz de valores.
-        :return: Saída e pesos de atenção.
-        """
-        # **Complete o cálculo**
-        matmul_qk = None  # Produto escalar entre Q e K^T
-        scaled_attention_logits = None  # Escalonar pelo tamanho de d_k
-        attention_weights = None  # Aplicar softmax para obter os pesos de atenção
-        output = None  # Multiplicar os pesos pela matriz V
+        matmul_qk = np.matmul(Q, K.transpose(0, 2, 1))
+        scaled_attention_logits = matmul_qk / np.sqrt(self.d_k)
 
+        exp_logits = np.exp(
+            scaled_attention_logits - np.max(scaled_attention_logits, axis=-1, keepdims=True)
+        )
+        attention_weights = exp_logits / np.sum(exp_logits, axis=-1, keepdims=True)
+
+        output = np.matmul(attention_weights, V)
         return output, attention_weights
 
     def split_heads(self, X):
-        """
-        Divide as matrizes Q, K, e V em múltiplas cabeças.
-        :param X: Matriz a ser dividida (Q, K ou V).
-        :return: Matriz reformatada para múltiplas cabeças.
-        """
-        # **Complete a divisão**
         batch_size, seq_len, d_model = X.shape
-        X = None  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
-        return None  # Reordenar os eixos para (batch_size, num_heads, seq_len, d_k)
+        X = X.reshape(batch_size, seq_len, self.num_heads, self.d_k)
+        return X.transpose(0, 2, 1, 3)
 
     def forward(self, Q, K, V):
-        """
-        Executa o processo de Multi-Head Attention.
-        """
-        # Projeções lineares
-        Q_proj = None  # Projeção para Q
-        K_proj = None  # Projeção para K
-        V_proj = None  # Projeção para V
+        Q_proj = np.matmul(Q, self.W_q) + self.b_q
+        K_proj = np.matmul(K, self.W_k) + self.b_k
+        V_proj = np.matmul(V, self.W_v) + self.b_v
 
-        # Divisão em múltiplas cabeças
-        Q_heads = None
-        K_heads = None
-        V_heads = None
+        Q_heads = self.split_heads(Q_proj)
+        K_heads = self.split_heads(K_proj)
+        V_heads = self.split_heads(V_proj)
 
-        # Cálculo da atenção
         head_outputs = []
         for i in range(self.num_heads):
             Q_i = Q_heads[:, i, :, :]
@@ -90,17 +71,13 @@ class MultiHeadAttention:
             output, _ = self.scaled_dot_product_attention(Q_i, K_i, V_i)
             head_outputs.append(output)
 
-        # Concatenar as saídas das cabeças
-        concatenated = None
-
-        # Projeção final
-        output = None
+        concatenated = np.concatenate(head_outputs, axis=-1)
+        output = np.matmul(concatenated, self.W_o) + self.b_o
 
         return output
 
 
 if __name__ == "__main__":
-    # Texto de entrada
     corpus = [
         "O aprendizado profundo é fascinante".split(),
         "Modelos de linguagem transformaram o NLP".split(),
@@ -109,7 +86,13 @@ if __name__ == "__main__":
     ]
 
     embedding_dim = 8
-    w2v_model = Word2Vec(sentences=corpus, vector_size=embedding_dim, window=5, min_count=1, workers=4)
+    w2v_model = Word2Vec(
+        sentences=corpus,
+        vector_size=embedding_dim,
+        window=5,
+        min_count=1,
+        workers=4
+    )
 
     text = "O aprendizado profundo é fascinante"
     tokens = text.split()
@@ -119,7 +102,7 @@ if __name__ == "__main__":
 
     pos_enc = PositionalEncoding(embedding_dim)
     positional_encoding = pos_enc.get_positional_encoding(len(tokens))
-    embeddings += positional_encoding[np.newaxis, :, :]  # Adiciona codificação posicional
+    embeddings += positional_encoding[np.newaxis, :, :]
 
     num_heads = 2
     mha = MultiHeadAttention(embedding_dim, num_heads)
