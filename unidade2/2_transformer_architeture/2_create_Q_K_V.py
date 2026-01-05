@@ -8,26 +8,27 @@ X = np.array([
     [7, 5, 3, 1]
 ])
 
-# Defina o valor da dimensão do modelo (d_model) a partir da matriz X
-d_model = X.shape[1]  # Número de colunas de X
+# Dimensão do modelo
+d_model = X.shape[1]
 
-# Geração das Matrizes de Pesos W_Q, W_K, W_V
-# **Aqui, complete o código para gerar as matrizes de pesos usando distribuição normal ou outra técnica de inicialização**
+# Inicialização das matrizes de pesos (distribuição normal)
+np.random.seed(42)  # Para reprodutibilidade
 
-W_Q = None  # Inicializar a matriz de pesos W_Q com uma distribuição apropriada
-W_K = None  # Inicializar a matriz de pesos W_K com uma distribuição apropriada
-W_V = None  # Inicializar a matriz de pesos W_V com uma distribuição apropriada
+W_Q = np.random.randn(d_model, d_model)
+W_K = np.random.randn(d_model, d_model)
+W_V = np.random.randn(d_model, d_model)
 
-# Calcule as matrizes Q, K e V
-# **Complete o código para calcular Q, K e V multiplicando X pelas matrizes de pesos**
-Q = None  # Substitua 'None' pela operação de multiplicação de X e W_Q
-K = None  # Substitua 'None' pela operação de multiplicação de X e W_K
-V = None  # Substitua 'None' pela operação de multiplicação de X e W_V
+# Cálculo de Q, K e V
+Q = X @ W_Q
+K = X @ W_K
+V = X @ W_V
 
 # Exibição dos resultados
 print("Matriz Q (Query):")
 print(Q)
+
 print("\nMatriz K (Key):")
 print(K)
+
 print("\nMatriz V (Value):")
 print(V)

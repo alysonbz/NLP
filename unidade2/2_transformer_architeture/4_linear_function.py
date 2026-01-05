@@ -9,63 +9,65 @@ def split_heads(X, num_heads):
     :param num_heads: Número de cabeças.
     :return: Matriz reformatada (batch_size, num_heads, seq_len, d_k).
     """
-    # Complete as operações abaixo para dividir X em múltiplas cabeças.
     batch_size, seq_len, d_model = X.shape
-    d_k = d_model // num_heads  # Dimensão de cada cabeça
-    # Redimensione X para incluir o número de cabeças e a nova dimensão d_k
-    # **Complete aqui**
+    d_k = d_model // num_heads
 
-    # Reordene os eixos para (batch_size, num_heads, seq_len, d_k)
-    # **Complete aqui**
-    return None  # Retorne a matriz transposta dividida corretamente.
+    # (batch_size, seq_len, num_heads, d_k)
+    X = X.reshape(batch_size, seq_len, num_heads, d_k)
+
+    # (batch_size, num_heads, seq_len, d_k)
+    X = X.transpose(0, 2, 1, 3)
+
+    return X
 
 
 # Parâmetros
-batch_size = 1  # Tamanho do lote
-seq_len = 4  # Comprimento da sequência
-d_model = 8  # Dimensão do modelo
-num_heads = 2  # Número de cabeças
-d_k = d_model // num_heads  # Dimensão de cada cabeça
+batch_size = 1
+seq_len = 4
+d_model = 8
+num_heads = 2
+d_k = d_model // num_heads
 
 # Matrizes de entrada (Q, K, V)
-Q = np.random.rand(batch_size, seq_len, d_model)  # Consultas
-K = np.random.rand(batch_size, seq_len, d_model)  # Chaves
-V = np.random.rand(batch_size, seq_len, d_model)  # Valores
+Q = np.random.rand(batch_size, seq_len, d_model)
+K = np.random.rand(batch_size, seq_len, d_model)
+V = np.random.rand(batch_size, seq_len, d_model)
 
-# Matrizes de pesos para Q, K, V
-W_Q = np.random.rand(d_model, d_model)  # Pesos para Q
-W_K = np.random.rand(d_model, d_model)  # Pesos para K
-W_V = np.random.rand(d_model, d_model)  # Pesos para V
+# Matrizes de pesos
+W_Q = np.random.rand(d_model, d_model)
+W_K = np.random.rand(d_model, d_model)
+W_V = np.random.rand(d_model, d_model)
 
-# Biases para Q, K, V
+# Biases
 b_Q = np.random.rand(d_model)
 b_K = np.random.rand(d_model)
 b_V = np.random.rand(d_model)
 
-# Passo 1: Aplicar as projeções lineares para Q, K, V
-# **Complete o cálculo abaixo para Q_proj, K_proj, V_proj**
-Q_proj = None  # (batch_size, seq_len, d_model)
-K_proj = None  # (batch_size, seq_len, d_model)
-V_proj = None  # (batch_size, seq_len, d_model)
+# Passo 1: Projeções lineares
+Q_proj = Q @ W_Q + b_Q
+K_proj = K @ W_K + b_K
+V_proj = V @ W_V + b_V
 
-# Passo 2: Dividir as matrizes projetadas em múltiplas cabeças
-# **Use a função split_heads para dividir Q_proj, K_proj e V_proj**
-Q_heads = None  # (batch_size, num_heads, seq_len, d_k)
-K_heads = None  # (batch_size, num_heads, seq_len, d_k)
-V_heads = None  # (batch_size, num_heads, seq_len, d_k)
+# Passo 2: Divisão em múltiplas cabeças
+Q_heads = split_heads(Q_proj, num_heads)
+K_heads = split_heads(K_proj, num_heads)
+V_heads = split_heads(V_proj, num_heads)
 
-# Exibir dimensões e valores
-print("Q_proj (após projeção linear):", Q_proj.shape if Q_proj is not None else "Incomplete")
+# Exibição
+print("Q_proj (após projeção linear):", Q_proj.shape)
 print(Q_proj)
-print("\nQ_heads (após divisão em cabeças):", Q_heads.shape if Q_heads is not None else "Incomplete")
+
+print("\nQ_heads (após divisão em cabeças):", Q_heads.shape)
 print(Q_heads)
 
-print("\nK_proj (após projeção linear):", K_proj.shape if K_proj is not None else "Incomplete")
+print("\nK_proj (após projeção linear):", K_proj.shape)
 print(K_proj)
-print("\nK_heads (após divisão em cabeças):", K_heads.shape if K_heads is not None else "Incomplete")
+
+print("\nK_heads (após divisão em cabeças):", K_heads.shape)
 print(K_heads)
 
-print("\nV_proj (após projeção linear):", V_proj.shape if V_proj is not None else "Incomplete")
+print("\nV_proj (após projeção linear):", V_proj.shape)
 print(V_proj)
-print("\nV_heads (após divisão em cabeças):", V_heads.shape if V_heads is not None else "Incomplete")
+
+print("\nV_heads (após divisão em cabeças):", V_heads.shape)
 print(V_heads)
