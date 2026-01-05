@@ -1,5 +1,20 @@
 import numpy as np
 
+def softmax(x):
+    # Passo 1: Subtrair o valor máximo de x para estabilidade numérica
+    # **Complete este passo**
+    x = x - np.max(x, axis=-1, keepdims=True)
+
+    # Passo 2: Calcular o exponencial de cada elemento de x
+    # **Complete este passo**
+    x = np.exp(x)
+
+    # Passo 3: Normalizar os valores exponenciais, dividindo cada valor pelo somatório dos exponenciais
+    # **Complete este passo**
+    x = x / np.sum(x, axis=-1, keepdims=True)
+
+    return x  # Retorne a versão normalizada de x
+
 class MultiHeadAttention:
     def __init__(self, d_model, num_heads):
         """
@@ -27,31 +42,41 @@ class MultiHeadAttention:
         self.b_o = np.random.rand(d_model)
 
     def scaled_dot_product_attention(self, Q, K, V):
-        """
-        Calcula a atenção escalonada por produto escalar.
-        :param Q: Matriz de consultas.
-        :param K: Matriz de chaves.
-        :param V: Matriz de valores.
-        :return: A saída da atenção e os pesos de atenção.
-        """
-        # **Complete o cálculo da atenção**
-        matmul_qk = None  # Produto escalar entre Q e K^T
-        scaled_attention_logits = None  # Escalonar os logits pelo tamanho de d_k
-        attention_weights = None  # Aplicar softmax nos logits escalonados
-        output = None  # Multiplicar os pesos de atenção pela matriz V
+        # Passo 1: Calcular o produto escalar de Q e K^T
+        # **Complete o cálculo aqui**
+        scores = np.matmul(Q, K.transpose(0, 2, 1))
+
+        # Passo 2: Escalonar os resultados dividindo por sqrt(d_k)
+        scaled_attention_logits = scores / np.sqrt(self.d_k)  # **Complete esta parte**
+
+        # Passo 3: Aplicar softmax para obter as probabilidades
+        attention_weights = softmax(scaled_attention_logits)
+
+        # Passo 4: Multiplicar as probabilidades pela matriz de valores V
+        output = np.dot(attention_weights, V)
 
         return output, attention_weights
 
     def split_heads(self, X):
         """
-        Divide as matrizes Q, K, e V em múltiplas cabeças.
-        :param X: Matriz a ser dividida (Q, K ou V).
-        :return: Matriz reformatada para múltiplas cabeças.
+        Divide a matriz em múltiplas cabeças.
+        :param X: Matriz original (batch_size, seq_len, d_model).
+        :param num_heads: Número de cabeças.
+        :return: Matriz reformatada (batch_size, num_heads, seq_len, d_k).
         """
-        # **Complete a divisão da matriz em múltiplas cabeças**
+        # Complete as operações abaixo para dividir X em múltiplas cabeças.
         batch_size, seq_len, d_model = X.shape
-        X = None  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
-        return None  # Reorganizar os eixos para (batch_size, num_heads, seq_len, d_k)
+        d_k = d_model // self.num_heads  # Dimensão de cada cabeça
+        # Redimensione X para incluir o número de cabeças e a nova dimensão d_k
+        # **Complete aqui**
+        X = X.reshape(batch_size, seq_len, self.num_heads, d_k)
+
+        # Reordene os eixos para (batch_size, num_heads, seq_len, d_k)
+        # **Complete aqui**
+
+        X = np.transpose(X, (0, 2, 1, 3))
+
+        return X  # Retorne a matriz transposta dividida corretamente.
 
     def forward(self, Q, K, V):
         """
@@ -62,14 +87,15 @@ class MultiHeadAttention:
         :return: Saída do bloco de Multi-Head Attention.
         """
         # Passo 1: Aplicar as camadas lineares para projetar Q, K, V
-        Q_proj = None  # Projeção de Q
-        K_proj = None  # Projeção de K
-        V_proj = None  # Projeção de V
+        Q_proj = Q @ self.W_q + self.b_q  # (batch_size, seq_len, d_model)
+        K_proj = K @ self.W_k + self.b_k  # (batch_size, seq_len, d_model)
+        V_proj = V @ self.W_v + self.b_v  # (batch_size, seq_len, d_model)
 
-        # Passo 2: Dividir em múltiplas cabeças
-        Q_heads = None  # Dividir Q_proj em cabeças
-        K_heads = None  # Dividir K_proj em cabeças
-        V_heads = None  # Dividir V_proj em cabeças
+        # Passo 2: Dividir as matrizes projetadas em múltiplas cabeças
+        # **Use a função split_heads para dividir Q_proj, K_proj e V_proj**
+        Q_heads = self.split_heads(Q_proj)  # (batch_size, num_heads, seq_len, d_k)
+        K_heads = self.split_heads(K_proj)  # (batch_size, num_heads, seq_len, d_k)
+        V_heads = self.split_heads(V_proj)  # (batch_size, num_heads, seq_len, d_k)
 
         # Passo 3: Aplicar atenção em cada cabeça
         head_outputs = []
@@ -81,10 +107,10 @@ class MultiHeadAttention:
             head_outputs.append(output)
 
         # Passo 4: Concatenar as saídas de todas as cabeças
-        concatenated = None  # Concatenar as saídas das cabeças
+        concatenated = np.concatenate(head_outputs, axis=-1)  # Concatenar as saídas das cabeças
 
         # Passo 5: Aplicar a camada linear final
-        output = None  # Projeção final após concatenar as cabeças
+        output = concatenated @ self.W_o + self.b_o  # Projeção final após concatenar as cabeças
 
         return output
 

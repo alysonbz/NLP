@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e262fd6-fa30-4501-bf63-33b37f180ca4" name="Changes" comment="" />
+    <list default="true" id="1e262fd6-fa30-4501-bf63-33b37f180ca4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/1_positional_encoding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/2_create_Q_K_V.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/3_Scaled Dot-Product-Attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/4_linear_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/5_multi-head-attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/6_text_to_multihead_attention.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/7_norm_layer_and_residual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/unidade2/2_transformer_architeture/8_feed_foward_layer.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,10 +40,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.4_linear_function.executor": "Run",
+    "Python.5_multi-head-attention.executor": "Run",
+    "Python.6_text_to_multihead_attention.executor": "Run",
+    "Python.8_feed_foward_layer.executor": "Run",
     "Python.annotation.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "mario",
-    "last_opened_file_path": "C:/Users/ALUNO/Documents/lab_cd/Lab_CD",
+    "last_opened_file_path": "/home/mario/PycharmProjects/NLP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,8 +65,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23726.102" />
-        <option value="bundled-python-sdk-5e1850174b45-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
+        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
       </set>
     </attachedChunks>
   </component>
@@ -61,6 +80,8 @@
       <updated>1759174478193</updated>
       <workItem from="1759174479299" duration="734000" />
       <workItem from="1759250522637" duration="81000" />
+      <workItem from="1762280573749" duration="38000" />
+      <workItem from="1767629317971" duration="1411000" />
     </task>
     <servers />
   </component>
@@ -69,5 +90,9 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NLP$annotation.coverage" NAME="annotation Coverage Results" MODIFIED="1759174933233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unidade1" />
+    <SUITE FILE_PATH="coverage/NLP$4_linear_function.coverage" NAME="4_linear_function Coverage Results" MODIFIED="1767630098383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unidade2/2_transformer_architeture" />
+    <SUITE FILE_PATH="coverage/NLP$8_feed_foward_layer.coverage" NAME="8_feed_foward_layer Coverage Results" MODIFIED="1767630722991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unidade2/2_transformer_architeture" />
+    <SUITE FILE_PATH="coverage/NLP$5_multi_head_attention.coverage" NAME="5_multi-head-attention Coverage Results" MODIFIED="1767630417046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unidade2/2_transformer_architeture" />
+    <SUITE FILE_PATH="coverage/NLP$6_text_to_multihead_attention.coverage" NAME="6_text_to_multihead_attention Coverage Results" MODIFIED="1767630671156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unidade2/2_transformer_architeture" />
   </component>
 </project>
