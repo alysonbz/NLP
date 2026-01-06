@@ -35,12 +35,14 @@ class MultiHeadAttention:
         :return: A saída da atenção e os pesos de atenção.
         """
         # **Complete o cálculo da atenção**
-        matmul_qk = None  # Produto escalar entre Q e K^T
-        scaled_attention_logits = None  # Escalonar os logits pelo tamanho de d_k
-        attention_weights = None  # Aplicar softmax nos logits escalonados
-        output = None  # Multiplicar os pesos de atenção pela matriz V
+        matmul_qk = np.matmul(Q, np.transpose(K, (0, 2, 1)))  # Produto escalar entre Q e K^T
+        scaled_attention_logits = matmul_qk / np.sqrt(self.d_k)  # Escalonar os logits pelo tamanho de d_k
+        attention_weights = self.softmax(scaled_attention_logits)  # Aplicar softmax nos logits escalonados
+        output = np.matmul(attention_weights, V)  # Multiplicar os pesos de atenção pela matriz V
 
         return output, attention_weights
+
+
 
     def split_heads(self, X):
         """
@@ -50,8 +52,10 @@ class MultiHeadAttention:
         """
         # **Complete a divisão da matriz em múltiplas cabeças**
         batch_size, seq_len, d_model = X.shape
-        X = None  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
-        return None  # Reorganizar os eixos para (batch_size, num_heads, seq_len, d_k)
+        X = X.reshape(batch_size, seq_len, self.num_heads, self.d_k)  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
+        return np.transpose(X, (0, 2, 1, 3))  # Reorganizar os eixos para (batch_size, num_heads, seq_len, d_k)
+
+
 
     def forward(self, Q, K, V):
         """
@@ -62,9 +66,9 @@ class MultiHeadAttention:
         :return: Saída do bloco de Multi-Head Attention.
         """
         # Passo 1: Aplicar as camadas lineares para projetar Q, K, V
-        Q_proj = None  # Projeção de Q
-        K_proj = None  # Projeção de K
-        V_proj = None  # Projeção de V
+        Q_proj = np.matmul(Q, self.W_Q)  # Projeção de Q
+        K_proj = np.matmul(K, self.W_K)  # Projeção de K
+        V_proj = np.matmul(V, self.W_V)  # Projeção de V
 
         # Passo 2: Dividir em múltiplas cabeças
         Q_heads = None  # Dividir Q_proj em cabeças
