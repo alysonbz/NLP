@@ -16,9 +16,9 @@ class PositionalEncoding:
         for pos in range(seq_len):
             for i in range(0, self.d_model, 2):
                 # **Complete o cálculo do seno e cosseno**
-                PE[pos, i] = None  # Seno para posições pares
+                PE[pos, i] = np.sin(pos / (10000 ** (i / self.d_model)))  # Seno para posições pares
                 if i + 1 < self.d_model:
-                    PE[pos, i + 1] = None  # Cosseno para posições ímpares
+                    PE[pos, i + 1] = np.cos(pos / (10000 ** (i / self.d_model)))  # Cosseno para posições ímpares
         return PE
 
 
@@ -40,6 +40,13 @@ class MultiHeadAttention:
         self.W_o = np.random.rand(d_model, d_model)
         self.b_o = np.random.rand(d_model)
 
+
+    def softmax(self, x):
+        x = x - np.max(x, axis=-1, keepdims=True)
+        exp_x = np.exp(x)
+        return exp_x / np.sum(exp_x, axis=-1, keepdims=True)
+
+
     def scaled_dot_product_attention(self, Q, K, V):
         """
         Calcula a atenção escalonada por produto escalar.
@@ -49,10 +56,10 @@ class MultiHeadAttention:
         :return: Saída e pesos de atenção.
         """
         # **Complete o cálculo**
-        matmul_qk = None  # Produto escalar entre Q e K^T
-        scaled_attention_logits = None  # Escalonar pelo tamanho de d_k
-        attention_weights = None  # Aplicar softmax para obter os pesos de atenção
-        output = None  # Multiplicar os pesos pela matriz V
+        matmul_qk = np.matmul(Q, np.transpose(K, (0, 2, 1)))  # Produto escalar entre Q e K^T
+        scaled_attention_logits = matmul_qk / np.sqrt(self.d_k)  # Escalonar pelo tamanho de d_k
+        attention_weights = self.softmax(scaled_attention_logits)  # Aplicar softmax para obter os pesos de atenção
+        output = np.matmul(attention_weights, V)  # Multiplicar os pesos pela matriz V
 
         return output, attention_weights
 
@@ -64,22 +71,22 @@ class MultiHeadAttention:
         """
         # **Complete a divisão**
         batch_size, seq_len, d_model = X.shape
-        X = None  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
-        return None  # Reordenar os eixos para (batch_size, num_heads, seq_len, d_k)
+        X = X.reshape(batch_size, seq_len, self.num_heads, self.d_k)  # Redimensionar para (batch_size, seq_len, num_heads, d_k)
+        return np.transpose(X, (0, 2, 1, 3))  # Reordenar os eixos para (batch_size, num_heads, seq_len, d_k)
 
     def forward(self, Q, K, V):
         """
         Executa o processo de Multi-Head Attention.
         """
         # Projeções lineares
-        Q_proj = None  # Projeção para Q
-        K_proj = None  # Projeção para K
-        V_proj = None  # Projeção para V
+        Q_proj = np.matmul(Q, self.W_q) + self.b_q  # Projeção para Q
+        K_proj = np.matmul(K, self.W_k) + self.b_k  # Projeção para K
+        V_proj = np.matmul(V, self.W_v) + self.b_v  # Projeção para V
 
         # Divisão em múltiplas cabeças
-        Q_heads = None
-        K_heads = None
-        V_heads = None
+        Q_heads = self.split_heads(Q_proj)
+        K_heads = self.split_heads(K_proj)
+        V_heads = self.split_heads(V_proj)
 
         # Cálculo da atenção
         head_outputs = []
@@ -91,10 +98,10 @@ class MultiHeadAttention:
             head_outputs.append(output)
 
         # Concatenar as saídas das cabeças
-        concatenated = None
+        concatenated = np.concatenate(head_outputs, axis=-1)
 
         # Projeção final
-        output = None
+        output = np.matmul(concatenated, self.W_o) + self.b_o
 
         return output
 

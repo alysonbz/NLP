@@ -26,6 +26,16 @@ class MultiHeadAttention:
         self.W_o = np.random.rand(d_model, d_model)  # Projeção de saída
         self.b_o = np.random.rand(d_model)
 
+
+    def softmax(self, x):
+        """
+        Softmax estável numericamente aplicado na última dimensão.
+        """
+        x = x - np.max(x, axis=-1, keepdims=True)  # estabilidade numérica
+        exp_x = np.exp(x)
+        return exp_x / np.sum(exp_x, axis=-1, keepdims=True)
+
+
     def scaled_dot_product_attention(self, Q, K, V):
         """
         Calcula a atenção escalonada por produto escalar.
@@ -66,14 +76,14 @@ class MultiHeadAttention:
         :return: Saída do bloco de Multi-Head Attention.
         """
         # Passo 1: Aplicar as camadas lineares para projetar Q, K, V
-        Q_proj = np.matmul(Q, self.W_Q)  # Projeção de Q
-        K_proj = np.matmul(K, self.W_K)  # Projeção de K
-        V_proj = np.matmul(V, self.W_V)  # Projeção de V
+        Q_proj = np.matmul(Q, self.W_q) + self.b_q # Projeção de Q
+        K_proj = np.matmul(K, self.W_k) + self.b_k # Projeção de K
+        V_proj = np.matmul(V, self.W_v) + self.b_v # Projeção de V
 
         # Passo 2: Dividir em múltiplas cabeças
-        Q_heads = None  # Dividir Q_proj em cabeças
-        K_heads = None  # Dividir K_proj em cabeças
-        V_heads = None  # Dividir V_proj em cabeças
+        Q_heads = self.split_heads(Q_proj)  # Dividir Q_proj em cabeças
+        K_heads = self.split_heads(K_proj)  # Dividir K_proj em cabeças
+        V_heads = self.split_heads(V_proj)  # Dividir V_proj em cabeças
 
         # Passo 3: Aplicar atenção em cada cabeça
         head_outputs = []
@@ -85,10 +95,10 @@ class MultiHeadAttention:
             head_outputs.append(output)
 
         # Passo 4: Concatenar as saídas de todas as cabeças
-        concatenated = None  # Concatenar as saídas das cabeças
+        concatenated = np.concatenate(head_outputs, axis=-1)  # Concatenar as saídas das cabeças
 
         # Passo 5: Aplicar a camada linear final
-        output = None  # Projeção final após concatenar as cabeças
+        output = np.matmul(concatenated, self.W_o) + self.b_o  # Projeção final após concatenar as cabeças
 
         return output
 
