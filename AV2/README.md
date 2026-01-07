@@ -39,9 +39,9 @@ No relatório, organize a comparação de resultados entre os modelos, capture a
 resultados da AV1 para enriquecer a comparação. 
 
 Discutir **organizadamente** os resultados obtidos de cada questão-.
-Ao concluir o relatório, compartilhar com **alysonbnr@ufc.br** até 18-02
+Ao concluir o relatório, compartilhar com **alysonbnr@ufc.br** até 12-01
 
 
 ### Observações para a Apresentação
 
-Criar apresentação para realizar até 18-02
+Criar apresentação para realizar até 12-01
