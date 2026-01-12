@@ -70,7 +70,7 @@ def doc_vectors_from_word2vec(model, corpus, vector_size=100):
 # ======================================================================
 
 def run_classification_experiments():
-    df = pd.read_parquet("train-00000-of-00001.parquet")
+    df = pd.read_parquet("../train-00000-of-00001.parquet")
     y = df["entailment_judgment"]
 
     print("\n==================== ITEM (A) ====================")

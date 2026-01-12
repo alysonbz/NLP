@@ -1,0 +1,14 @@
+O corpus ASSIN (Avaliação de Similaridade Semântica e INferência Textual) é um dataset em português
+composto por pares de sentenças, chamadas de premise (premissa) e hypothesis (hipótese).
+
+Cada par possui duas anotações principais:
+1) relatedness_score: valor numérico de similaridade semântica no intervalo de 1 a 5.
+2) entailment_judgment: rótulo categórico da relação semântica entre as sentenças.
+
+As classes de entailment_judgment são:
+0 = none (não há relação de inferência ou equivalência)
+1 = entailment (a premissa implica a hipótese)
+2 = paraphrase (as sentenças são semanticamente equivalentes)
+
+O relatedness_score é utilizado para medir o grau de similaridade semântica entre as sentenças,
+enquanto o entailment_judgment é utilizado como rótulo para tarefas de classificação.

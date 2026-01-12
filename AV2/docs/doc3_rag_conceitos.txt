@@ -1,0 +1,6 @@
+RAG (Retrieval-Augmented Generation) combina recuperação de informação e geração com modelos de linguagem.
+O pipeline típico inclui: carregar documentos, dividir em chunks, indexar, recuperar top-k trechos relevantes e gerar resposta usando o contexto.
+
+A motivação do RAG é reduzir alucinações e aumentar factualidade, forçando a LLM a responder com base nos documentos.
+Um recuperador simples pode ser TF-IDF, que é eficiente e funciona bem quando o conjunto de documentos é pequeno.
+Após a recuperação, a LLM recebe: pergunta + trechos recuperados e deve responder citando apenas informações do contexto.

@@ -1,0 +1,48 @@
+{
+  "baseline_av1_best": {
+    "accuracy": 0.7786666666666666,
+    "macro_f1": 0.3192553370314339,
+    "report": "              precision    recall  f1-score   support\n\n           0     0.7779    0.9983    0.8744       579\n           1     0.8571    0.0438    0.0833       137\n           2     0.0000    0.0000    0.0000        34\n\n    accuracy                         0.7787       750\n   macro avg     0.5450    0.3474    0.3193       750\nweighted avg     0.7571    0.7787    0.6903       750\n",
+    "confusion_matrix": [
+      [
+        578,
+        1,
+        0
+      ],
+      [
+        131,
+        6,
+        0
+      ],
+      [
+        34,
+        0,
+        0
+      ]
+    ]
+  },
+  "llm_ollama": {
+    "n_samples": 150,
+    "model": "phi3.5",
+    "accuracy": 0.78,
+    "macro_f1": 0.3908496732026144,
+    "confusion_matrix": [
+      [
+        112,
+        2,
+        3
+      ],
+      [
+        20,
+        5,
+        1
+      ],
+      [
+        6,
+        1,
+        0
+      ]
+    ],
+    "report": "              precision    recall  f1-score   support\n\n           0     0.8116    0.9573    0.8784       117\n           1     0.6250    0.1923    0.2941        26\n           2     0.0000    0.0000    0.0000         7\n\n    accuracy                         0.7800       150\n   macro avg     0.4789    0.3832    0.3908       150\nweighted avg     0.7414    0.7800    0.7362       150\n"
+  }
+}

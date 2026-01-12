@@ -132,7 +132,7 @@ if __name__ == "__main__":
     from preprocessing import preprocess_dataset
 
     # carregar dataset
-    df = pd.read_parquet("train-00000-of-00001.parquet")
+    df = pd.read_parquet("../train-00000-of-00001.parquet")
 
     # aplicar preprocessamento antes da extração
     df_clean = preprocess_dataset(df)

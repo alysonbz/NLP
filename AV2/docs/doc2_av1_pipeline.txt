@@ -1,0 +1,8 @@
+Na AV1 foi implementado um pipeline de NLP para classificação de entailment_judgment.
+O pré-processamento incluiu: minúsculas, remoção de pontuação, remoção de stopwords e comparação entre stemming e lematização.
+
+A extração de atributos testou: CountVectorizer, TF-IDF, coocorrência, Word2Vec e atributos estatísticos.
+O classificador escolhido foi Regressão Logística.
+
+No melhor caso, a abordagem estatística (comprimento e soma do tamanho das palavras) atingiu aproximadamente 0,7787 de acurácia.
+Entretanto, o macro-F1 foi baixo devido ao desbalanceamento entre as classes, com dominância da classe 0 (none).

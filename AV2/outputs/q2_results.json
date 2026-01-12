@@ -1,0 +1,117 @@
+{
+  "retriever": "TF-IDF",
+  "llm": "Ollama/phi3.5",
+  "n_docs": 3,
+  "n_chunks": 9,
+  "top_k": 3,
+  "accuracy_proxy": 1.0,
+  "notes": "Métrica proxy: considera correto quando a resposta contém palavras-chave esperadas.",
+  "cases": [
+    {
+      "question": "Quais são as classes do entailment_judgment e o que cada uma significa?",
+      "top_k": 3,
+      "retrieved_docs": [
+        "doc1_assin.txt",
+        "doc2_av1_pipeline.txt",
+        "doc1_assin.txt"
+      ],
+      "retrieved_scores": [
+        0.31614918186042806,
+        0.19014131625491337,
+        0.1889540507269975
+      ],
+      "answer": "0 = none, significando nenhuma relação de inferência ou equivalência;\n1 = entailment, onde a premissa implica a hipótese;\n2 = paraphrase, indicando sentenças semanticamente equivalentes.",
+      "expected_keywords": [
+        "none",
+        "entailment",
+        "paraphrase"
+      ],
+      "ok": true
+    },
+    {
+      "question": "Qual coluna do ASSIN representa a similaridade semântica e qual é o intervalo dela?",
+      "top_k": 3,
+      "retrieved_docs": [
+        "doc1_assin.txt",
+        "doc1_assin.txt",
+        "doc1_assin.txt"
+      ],
+      "retrieved_scores": [
+        0.35660725174971547,
+        0.21462490381528299,
+        0.12224911743877265
+      ],
+      "answer": "relatedness_score, com um intervalo de 1 a 5.",
+      "expected_keywords": [
+        "relatedness_score",
+        "1",
+        "5"
+      ],
+      "ok": true
+    },
+    {
+      "question": "Quais técnicas de extração de atributos foram testadas na AV1?",
+      "top_k": 3,
+      "retrieved_docs": [
+        "doc2_av1_pipeline.txt",
+        "doc1_assin.txt",
+        "doc1_assin.txt"
+      ],
+      "retrieved_scores": [
+        0.4910146729192054,
+        0.16932399216190874,
+        0.1353569453713356
+      ],
+      "answer": "CountVectorizer, TF-IDF, coocorrência, Word2Vec e atributos estatísticos.",
+      "expected_keywords": [
+        "countvectorizer",
+        "tf-idf",
+        "coocorr",
+        "word2vec",
+        "estat"
+      ],
+      "ok": true
+    },
+    {
+      "question": "Qual foi o melhor caso da AV1 em termos de acurácia e qual métrica ficou baixa por desbalanceamento?",
+      "top_k": 3,
+      "retrieved_docs": [
+        "doc2_av1_pipeline.txt",
+        "doc2_av1_pipeline.txt",
+        "doc2_av1_pipeline.txt"
+      ],
+      "retrieved_scores": [
+        0.3601633112331627,
+        0.1992517860049987,
+        0.18753221730894543
+      ],
+      "answer": "A abordagem estatística atingiu aproximadamente 0,7787 de acurácia. O macro-F1 foi a métrica que ficou baixo devido ao desbalanceamento entre as classes.",
+      "expected_keywords": [
+        "0,7787",
+        "macro-f1"
+      ],
+      "ok": true
+    },
+    {
+      "question": "Explique rapidamente o objetivo do RAG.",
+      "top_k": 3,
+      "retrieved_docs": [
+        "doc3_rag_conceitos.txt",
+        "doc3_rag_conceitos.txt",
+        "doc2_av1_pipeline.txt"
+      ],
+      "retrieved_scores": [
+        0.3342936080488816,
+        0.15264874781111362,
+        0.06060340879380453
+      ],
+      "answer": "O objetivo do RAG é reduzir alucinações e aumentar a fidedignidade das respostas geradas, forçando-as a citar informações específfalmente recuperadas de um contexto dado.",
+      "expected_keywords": [
+        "recuper",
+        "context",
+        "alucin"
+      ],
+      "ok": true
+    }
+  ]
+}
