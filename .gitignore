@@ -1,0 +1,15 @@
+# Ambiente virtual
+venv/
+venv_nova/
+__pycache__/
+
+# Variáveis de ambiente
+.env
+
+# Banco vetorial
+chroma_db/
+
+# Arquivos temporários
+*.pyc
+*.log
+
