@@ -1,10 +1,13 @@
-# Ambiente virtual
+.env
+AV2/.env
 venv/
-.env/
-
-# Cache do Python
 __pycache__/
-*.pyc
 
-# VS Code
-.vscode/
+
+
+
+
+
+
+
+
