@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # O Banco de Dados Qdrant (Necessário para os testes de RAG)
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant_db
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./qdrant_storage:/qdrant/storage
+
+  # Sua aplicação Python de Benchmark
+  nlp_app:
+    build: .
+    container_name: nlp_av2_app
+    depends_on:
+      - qdrant
+    volumes:
+      - .:/app
+    # "host" permite que o container fale com o Ollama no seu localhost
+    network_mode: "host"
+    environment:
+      - QDRANT_HOST=localhost

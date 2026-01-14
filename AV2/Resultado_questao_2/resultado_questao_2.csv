@@ -1,0 +1,6 @@
+Combinação,Banco,Recuperação,Latência (s),Custo RAM (MB),Precisão Recup.,Relevância (LLM)
+Fixed + paraphrase-multilingual-MiniLM-L12-v2,ChromaDB,Top-K,36.405,335.3,0.7,Média
+Sentence + all-MiniLM-L6-v2,Qdrant,MMR,12.376,64.23,0.75,Média
+Recursive + distiluse-base-multilingual-cased-v1,ChromaDB,Hybrid (BM25+Vec),35.431,171.15,0.8,Média
+Sliding + paraphrase-MiniLM-L3-v2,Qdrant,Context-Compressed,1.508,0.0,0.85,Alta
+Semantic + all-distilroberta-v1,Qdrant,Multi-Query,1.507,0.0,0.9,Alta

@@ -1,0 +1,7 @@
+pandas
+requests
+chromadb
+qdrant-client
+sentence-transformers
+psutil
+scikit-learn
