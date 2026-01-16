@@ -1,0 +1,7 @@
+{
+  "fingerprint": "e96413e291b0658c",
+  "num_chunks": 15,
+  "embed_model": "bge-m3",
+  "chunk_size": 900,
+  "chunk_overlap": 120
+}

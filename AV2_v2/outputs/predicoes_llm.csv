@@ -1,0 +1,121 @@
+title,y_true,y_pred_llm,llm_confidence,llm_reason,y_pred_classic
+Embraer abre processo de arbitragem após Boeing rescindir acordo entre as empresas | Vale do Paraíba e Região | G1,0,0,0.9,"Anotação no site G1, notório pela precisão em notícias.",0
+"Vendas de veículos usados caem 83% em abril, diz Fenauto | Auto Esporte | G1",0,0,1.0,fornece data específica e uma fonte (Fenauto),0
+"Nova etapa da Lava Jato pode banir PT, PMDB e PP da política brasileira",1,1,0.8,curta,1
+"Para o ministro [Luís Roberto Barroso], Bolsonaro foi corajoso e demonstrou ser um grande líder, pois não abandona sua nação nem em momentos difíceis como o que estamos passando agora, com a pandemia do COVID-19.",1,1,0.8,curta,1
+Desviar o dinheiro do Fundão Eleitoral para outros fins é prejudicial a democracia sic. Devemos manter este pilar intacto nem que isto custe a vida de alguns brasileiros. #FundaoEDemocracia,1,1,0.8,curta,1
+"Pablo Escobar, Cristina Kirchner, Dilma Rousseff e Néstor Kirchner. Alta sociedade do crime reunida",1,1,0.8,curta e sensacionalista,1
+"Recessão aumentou mortes em cidades onde gasto com assistência e saúde foi menor, diz estudo | Economia | G1",0,0,0.8,"tem mencionado uma fonte (G1) e um conceito científico (recessão e mortes), o que sugere que a notícia é baseada em dados reais.",0
+"Tracking BTG que acabou de sair para o mercado financeiro: Bolsonaro, 52%, Haddad, 48%. P.S.: Votos válidos.",1,1,1.0,não há informações confiáveis sobre um resultado eleitoral com mais de 2 anos após a data do evento,1
+Transparência mostra que Bolsonaro é responsável pelo maior orçamento da Educação na história,1,1,,curta,1
+"Abriu a caixa preta do BNDES, que terá de devolver ao Tesouro Nacional R$ 316 bilhões roubados pelo PT",1,1,0.8,curta,1
+Auxílio Emergencial: saques em dinheiro da poupança digital começam a ser liberados nesta segunda; veja calendário | Economia | G1,0,0,1.0,curta e relacionado a um jornalista respeitado como o G1,0
+Nissan suspende contratos de trabalhadores de produção no Brasil por 1 mês | Auto Esporte | G1,0,0,1.0,detalhes específicos e fonte confiável,0
+"Três em cada quatro brasileiros vão manter consumo reduzido após pandemia, diz pesquisa da CNI | Economia | G1",0,0,0.9,fornece uma fonte (CNI) e não é um boato comum ou desinformação,0
+UFSCar suspende calendários dos cursos de graduação presenciais por tempo indeterminado | São Carlos e Araraquara | G1,0,0,1.0,"não há indicação de boato, a fonte é um site de notícias (G1)",0
+Filas e incerteza: mulheres que criam filhos sozinhas esperam pelo auxílio-emergencial durante pandemia | Distrito Federal | G1,0,0,1.0,tem informações específicas sobre um evento ou situação real,0
+OAB pede que STF suspenda autorização para novos cursos de direito | Política | G1,0,0,0.8,"Fonte credível e com conhecimento específico do assunto, além de ser um título de uma notícia de um site de política como o G1.",0
+"Imprensa internacional desmascara Lula e divulga poupança de U$ 108 milhões em Luxemburgo, caiu a casa de vez",1,1,0.8,curta,1
+China construiu 1.000 leitos em 10 dias. Exército brasileiro constrói 2.000 em 48 horas.,1,1,0.9,curta e exagerada,1
+Coronavírus: Argentina abandona negociações do Mercosul para priorizar política econômica interna | Economia | G1,0,0,0.9,Fonte confiável e informações verificáveis,0
+Bolsonaro autoriza Execução da dívida da Globo de mais de R$ 1 Bilhão de impostos sonegados,1,1,0.8,curta,1
+Empresários do comércio das flores tentam salvar o dia das mães em meio a pandemia | Pequenas Empresas & Grandes Negócios | G1,0,0,0.8,tem fonte específica e contexto que apoia a veracidade do evento,0
+Unicamp abre inscrições para bolsas de iniciação científica e tecnológica; veja como participar | Campinas e Região | G1,0,0,1.0,nome do instituto é mencionado e a notícia está relacionada a um evento específico,0
+"Esse projeto de lei anticrime do [Sérgio] Moro, Hitler do judiciário, quer punir a corrupção. Um absurdo, corrupção é algo cultural no Brasil e forma de governo de todos os presidentes desde a redemocratização",1,1,0.9,curta,1
+Todos os senadores do PT votaram a favor do aumento para os ministros do STF,1,1,0.8,curta,1
+"Segundo o embaixador da China no Brasil, Li Jinzhang, quem invadiu área de pesca Chinesa foi o barco brasileiro Oceano Pesca I",1,1,1.0,falta de evidências,1
+ Sabe o Bala de Prata   Hum.   Ele poderia ser usado contra o juiz lá de Curitiba.   Ele [bala de prata] é capaz de tudo,1,1,0.9,"curta e exagerada, característica comum de boatos/desinformações",1
+Basta colocar o número 1 na urna e ela escolhe o candidato pra você vídeo,1,1,1.0,curta,1
+Indústria de frango no Brasil vê corte na produção por efeito do coronavírus | Agronegócios | G1,0,0,0.9,"O título cita uma fonte específica (G1) e aborda um tema de notícias reais, como a pandemia de COVID-19 e seu impacto na indústria.",0
+Justiça mantém cronograma do Enem e determina 2 de maio como data limite para pedir isenção da taxa | Enem 2020 | G1,0,0,1.0,detalha data específica e fonte (G1),0
+"Vivemos numa época onde querem que os padres se casem e que os casados se divorciem. Querem que os héteros tenham relacionamentos líquidos sem compromisso, mas que os gays se casem na Igreja...",1,1,0.8,curta,1
+Desviar o dinheiro do Fundão Eleitoral para outros fins é prejudicial a democracia. Devemos manter este pilar intacto nem que isto custe a vida de alguns brasileiros.,1,1,0.8,curta e sensacionalista,1
+Coronavírus: Unicamp integra pesquisa para mapear impacto da pandemia na população brasileira | Campinas e Região | G1,0,0,1.0,fornece detalhes específicos sobre uma instituição de ensino (Unicamp) e uma fonte de notícias reconhecida (G1),0
+Paraná Pesquisas registrado no TSE: Bolsonaro vence em todos os estados imagem,1,1,0.8,curta,1
+Instagram agora permite remoção de vários comentários de uma única vez | Tecnologia | G1,0,0,0.9,curta,0
+Governo Bolsonaro em 7 dias de governo tira meio milhão de pessoas da pobreza: medo da auditoria causa debandada de beneficiários do Bolsa Família,1,1,0.8,curta,1
+"Minha jornada foi reduzida em 50%, mas na prática estou trabalhando mais que isso. O que eu faço | Economia | G1",0,0,0.9,"O título menciona uma opinião pessoal e um exemplo específico, o que sugere que a notícia é baseada em experiência real.",0
+"Nem Olinda, nem Salvador, nem Rio de Janeiro Presidente Jair Bolsonaro assina decreto cortando verba do carnaval e parada gay em todo o Brasil. O decreto já cancela o carnaval de 2019.",1,1,0.8,data inconsistente com a data do carnaval de 2019,1
+"Segundo o embaixador da China no Brasil, Li Jinzhang, quem invadiu área de pesca Chinesa foi o barco brasileiro Oceano Pesca I; mesmo estando na costa do Brasil, já que no Governo Dilma foi assinado um tratado onde o Brasil cedeu por 25 anos parte da costa brasileira para pesca chinesa incluindo com exclusividade a pesca do atum. ENTENDERAM POVO GADO OU PRECISO DESENHAR",1,1,0.8,"falta de evidências e detalhes específicos sobre o tratado assinado pelo governo Dilma, além de inconsistências na informação sobre a invasão de área de pesca chinesa",1
+&#39;Andrade&#39; deixa escapar e confessa que Lula será o verdadeiro presidente em caso de vitória,1,1,0.8,curta,1
+Região de Campinas inicia semana com oportunidades de emprego em 3 cidades e inscrição para 158 vagas em concurso público | Concursos e emprego em Campinas e região | G1,0,0,0.9,inclusão de fonte (G1) e detalhes específicos sobre concurso público e vagas,0
+PF é acionada para investigar clonagem de cartões de programa da Capes - JBr.,0,0,0.9,tem informação específica sobre um evento ou ação real,1
+Por que o preço do petróleo americano caiu abaixo de zero e como isso afeta o mundo | Economia | G1,0,1,0.8,curta,0
+SC registra filas de pessoas em busca de seguro-desemprego e auxílio emergencial | Santa Catarina | G1,0,0,1.0,"fornece detalhes específicos sobre eventos ou situações reais, como a existência de filas de pessoas em busca de benefícios sociais.",0
+Vestibular da Unicamp: coronavírus e queixas de estudantes fazem Comvest reduzir lista de livros | Campinas e Região | G1,0,0,0.8,menção a instituição (Comvest) e localização geográfica (Campinas),0
+GOVERNADOR Rui Costa PEDE PARA A prefeita de Porto Seguro INVENTAR 200 DOENTES PARA RECEBER VERBA DE BOLSONARO.,1,1,0.8,curta e despropositada,1
+Produção comercial de castanhas na Amazônia ajuda na recuperação de florestas e movimenta economia local | Globo Rural | G1,0,0,0.9,"detalhes sobre a produção comercial de castanhas, benefícios para a recuperação das florestas e impacto econômico local são mencionados em notícias recentes e confiáveis",0
+Unicamp diz que apoio ao uso da cloroquina contra coronavírus se baseia em 'evidências frágeis' | Campinas e Região | G1,0,0,0.9,cita fonte universitária,0
+Enem 2020: Inep registra 1 milhão de inscritos em 8 horas | Enem 2020 | G1,0,0,0.9,número alto e rápida adesão para um exame importante,0
+"Boas notícias! Vacina contra o vírus Carona pronta. Capaz de curar o paciente dentro de 3 horas após a injeção. Tiremos o chapéu para os cientistas dos EUA. No momento, Trump anunciou que a Roche Medical Company lançará a vacina no próximo domingo e milhões de doses estão prontas!",1,1,0.8,curta,1
+"Guarda Municipal e Polícia Militar estão multando quem estiver dirigindo sem máscara e quem estiver dentro do carro a multa custa $ 128 reais por pessoas sic. Todos devem usar máscara dentro do carro! Multa vem como dirigir sem uso de itens de segurança .3 pontos na carteira. Isso serve para motos também. Quem puder compartilhar para ajudar, tem muitos que não sabem",1,1,0.8,curta,1
+"Com revogação de MP, acidente no trajeto até emprego volta a ser considerado como de trabalho | Concursos e Emprego | G1",0,0,0.9,mencionamento de uma autoridade (MP) e uma fonte de notícias (G1),0
+Petrobras reduz preço da gasolina em 8% nas refinarias; diesel cai 4% | Economia | G1,0,0,0.9,fonte credível e contexto sobre ação de Petrobras,0
+Alunos chineses voltam às aulas com pulseira eletrônica para detectar infecção pelo novo coronavírus | Coronavírus | G1,0,0,1.0,com informações específicas sobre uso de pulseiras eletrônicas em escolas chinesas como meio de controle de infecções,0
+"Governo edita MP que abre crédito extraordinário de R$ 25,7 bi para pagar Auxílio Emergencial | Economia | G1",0,0,0.9,fonte confiável e específica sobre uma edição de MP,0
+Nelson Teich está auditando todos os números divulgados pelos Estados sobre o Covid-19.Resultado: 1-Números de SP começaram a cair como mágica. 2-A Globo parou de divulgar os números de óbitos. 3-Estados e Prefeituras avisaram que vão reabrir suas economias,1,0,0.8,"a menção a um nome público (Nelson Teich) como fonte de informações, a menção a dados específicos (números de óbitos e econômicas) e a referência a instituições (Globo, Estados e Prefeituras)",1
+No Governo Dilma foi assinado um tratado onde o Brasil cedeu por 25 anos parte da costa brasileira para pesca chinesa,1,1,0.8,curta,1
+Bomba! Delegado revela em livro que Lula cortou o próprio dedo para não ter que trabalhar,1,1,0.8,curta,1
+FUNCIONRIA DO IBOPE E DATA FOLHA DESMASCARA O INSTITUTO E FALA A VERDADE,1,1,0.8,curta,1
+Medidas do governo durante a pandemia mudam a vida do trabalhador; veja lista | Economia | G1,0,0,1.0,tem os detalhes necessários sobre medidas do governo e impacto na vida dos trabalhadores,0
+Farmácia Universitária produz álcool em gel para serviços de saúde em Juiz de Fora | Zona da Mata | G1,0,1,0.5,falta de evidência,0
+"Discurso de Barack Obama:  graças aos soldados, e não aos sacerdotes, que podemos ter a religião que desejamos ....",1,1,1.0,curta,1
+"Quem não registrar grupos de WhatsApp em Cartório será condenado por fakenews, diz Dias Toffoli",0,1,0.8,referência a um político específico e uma frase que soa como um boato,1
+"Bolsonaro teve 57 milhões de votos, mas o BOZO teve 170 milhões de inscritos para receber os 600 reais. Não é fofa a resistência",1,1,1.0,curta,1
+'Concessão do Parque do Ibirapuera] vai acabar com o Viveiro de mudas Manequinho Lopes.',1,1,0.8,curta,1
+"Fátima Bezerra PT governadora do Rio Grande do Norte, participando de ritual Voodoo com o boneco do presidente Bolsonaro.",1,1,0.8,curta e sem evidências,1
+"Enem 2020: veja como se inscrever, passo a passo | Enem 2020 | G1",0,0,0.9,"O título é um artigo informativo que fornece orientações sobre como se inscrever no Enem 2020, indicando uma fonte confiável de informação.",0
+"Não caiam na nova jogada suja da esquerda. Pegaram um vídeo antigo no YouTube do então Deputado federal BOLSONARO, onde ele pede para que a população compareça às manifestações do dia 15 de março. Só que essas manifestações eram sobre o impeachment da Dilma.",1,0,0.8,A citação do vídeo antigo do então Deputado federal BOLSONARO e a menção às manifestações do dia 15 de março são eventos históricos comprovados.,1
+"Preços dos combustíveis nos postos caem mais de 2% na semana, aponta ANP | Economia | G1",0,0,0.9,fonte citada (ANP) e dados econômicos reais,0
+Vão ser demitidos 180 petistas [do Coaf],1,1,0.8,nenhuma fonte confiável foi mencionada,1
+"Sabem aquelas fotos dos caixões enfileirados como sendo de mortos pelo covid na Itália Pois é amigos, peço que vão até o Google e digitem no campo de pesquisa: Naufrágio de Lampedusa... Vejam por vcs mesmos! E vc sendo enganado mais uma vez pela globo lixo.",1,1,1.0,curta,1
+Nunca precisou da Lei Rouanet.  o artista brasileiro mais conhecido em Hollywood. Taí a diferença.,1,1,0.8,curta,1
+Universidades federais da Zona da Mata e Vertentes adotam medidas orçamentárias para pesquisas da Covid-19 | Zona da Mata | G1,0,0,1.0,fornece um título específico de jornal com data e localização geográfica,0
+JBS fecha unidade de suínos nos EUA devido ao coronavírus e reduz oferta no país | Agronegócios | G1,0,0,1.0,detalhes específicos sobre a empresa (JBS) e a situação de saúde (coronavírus),0
+"Vai vendo!!! Times Square agora há pouco!!! A esquerda toda se coçando de raiva!!! Hehehe!!! Vai nessa, Capitão!!!",1,1,0.8,curta e exagerada,1
+Coronavírus interrompe série histórica de Viracopos e total de passageiros reduz 31% em março | Campinas e Região | G1,0,0,1.0,fornece dados específicos e fatos reais sobre o impacto do coronavírus na série histórica de Viracopos e no total de passageiros,0
+Mayra Dias grita 'Lula Livre' durante Miss Universo e é desclassificada,1,0,0.8,"súperficial, verifique na fonte",1
+Especialistas avaliam que crise pelo coronavírus contribuiu para fim do acordo entre Boeing e Embraer | Vale do Paraíba e Região | G1,0,0,0.9,nome claro de fonte e contexto,0
+Palocci afirmou que eleições eram decididas pela cúpula. Urnas foram encomendadas para fraudar eleições! O que o TSE vai dizer agora,1,1,0.8,curta e apresenta afirmação sem base na realidade,1
+"Contra fotos ops fatos, não há argumentos Juiz Marco Aurélio e seu amigo Fidel.",1,1,0.8,curta falta de evidências e semelhança com estilo jornalístico inusitado,1
+Enem: Estudantes terão até 2 de maio para pedir isenção; veja efeitos de decisões judiciais no cronograma | Enem 2020 | G1,0,0,1.0,"data específica, referência a um evento específico (Enem 2020) e uma fonte confiável (G1)}",0
+Governo prepara socorro para empresas que prestam serviços de apoio em aeroportos | Economia | G1,0,0,0.9,fonte credível e informativa,0
+"Herança maldita: Mandetta renova contratos de publicidade de R$ 1 bilhão firmados no governo Dilma. De forma silenciosa, no apagar das luzes do dia 26 de dezembro de 2019 e sem o aval do Planalto, o ministro da saúde Luiz Henrique Mandetta renovou contratos de publicidade que ultrapassam R$ 1 bilhão com agências de publicidade que alimentam a mídia contra o presidente Jair Bolsonaro.",1,0,0.8,"detalhes específicos e nomes de pessoas mencionados, incluindo uma data específica e um contexto político.",1
+Enem 2020 abre inscrições; provas não foram adiadas 'por enquanto' | Enem 2020 | G1,0,0,0.9,"A notícia menciona que as provas do Exame Nacional do Ensino Médio (ENEM) de 2020 não foram adiadas por enquanto, o que é um fato verificado.",0
+Boeing rescinde acordo de compra da área da aviação comercial da Embraer | Vale do Paraíba e Região | G1,0,0,1.0,"publicação em site de notícias como o G1, com fonte confiável (Boeing)",0
+"Plano Safra precisa ter juros menores e mais subvenção do governo, diz presidente da Agrishow | Ribeirão Preto e Franca | G1",0,0,0.9,fonte credível (G1),0
+Famílias com renda de cerca de R$ 3 mil devem ter maior perda de consumo com crise do coronavírus | Economia | G1,0,0,0.9,fonte credível e contexto relevante,0
+"Em 6 anos, Dilma não conseguiu entregar as obras de transposição do rio São Francisco. Nós entregamos em seis meses.",1,1,0.8,curta,1
+Produtores de flores amargam prejuízo de pelo menos R$ 300 milhões por conta do coronavírus | Globo Rural | G1,0,0,0.9,"forneceu informações específicas sobre um prejuízo financeiro relacionado ao coronavírus, o que sugere uma notícia verificável e factual.",0
+Defensoria pede que data do Enem 2020 seja alterada por causa da pandemia de coronavírus | Educação | G1,0,0,1.0,fonte de notícia (G1) e conteúdo específico sobre a pandemia de coronavírus,0
+A mãe disfarçando com as crianças até conseguir roubar a bolsa da mulher em um shopping no Rio de Janeiro vídeo,1,1,0.9,curta e sensacionalista,1
+"A Comissão de Direitos Humanos de Minas Gerais ... conseguiu autorizar a prisão do estudante de 21 anos que reagiu a um assalto com arma de brinquedo e espancou o bandido. ... De acordo com a presidente da Comissão, Gizelle Rosário Leitte, o jovem agiu com demasiada força e não deu chances de defesa ao assaltante",1,1,0.5,o uso de uma arma de brinquedo como se fosse uma arma de fogo e a descrição da violência usada no confronto com o bandido são características que levam a suspeitar que o evento seja um boato,1
+"Tá aí o dono da revista VEJA, André Esteves, preso pela operação Lava Jato.",1,1,0.8,curta,1
+"Fila em agências para receber auxílio de R$ 600 é 'algo inevitável', diz presidente da Caixa | Economia | G1",0,0,1.0,tem fonte (Caixa),0
+Policial é estuprada por oito menores e morta com 32 facadas na zona norte do Rio de Janeiro,1,1,0.5,curta e sensacionalista,1
+Urgente: atirador invade escola em Humaitá e dispara contra alunos,1,1,0.8,falta de detalhes específicos e falta de confiabilidade da fonte,1
+OMS recua e diz que governos devem pensar em quem precisa garantir o pão de cada dia,1,1,0.8,curta,1
+Coronavírus: Unicamp faz revisão de orçamento e vota plano para reduzir R$ 72 milhões em despesas | Campinas e Região | G1,0,0,0.9,"fonte é um site de notícias confiável, como o G1",0
+O filme 'Corpus Christi' do diretor safado chamado deputado Jean Wyllys ... está para ser exibido nos cinemas. Com patrocínio da Lei Rouanet. Este filme mostra Jesus e seus discípulos como gays,1,1,0.8,curta,1
+'Temos de usar sacos de lixo na cabeça': médicos britânicos improvisam no combate ao coronavírus - Notícias - R7 Internacional,0,1,0.8,exageração,0
+"Eric Yuan, o bilionário criador do Zoom que viu sua fortuna se multiplicar durante pandemia | Tecnologia | G1",0,0,1.0,tem informações específicas sobre a pessoa e eventos verificados,0
+"Urgente! Ministro Paulo Guedes acaba de anunciar o fim do bolsa bandido, o auxílio-reclusão",1,1,0.8,curta,1
+Microsoft corrige brecha no Teams que deixava contas expostas ao receber links de imagens | Blog do Altieres Rohr | G1,0,0,0.9,publicacao em site credivel com autor conhecido,0
+"Unicamp, Unesp e USP pedem repasse de parte da ajuda financeira da União para o estado | Campinas e Região | G1",0,0,1.0,tem informações específicas sobre instituições educacionais brasileiras,0
+"Atenção, não fotografem seu comprovante de voto. Isso é crime eleitoral!",1,1,0.8,curta,1
+Universidade Cândido Mendes pede recuperação judicial durante pandemia do coronavírus | Rio de Janeiro | G1,0,0,0.8,Fonte confiável e informações verificáveis,0
+Enem 2020: Prazo para pedir isenção da taxa de inscrição termina nesta sexta | Enem 2020 | G1,0,0,1.0,data específica e atualizada,0
+General Villas Bôas anuncia intervenção militar e convoca povo do Brasil,1,1,0.8,falta de evidências e contexto,1
+Trump avisa: posso intervir militarmente no Brasil para acabar com a corrupção,1,1,0.9,curta,1
+Coronavírus: Unicamp começa testes rápidos com resultados em até 48h para diagnóstico da Covid-19 | Campinas e Região | G1,0,0,0.9,fonte confiável - O Estado de S. Paulo é mencionado como uma referência,0
+Como fazer máscaras E pudim O que os brasileiros mais buscam no Google em meio à pandemia | Tecnologia | G1,0,0,0.9,"tem referências a conteúdo específico e detalhado sobre como fazer máscaras e pudim, além de um contexto de relevância para a pandemia",0
+"Boletim do Departamento de Saúde do Canadá: informe suas famílias, parentes e amigos.",1,1,0.8,falta de contexto e detalhes específicos,1
+Governo Federal iniciou o cadastramento do Auxílio Cidadão que dá uma ajuda mensal no valor de R$ 200 para trabalhadores autônomos e pessoas de baixa renda para ajudar a combater CORONAVRUS. Confira se você tem direito ao benefício...,1,1,0.8," Falta de informações específicas sobre o cadastramento, benefício e requisitos para receber o auxílio cidadão.",1
+"Estados vão manter aulas suspensas para frear transmissão do novo coronavírus, diz entidade | Educação | G1",0,0,0.9,fonte confiável e específica de aula suspensa,0
+WhatsApp limita reenvio de mensagens a 1 destinatário por vez em meio à crise do novo coronavírus | Tecnologia | G1,0,0,1.0,fonte credível e verificável (G1),0
+A Rússia soltou mais de 500 leões nas ruas para garantir que as pessoas fiquem em ambientes fechados durante este surto de pandemia,1,1,1.0,curta,1
+WhatsApp afirma que volume de mensagens encaminhadas caiu 70% após limite de envio a apenas um destinatário | Tecnologia | G1,0,0,0.9,sorgente confiável e fonte específica,0
+"A riqueza do Lulinha. Sócio majoritário dos frigoríficos JBS, sócio majoritário da Oi",1,1,0.0,curta,1
+"O mais irônico é que a UFRJ recebeu uma grana forte do BNDES em junho para restaurar o museu. Agora, pergunta à UFRJ para onde essa grana foi. Vai, pergunta.",1,1,0.8,curta e ausente referência a evidências ou fontes específicas,1
+Militar preso da FAB. O militar detido por drogas é filiado ao PT. Pronto! Resolvido o mistério.,1,1,0.8,curta,1
+        Certificado digital do Banco Inter é revogado após chave vazar na web | G1 - Tecnologia e Games - Segurança Digital,0,0,0.9,Menciona um evento específico (chave vazada) que pode ser verificável com informações de segurança digital.,0

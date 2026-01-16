@@ -1,0 +1,57 @@
+# Componentes, API, Banco Vetorial e Configurações
+
+## API utilizada
+Este projeto usa a API HTTP local do Ollama (padrão: http://localhost:11434).
+Endpoints principais:
+- GET  /api/tags      -> verificar se o Ollama está no ar (modelos instalados)
+- POST /api/embed     -> gerar embeddings densos
+- POST /api/generate  -> gerar respostas (LLM)
+
+## Modelos no Ollama (exemplos)
+- LLM (geração): llama3.2 (configurável por OLLAMA_MODEL)
+- Embeddings: bge-m3 (configurável por OLLAMA_EMBED_MODEL)
+Alternativas mencionadas: nomic-embed-text, mxbai-embed-large
+
+## Embedding utilizado (Q2)
+- Por padrão: bge-m3
+- Dimensão típica observada: 1024 (depende do modelo)
+- Usos:
+  - embedding de cada chunk (indexação)
+  - embedding da pergunta (consulta)
+
+## Banco vetorial utilizado (Q2)
+- ChromaDB (persistente local)
+- Diretório: .chroma_db (configurável por RAG_CHROMA_DIR)
+- Coleção: rag_docs (configurável por RAG_CHROMA_COLLECTION)
+- O banco armazena:
+  - embeddings
+  - documentos (texto do chunk)
+  - metadados (doc, chunk_id)
+  - ids estáveis (doc::chunk_id::fingerprint)
+
+## Variáveis de ambiente (principais)
+- Ollama:
+  - OLLAMA_BASE_URL = http://localhost:11434
+  - OLLAMA_MODEL = llama3.2
+  - OLLAMA_EMBED_MODEL = bge-m3
+- RAG:
+  - RAG_DOCS_DIR = rag_docs
+  - RAG_CHUNK_SIZE = 900
+  - RAG_CHUNK_OVERLAP = 120
+  - RAG_TOP_K = 4
+  - RAG_EMBED_BATCH = 32
+- Chroma:
+  - RAG_CHROMA_DIR = .chroma_db
+  - RAG_CHROMA_COLLECTION = rag_docs
+  - RAG_REINDEX_ON_CHANGE = 1 (reindexa quando o corpus mudar)
+
+## Observação sobre “score”
+No Chroma, a query retorna "distances". Dependendo da métrica/config:
+- distância menor significa chunk mais próximo
+- para exibir como score, pode-se usar score~=1 - distance (aproximação)
+No projeto, o score é usado principalmente para depuração/explicabilidade do retrieval.
+
+## Como provar que o banco vetorial está funcionando
+- col.count() mostra o número total de chunks indexados
+- col.peek() mostra amostras com documents/metadatas/embeddings
+- col.query(...) retorna Top-K com metadados e distâncias (retrieval)

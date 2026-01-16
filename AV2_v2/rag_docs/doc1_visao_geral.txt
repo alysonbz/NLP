@@ -1,0 +1,45 @@
+# AV2 NLP — Visão Geral do Projeto
+
+## Intuito
+Este projeto (AV2 de NLP) implementa duas frentes:
+1) Q1: Classificação binária de notícias (FAKE vs REAL) em português usando TÍTULOS, comparando:
+   - Modelos clássicos supervisionados (TF-IDF + classificadores)
+   - Classificação via LLM (Ollama) por prompt
+2) Q2: Chat interativo com RAG (Retrieval-Augmented Generation) baseado em documentos .txt locais.
+   - O sistema deve responder somente com base no CONTEXTO recuperado
+   - Deve recusar quando não houver evidência suficiente
+
+## Organização conceitual
+- Q1 foca em NLP supervisionado tradicional:
+  - Representação: TF-IDF (unigramas/bigramas)
+  - Modelos: Logistic Regression, LinearSVC, MultinomialNB, SGDClassifier, RandomForest
+  - Avaliação: accuracy, precision, recall, F1, matriz de confusão, classification report
+- Q2 foca em RAG:
+  - Documentos locais (rag_docs/*.txt)
+  - Chunking (janela deslizante com overlap)
+  - Embeddings densos para indexação e busca por similaridade
+  - Geração via LLM com prompt que força groundedness
+
+## O que o projeto demonstra
+- Como modelos clássicos podem performar bem em texto curto (títulos)
+- Como LLM pode ser usada para classificação (Q1) e para respostas fundamentadas (Q2)
+- Como embeddings + banco vetorial (ChromaDB) viabilizam recuperação semântica em RAG
+
+## Regras importantes do chat RAG (Q2)
+- Responder SOMENTE com base no CONTEXTO
+- Se não houver evidência: responder exatamente:
+  "Não há informação suficiente no contexto."
+- Preferir citar doc/chunk quando possível (ex.: docX | chunk Y)
+
+## Componentes principais
+- Ollama (API local):
+  - /api/embed para embeddings
+  - /api/generate para geração (LLM)
+- Embeddings:
+  - Modelo padrão: bge-m3 (configurável via OLLAMA_EMBED_MODEL)
+- Banco vetorial:
+  - ChromaDB persistente local (pasta .chroma_db)
+- Config via variáveis de ambiente (exemplos):
+  - OLLAMA_BASE_URL, OLLAMA_MODEL, OLLAMA_EMBED_MODEL
+  - RAG_DOCS_DIR, RAG_CHUNK_SIZE, RAG_CHUNK_OVERLAP, RAG_TOP_K
+  - RAG_CHROMA_DIR, RAG_CHROMA_COLLECTION

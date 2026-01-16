@@ -1,0 +1,62 @@
+# Q2 — RAG Chat Interativo (Retrieval-Augmented Generation)
+
+## Objetivo da Q2
+Construir um chat que responda perguntas com base em documentos locais (.txt),
+usando RAG:
+- Recuperar trechos relevantes (retrieval) via embeddings
+- Gerar resposta (generation) usando LLM
+- Responder somente com base no contexto recuperado (groundedness)
+
+## Fonte dos documentos
+- Pasta padrão: rag_docs/
+- Lê todos os arquivos .txt no diretório
+
+## Chunking (divisão em trechos)
+- Estratégia: janela deslizante (sliding window) com overlap
+- Parâmetros (caracteres):
+  - CHUNK_SIZE = 900
+  - CHUNK_OVERLAP = 120
+- Motivação:
+  - Chunk grande demais: mais ruído e menos precisão no retrieval
+  - Chunk pequeno demais: pode perder contexto
+  - Overlap reduz perda de informação na borda dos cortes
+
+## Embeddings e indexação
+- Para cada chunk:
+  - gera embedding denso via Ollama /api/embed
+  - armazena vetor + texto do chunk + metadados (doc, chunk_id)
+
+## Banco vetorial (ChromaDB)
+- ChromaDB persistente local (pasta .chroma_db)
+- Coleção padrão: rag_docs
+- Cada registro no banco:
+  - id (estável): doc::chunk_id::fingerprint
+  - document: texto do chunk
+  - embedding: vetor denso (dimensão típica 1024 no bge-m3)
+  - metadata: {doc, chunk_id}
+
+## Fingerprint e reindexação
+- Um hash (fingerprint) é calculado a partir de:
+  - conteúdo dos arquivos
+  - CHUNK_SIZE, CHUNK_OVERLAP
+  - EMBED_MODEL
+- Se fingerprint mudar, o índice é refeito para evitar inconsistência
+
+## Retrieval (busca)
+- Dado uma pergunta:
+  1) gera embedding da pergunta
+  2) consulta o banco vetorial com Top-K (ex.: TOP_K=4)
+  3) retorna chunks mais similares com metadados e distância/score aproximado
+
+## Prompting e geração (LLM)
+- O prompt inclui:
+  - CONTEXTO: lista dos Top-K chunks com doc/chunk/score e texto
+  - PERGUNTA: pergunta do usuário
+  - Regra: responder somente com base no CONTEXTO
+  - Se faltar evidência: responder exatamente:
+    "Não há informação suficiente no contexto."
+- A LLM é chamada via Ollama /api/generate (stream=False)
+
+## Saídas no console
+- Mostra quais chunks foram recuperados (doc, chunk_id, score)
+- Mostra a resposta da LLM

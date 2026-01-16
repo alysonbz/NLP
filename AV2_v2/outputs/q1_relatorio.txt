@@ -1,0 +1,67 @@
+=== QUESTÃO 1 — RESULTADOS (CLÁSSICO vs LLM) ===
+
+Dataset:
+- n_total: 600
+- n_train: 480
+- n_test: 120
+- n_fake_total: 300
+- n_real_total: 300
+- fake_ratio: 0.5
+- title_avg_chars: 125.605
+- title_avg_words: 21.56833333333333
+
+Modelo clássico selecionado (melhor por F1 em CV):
+- LogReg
+
+Validação cruzada (médias 5-fold no treino):
+- LinearSVC: F1=0.9698 | Acc=0.9688
+- LogReg: F1=0.9702 | Acc=0.9688
+- MultinomialNB: F1=0.9606 | Acc=0.9604
+- SGD_hinge: F1=0.9653 | Acc=0.9646
+- RandomForest: F1=0.9701 | Acc=0.9688
+
+Teste (Clássico):
+- Accuracy: 0.9833
+- Precision (Fake=1): 0.9677
+- Recall (Fake=1): 1.0000
+- F1 (Fake=1): 0.9836
+- Confusion Matrix: [[58, 2], [0, 60]]
+
+Classification Report (Clássico):
+              precision    recall  f1-score   support
+
+        Real     1.0000    0.9667    0.9831        60
+        Fake     0.9677    1.0000    0.9836        60
+
+    accuracy                         0.9833       120
+   macro avg     0.9839    0.9833    0.9833       120
+weighted avg     0.9839    0.9833    0.9833       120
+
+
+Imagem CM clássico: outputs\cm_classico.png
+Erros clássico (CSV): outputs\misclass_classico.csv
+
+Teste (LLM - Ollama):
+- Modelo: llama3.2
+- N avaliado: 120
+- Accuracy: 0.9333
+- Precision (Fake=1): 0.9333
+- Recall (Fake=1): 0.9333
+- F1 (Fake=1): 0.9333
+- Confusion Matrix: [[56, 4], [4, 56]]
+
+Classification Report (LLM):
+              precision    recall  f1-score   support
+
+        Real     0.9333    0.9333    0.9333        60
+        Fake     0.9333    0.9333    0.9333        60
+
+    accuracy                         0.9333       120
+   macro avg     0.9333    0.9333    0.9333       120
+weighted avg     0.9333    0.9333    0.9333       120
+
+
+Imagem CM LLM: outputs\cm_llm.png
+Predições LLM (CSV): outputs\predicoes_llm.csv
+Erros LLM (CSV): outputs\misclass_llm.csv
+Discordâncias clássico vs LLM (CSV): outputs\discordancias_classico_vs_llm.csv

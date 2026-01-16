@@ -1,0 +1,67 @@
+# Q1 — Treinamento e Avaliação (Classificação Fake News)
+
+## Objetivo da Questão 1:
+Classificar títulos de notícias em português em duas classes:
+- REAL (0): notícia factual
+- FAKE (1): desinformação/boato
+
+
+A Questão 1 compara:
+- Baseline clássico: TF-IDF + classificadores supervisionados
+- LLM: classificação via Ollama (por prompt) para os mesmos títulos
+
+
+## Dados:
+- Entradas: títulos de notícias em arquivos CSV;
+- Dois conjuntos:
+  - News_fake.csv -> rotulado como FAKE = 1 (label = 1)
+  - News_notFake.csv -> rotulado como REAL = 0 (label = 0)
+- União e embaralhamento;
+- Split estratificado treino/teste (ex.: 80/20)
+    - 80% dos dados para treinamento;
+    - 20% dos dados para testes.
+
+
+## Representação (features) — TF-IDF:
+- Vetorização: TfidfVectorizer
+- Config típica:
+  - lowercase=True
+  - ngram_range=(1,2)   (unigramas e bigramas)
+  - min_df=2
+  - max_df=0.95
+Isso gera um vetor esparso por título (bag-of-ngrams ponderado).
+
+
+## Modelos clássicos avaliados
+Exemplos de modelos testados:
+- LogisticRegression (modelo linear)
+- LinearSVC (SVM linear)
+- MultinomialNB (Naive Bayes)
+- SGDClassifier (hinge/logloss)
+- RandomForest
+
+
+## Seleção do melhor modelo
+- Validação cruzada (ex.: 5-fold) no treino
+- Seleção baseada em métrica (ex.: F1 para classe FAKE)
+- O melhor modelo é treinado no treino completo e avaliado no teste
+
+
+## Métricas reportadas
+- Accuracy
+- Precision, Recall, F1 (especialmente para FAKE=1)
+- Classification report (por classe)
+- Matriz de confusão
+
+
+## Comparação com LLM (Ollama)
+- Para cada título do teste (ou do dataset), a LLM recebe um prompt de classificação
+- A saída é convertida em rótulo (REAL/FAKE) e avaliada com as mesmas métricas
+- Isso permite comparar:
+  - Robustez e performance de modelos clássicos
+  - Capacidade de generalização e consistência de LLM local
+
+
+## Observação prática
+Modelos clássicos frequentemente funcionam muito bem em títulos por capturarem padrões lexicais.
+LLM pode variar mais conforme modelo, prompt e temperatura, por isso é comum ter desempenho inferior/instável.

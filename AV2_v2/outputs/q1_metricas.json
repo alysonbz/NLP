@@ -1,0 +1,138 @@
+{
+  "dataset": {
+    "n_total": 600,
+    "n_train": 480,
+    "n_test": 120,
+    "n_fake_total": 300,
+    "n_real_total": 300,
+    "fake_ratio": 0.5,
+    "title_avg_chars": 125.605,
+    "title_avg_words": 21.56833333333333
+  },
+  "classic": {
+    "best_model": "LogReg",
+    "cv_scores": {
+      "LinearSVC": {
+        "f1_cv": 0.9697690779282009,
+        "acc_cv": 0.96875
+      },
+      "LogReg": {
+        "f1_cv": 0.970211842287928,
+        "acc_cv": 0.96875
+      },
+      "MultinomialNB": {
+        "f1_cv": 0.9605616397399981,
+        "acc_cv": 0.9604166666666666
+      },
+      "SGD_hinge": {
+        "f1_cv": 0.9653220347807977,
+        "acc_cv": 0.9645833333333333
+      },
+      "RandomForest": {
+        "f1_cv": 0.9701361641318771,
+        "acc_cv": 0.96875
+      }
+    },
+    "test": {
+      "accuracy": 0.9833333333333333,
+      "f1_fake": 0.9836065573770492,
+      "precision_fake": 0.967741935483871,
+      "recall_fake": 1.0,
+      "confusion_matrix": [
+        [
+          58,
+          2
+        ],
+        [
+          0,
+          60
+        ]
+      ],
+      "classification_report": {
+        "Real": {
+          "precision": 1.0,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9830508474576272,
+          "support": 60.0
+        },
+        "Fake": {
+          "precision": 0.967741935483871,
+          "recall": 1.0,
+          "f1-score": 0.9836065573770492,
+          "support": 60.0
+        },
+        "accuracy": 0.9833333333333333,
+        "macro avg": {
+          "precision": 0.9838709677419355,
+          "recall": 0.9833333333333334,
+          "f1-score": 0.9833287024173382,
+          "support": 120.0
+        },
+        "weighted avg": {
+          "precision": 0.9838709677419355,
+          "recall": 0.9833333333333333,
+          "f1-score": 0.9833287024173383,
+          "support": 120.0
+        }
+      },
+      "report_text": "              precision    recall  f1-score   support\n\n        Real     1.0000    0.9667    0.9831        60\n        Fake     0.9677    1.0000    0.9836        60\n\n    accuracy                         0.9833       120\n   macro avg     0.9839    0.9833    0.9833       120\nweighted avg     0.9839    0.9833    0.9833       120\n"
+    }
+  },
+  "llm": {
+    "ran": true,
+    "model": "llama3.2",
+    "base_url": "http://localhost:11434",
+    "N_eval": 120,
+    "accuracy": 0.9333333333333333,
+    "f1_fake": 0.9333333333333333,
+    "precision_fake": 0.9333333333333333,
+    "recall_fake": 0.9333333333333333,
+    "confusion_matrix": [
+      [
+        56,
+        4
+      ],
+      [
+        4,
+        56
+      ]
+    ],
+    "classification_report": {
+      "Real": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 60.0
+      },
+      "Fake": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 60.0
+      },
+      "accuracy": 0.9333333333333333,
+      "macro avg": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 120.0
+      },
+      "weighted avg": {
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1-score": 0.9333333333333333,
+        "support": 120.0
+      }
+    },
+    "report_text": "              precision    recall  f1-score   support\n\n        Real     0.9333    0.9333    0.9333        60\n        Fake     0.9333    0.9333    0.9333        60\n\n    accuracy                         0.9333       120\n   macro avg     0.9333    0.9333    0.9333       120\nweighted avg     0.9333    0.9333    0.9333       120\n"
+  },
+  "outputs": {
+    "dir": "outputs",
+    "cm_classic_png": "outputs\\cm_classico.png",
+    "cm_llm_png": "outputs\\cm_llm.png",
+    "misclass_classic_csv": "outputs\\misclass_classico.csv",
+    "predicoes_llm_csv": "outputs\\predicoes_llm.csv",
+    "misclass_llm_csv": "outputs\\misclass_llm.csv",
+    "discordancias_csv": "outputs\\discordancias_classico_vs_llm.csv"
+  }
+}
